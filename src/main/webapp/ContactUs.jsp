@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Shringar Beauty Salon</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contactus.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260411-2150">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contactus.css?v=20260411-2150">
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -40,12 +40,14 @@
 
         <ul class="nav-links">
             <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-            <li><a href="${pageContext.request.contextPath}/#gallery">Gallery</a></li>
             <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
+            <li><a href="${pageContext.request.contextPath}/#services">Services</a></li>
+            <li><a href="${pageContext.request.contextPath}/#gallery">Gallery</a></li>
             <li class="active"><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
+            <li><a href="${pageContext.request.contextPath}/#appointment">Appointment</a></li>
         </ul>
 
-        <a href="#" class="btn-login">Log in</a>
+        <a href="${pageContext.request.contextPath}/pages/user.jsp" class="btn-login">Log in</a>
     </div>
 </nav>
 
@@ -151,7 +153,7 @@
                 <li><a href="${pageContext.request.contextPath}/#gallery">Gallery</a></li>
                 <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact</a></li>
                 <li><a href="${pageContext.request.contextPath}/#appointment">Appointment</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/user.jsp">Login</a></li>
             </ul>
         </div>
 

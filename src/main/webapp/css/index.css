@@ -143,7 +143,7 @@ a {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 36px;
+    gap: 28px;
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
@@ -157,6 +157,7 @@ a {
     font-size: 0.92rem;
     font-weight: 400;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
     padding-bottom: 4px;
     border-bottom: 2px solid transparent;
     transition: color 0.2s ease;
@@ -667,15 +668,18 @@ main {
 }
 
 .footer {
+    background: var(--warm-white);
     border-top: 1px solid var(--border);
     margin-top: 1rem;
+    padding: 50px 40px 20px;
 }
 
 .footer-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2.5rem 3rem 2rem;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto 30px;
 }
 
 .footer .footer-brand,
@@ -686,89 +690,121 @@ main {
 }
 
 .footer .footer-brand {
-    flex: 1.4 1 280px;
+    flex: 1.5;
+    min-width: 200px;
     align-items: flex-start;
 }
 
 .footer-logo {
-    width: 76px;
-    height: 76px;
-    margin-bottom: 0.9rem;
+    width: auto;
+    height: 50px;
+    margin-bottom: 10px;
     object-fit: contain;
 }
 
 .footer .footer-brand h3 {
     margin: 0;
     font-family: var(--font-display);
-    font-size: 2rem;
-    letter-spacing: 0.08em;
-    color: var(--dark-gold);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--gold);
 }
 
 .footer-tagline {
-    margin: 0.15rem 0 0.8rem;
+    margin: 0 0 12px;
     color: var(--text-muted);
-    font-size: 0.9rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 0.8rem;
 }
 
 .footer-desc {
     max-width: 280px;
-    margin: 0;
+    margin: 0 0 14px;
     color: var(--text-muted);
-    line-height: 1.8;
+    font-size: 0.85rem;
+    line-height: 1.7;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-socials a {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: var(--gold);
+    color: white;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+}
+
+.footer-socials a:hover {
+    background: var(--dark-gold);
 }
 
 .footer-links {
-    flex: 1 1 220px;
+    flex: 1;
+    min-width: 140px;
 }
 
 .footer-contact {
-    flex: 1 1 240px;
+    flex: 1.2;
+    min-width: 180px;
 }
 
 .footer-links h4,
 .footer-contact h4 {
-    margin: 0 0 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    color: var(--dark-gold);
+    margin: 0 0 16px;
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .footer-links ul {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-.footer-links li + li {
-    margin-top: 0.55rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .footer-links a,
 .footer-contact p {
     color: var(--text-muted);
-    line-height: 1.8;
+    font-size: 0.85rem;
 }
 
 .footer-links a:hover {
-    color: var(--dark-gold);
+    color: var(--gold);
 }
 
 .footer-contact p {
     display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin: 0 0 0.45rem;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 8px;
+    font-size: 0.84rem;
+}
+
+.footer-contact p i {
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .footer-bottom {
-    padding: 1rem 3rem 2rem;
+    padding-top: 16px;
     text-align: center;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     border-top: 1px solid var(--border);
 }
 
