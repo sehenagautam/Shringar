@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=20260411-1350">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=20260411-1419">
 </head>
 <body>
     <div class="page-shell">
         <nav class="navbar">
-            <div class="nav-toop">
+            <div class="nav-top">
                 <div class="nav-top-left">
                     <span><i class="fas fa-phone"></i> +977 9820221306</span>
                 </div>
@@ -25,19 +25,19 @@
                 </div>
 
                 <div class="nav-top-right">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
 
             <div class="nav-main">
                 <div class="nav-logo">
-                    <img src="${pageContext.request.contextPath}/public/logo.png" alt="Shringar Logo" class="logo-img">
+                    <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img">
                 </div>
 
                 <ul class="nav-links">
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
+                    <li><a href="${pageContext.request.contextPath}/#gallery">Gallery</a></li>
                     <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
                     <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
                 </ul>

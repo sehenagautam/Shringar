@@ -44,7 +44,12 @@ a {
 }
 
 .navbar {
+    width: 100%;
+    background: var(--warm-white);
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav-top,
@@ -52,38 +57,30 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.5rem;
 }
 
 .nav-top {
-    padding: 0.85rem 3rem;
-    border-bottom: 1px solid var(--border);
+    padding: 6px 40px;
+    background-color: #f0e6d8;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
 }
 
 .nav-top-left,
 .nav-top-right {
     display: flex;
     align-items: center;
-    min-width: 220px;
-}
-
-.nav-top-left {
-    justify-content: flex-start;
 }
 
 .nav-top-right {
-    justify-content: flex-end;
-    gap: 0.6rem;
+    gap: 10px;
 }
 
 .nav-top-left span {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.55rem;
-    color: var(--text-muted);
-    font-size: 0.88rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    gap: 6px;
 }
 
 .nav-top-left i,
@@ -93,49 +90,43 @@ a {
 }
 
 .nav-brand {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.15rem;
     text-align: center;
 }
 
 .nav-brand .brand-name {
-    color: var(--dark-gold);
-    font-size: 0.95rem;
+    display: block;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-brand .brand-location {
     color: var(--text-muted);
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
+    font-size: 0.72rem;
 }
 
 .nav-top-right a {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.9rem;
-    height: 1.9rem;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    color: var(--dark);
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--gold);
+    color: white;
+    font-size: 0.7rem;
+    transition: background 0.2s ease;
 }
 
 .nav-top-right a:hover {
-    border-color: var(--gold);
-    transform: translateY(-2px);
+    background: var(--dark-gold);
 }
 
 .nav-main {
-    padding: 1.25rem 3rem;
-    border-bottom: 1px solid var(--border);
+    padding: 12px 40px;
+    background: var(--warm-white);
 }
 
 .nav-logo {
@@ -144,17 +135,15 @@ a {
 }
 
 .logo-img {
-    width: 82px;
-    height: 82px;
+    width: auto;
+    height: 60px;
     object-fit: contain;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex: 1;
-    gap: 2rem;
+    gap: 36px;
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
@@ -163,27 +152,25 @@ a {
 
 .nav-links a {
     position: relative;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
     transition: color 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a:focus,
 .nav-links .active a {
-    color: var(--dark-gold);
+    color: var(--gold);
+    border-bottom-color: var(--gold);
 }
 
 .nav-links .active a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -0.45rem;
-    height: 1px;
-    background: var(--gold);
+    content: none;
 }
 
 .btn-login,
@@ -199,12 +186,21 @@ a {
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.btn-login,
 .primary-button {
     padding: 0.78rem 1.5rem;
     background: linear-gradient(135deg, var(--gold), var(--dark-gold));
     color: var(--warm-white);
     box-shadow: 0 16px 30px rgba(168, 137, 77, 0.22);
+}
+
+.btn-login {
+    padding: 9px 22px;
+    border-radius: 4px;
+    background: var(--dark);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    box-shadow: none;
 }
 
 .secondary-button {
@@ -219,6 +215,10 @@ a {
 .secondary-button:hover,
 .gallery-link:hover {
     transform: translateY(-2px);
+}
+
+.navbar .btn-login:hover {
+    background: var(--gold);
 }
 
 main {
