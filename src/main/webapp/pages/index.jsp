@@ -42,7 +42,7 @@
                     <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
                 </ul>
 
-                <a href="#" class="btn-login">Log in</a>
+                <a href="${pageContext.request.contextPath}/pages/user.jsp" class="btn-login">Log in</a>
             </div>
         </nav>
 
@@ -244,7 +244,7 @@
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact</a></li>
                         <li><a href="#appointment">Appointment</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/user.jsp">Login</a></li>
                     </ul>
                 </div>
 
