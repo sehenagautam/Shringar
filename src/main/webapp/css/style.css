@@ -4,7 +4,6 @@
    ============================================= */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 
 /* ── CSS Variables ── */
 :root {
@@ -123,6 +122,15 @@ a {
     display: flex;
     list-style: none;
     gap: 36px;
+}
+.nav-links li a {
+    text-transform: uppercase;
+    font-size: 0.88rem;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    gap: 28px;
 }
 
 .nav-links li a {

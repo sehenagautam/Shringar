@@ -37,14 +37,17 @@
             <img src="images/logo.png" alt="Shringar Logo" class="logo-img"/>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li class="active"><a href="contact.html">Contact Us</a></li>
-        </ul>
+       
+       <ul class="nav-links">
+    <li><a href="home.jsp">HOME</a></li>
+    <li><a href="about.jsp">ABOUT US</a></li>
+    <li><a href="services.jsp">SERVICES</a></li>
+    <li><a href="gallery.jsp">GALLERY</a></li>
+    <li class="active"><a href="contact.jsp">CONTACT US</a></li>
+    <li><a href="appointment.jsp">APPOINTMENT</a></li>
+</ul>
 
-        <a href="login.html" class="btn-login">Log in</a>
+<a href="login.jsp" class="btn-login">Log in</a>
     </div>
 </nav>
 
@@ -98,7 +101,7 @@
 
         </div>
 
-        <!-- RIGHT FORM (STATIC) -->
+        <!-- RIGHT FORM -->
         <div class="contact-form-box">
             <p class="form-subtitle">GET IN TOUCH.</p>
             <h2 class="form-title">How can we help you?</h2>

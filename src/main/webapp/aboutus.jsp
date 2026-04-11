@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,12 +32,15 @@
                 <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img"/>
             </div>
             <ul class="nav-links">
-                <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/gallery">Gallery</a></li>
-                <li class="active"><a href="${pageContext.request.contextPath}/aboutUs">About Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
-            </ul>
-            <a href="${pageContext.request.contextPath}/login" class="btn-login">Log in</a>
+    <li><a href="home.jsp">HOME</a></li>
+    <li><a href="about.jsp">ABOUT US</a></li>
+    <li><a href="services.jsp">SERVICES</a></li>
+    <li><a href="gallery.jsp">GALLERY</a></li>
+    <li class="active"><a href="contact.jsp">CONTACT US</a></li>
+    <li><a href="appointment.jsp">APPOINTMENT</a></li>
+</ul>
+
+<a href="login.jsp" class="btn-login">Log in</a>
         </div>
     </nav>
 
@@ -53,8 +56,8 @@
             <!-- Hero Banner Image -->
             <div class="about-banner">
                 <img src="${pageContext.request.contextPath}/images/about.png" 
-     alt="Shringar Beauty Salon Hero" 
-     class="about-hero">
+                     alt="Shringar Beauty Salon Hero" 
+                     class="about-hero">
             </div>
 
             <!-- Introduction -->
@@ -80,8 +83,8 @@
                 <div class="began-content">
                     <div class="began-img">
                         <img src="${pageContext.request.contextPath}/images/makeup3.png" 
-     alt="Shringar Beauty Salon Hero" 
-     class="about-hero">
+                             alt="Shringar Beauty Salon Hero" 
+                             class="about-hero">
                     </div>
                     <div class="began-text">
                         <p>Our story began with a simple vision — to create a premium beauty destination dedicated to artistry and personal care. What started as a small salon has grown into a trusted name in beauty and wellness across Kathmandu.</p>
@@ -102,80 +105,82 @@
                     </div>
                     <div class="mission-img">
                         <img src="${pageContext.request.contextPath}/images/makeup2.png" 
-     alt="Shringar Beauty Salon Hero" 
-     class="about-hero">
+                             alt="Shringar Beauty Salon Hero" 
+                             class="about-hero">
                     </div>
                 </div>
             </div>
 
+            <!-- Team Members -->
             <div class="about-team">
-    <p class="team-heading">SHRINGAR TEAM MEMBERS</p>
+                <p class="team-heading">SHRINGAR TEAM MEMBERS</p>
 
-    <div class="team-list">
+                <div class="team-list">
 
-        <!-- Member 1 -->
-        <div class="team-item">
-            <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/anjelina.png">
-            </div>
-            <div class="team-info">
-                <h3>1. Salon Manager</h3>
-                <p>Handles daily operations and ensures smooth service.</p>
-            </div>
-        </div>
+                    <!-- Member 1 -->
+                    <div class="team-item">
+                        <div class="team-avatar">
+                            <img src="${pageContext.request.contextPath}/images/anjelina.png">
+                        </div>
+                        <div class="team-info">
+                            <h3>1. Salon Manager</h3>
+                            <p>Handles daily operations and ensures smooth service.</p>
+                        </div>
+                    </div>
 
-        <!-- Member 2 -->
-        <div class="team-item">
-            <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/ojeswi.png">
-            </div>
-            <div class="team-info">
-                <h3>2. Hair Stylist</h3>
-                <p>Expert in styling, coloring, and treatments.</p>
-            </div>
-        </div>
+                    <!-- Member 2 -->
+                    <div class="team-item">
+                        <div class="team-avatar">
+                            <img src="${pageContext.request.contextPath}/images/ojeswi.png">
+                        </div>
+                        <div class="team-info">
+                            <h3>2. Hair Stylist</h3>
+                            <p>Expert in styling, coloring, and treatments.</p>
+                        </div>
+                    </div>
 
-        <!-- Member 3 -->
-        <div class="team-item">
-            <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/pratyusha.png">
-            </div>
-            <div class="team-info">
-                <h3>3. Makeup Artist</h3>
-                <p>Professional makeup for events and occasions.</p>
-            </div>
-        </div>
+                    <!-- Member 3 -->
+                    <div class="team-item">
+                        <div class="team-avatar">
+                            <img src="${pageContext.request.contextPath}/images/pratyusha.png">
+                        </div>
+                        <div class="team-info">
+                            <h3>3. Makeup Artist</h3>
+                            <p>Professional makeup for events and occasions.</p>
+                        </div>
+                    </div>
 
-        <!-- Member 4 -->
-        <div class="team-item">
-            <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/sabya.png">
-            </div>
-            <div class="team-info">
-                <h3>4. Beautician</h3>
-                <p>Facials, skincare, and beauty treatments.</p>
-            </div>
-        </div>
+                    <!-- Member 4 -->
+                    <div class="team-item">
+                        <div class="team-avatar">
+                            <img src="${pageContext.request.contextPath}/images/sabya.png">
+                        </div>
+                        <div class="team-info">
+                            <h3>4. Beautician</h3>
+                            <p>Facials, skincare, and beauty treatments.</p>
+                        </div>
+                    </div>
 
-        <!-- Member 5 -->
-        <div class="team-item">
-            <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/about.png">
-            </div>
-            <div class="team-info">
-                <h3>5. Nail Technician</h3>
-                <p>Manicure, pedicure, and nail art expert.</p>
-            </div>
-        </div>
+                    <!-- Member 5 -->
+                    <div class="team-item">
+                        <div class="team-avatar">
+                            <img src="${pageContext.request.contextPath}/images/about.png">
+                        </div>
+                        <div class="team-info">
+                            <h3>5. Nail Technician</h3>
+                            <p>Manicure, pedicure, and nail art expert.</p>
+                        </div>
+                    </div>
 
-    </div>
-</div>
+                </div>
+            </div>
+
             <!-- CTA Banner -->
             <div class="about-cta">
                 <div class="cta-overlay"></div>
                 <img src="${pageContext.request.contextPath}/images/makeup.png" 
-     alt="Shringar Beauty Salon Hero" 
-     class="about-hero">
+                     alt="Shringar Beauty Salon Hero" 
+                     class="about-hero">
                 <div class="cta-text">
                     <h2>Your beauty journey starts here. Join Shringar for your makeover.</h2>
                 </div>
