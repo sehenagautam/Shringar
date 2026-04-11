@@ -1,0 +1,216 @@
+/* =============================================
+   contactUs.css — Contact Us Page Styles
+   Shringar Beauty Salon
+   ============================================= */
+
+/* ── Hero ── */
+.contact-hero {
+    background-color: var(--cream);
+    padding: 50px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+s
+.contact-hero h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--dark);
+    letter-spacing: 1px;
+}
+
+/* ── Main Contact Section ── */
+.contact-section {
+    padding: 60px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contact-container {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* ── LEFT: Info ── */
+.contact-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.location-block {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.location-block i {
+    color: var(--gold);
+    margin-top: 4px;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.location-block p {
+    font-size: 0.88rem;
+    color: var(--dark);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.social-icons a {
+    background: var(--gold);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    transition: background 0.2s;
+}
+
+.social-icons a:hover {
+    background: var(--dark-gold);
+}
+
+.map-container {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-top: 10px;
+}
+
+/* ── RIGHT: Form ── */
+.contact-form-box {
+    flex: 1.2;
+    min-width: 300px;
+}
+
+.form-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.form-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 30px;
+    line-height: 1.3;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 140px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    flex: 0 0 100%;
+}
+
+.form-group label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+    border: 1px solid var(--border);
+    background: #fdf5ee;
+    padding: 10px 12px;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--dark);
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--gold);
+}
+
+.btn-send {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 11px 36px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.2s;
+}
+
+.btn-send:hover {
+    background: var(--dark-gold);
+}
+
+.form-message {
+    margin-top: 14px;
+    font-size: 0.88rem;
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 40px 16px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 36px;
+    }
+
+    .contact-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-title {
+        font-size: 1.6rem;
+    }
+}
