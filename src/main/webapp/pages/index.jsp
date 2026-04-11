@@ -14,7 +14,7 @@
 <body>
     <div class="page-shell">
         <nav class="navbar">
-            <div class="nav-top">
+            <div class="nav-toop">
                 <div class="nav-top-left">
                     <span><i class="fas fa-phone"></i> +977 9820221306</span>
                 </div>
@@ -38,8 +38,8 @@
                 <ul class="nav-links">
                     <li class="active"><a href="#home">Home</a></li>
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
                 </ul>
 
                 <a href="#" class="btn-login">Log in</a>
@@ -239,10 +239,10 @@
                     <h4>QUICK LINKS</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact</a></li>
                         <li><a href="#appointment">Appointment</a></li>
                         <li><a href="#">Login</a></li>
                     </ul>
