@@ -18,22 +18,18 @@
 
             <!-- LEFT: FORM FIELDS -->
             <div class="appt-form">
-
                 <div class="appt-group">
                     <label>Full Name</label>
                     <input type="text" placeholder="Your full name">
                 </div>
-
                 <div class="appt-group">
                     <label>Phone Number</label>
                     <input type="text" placeholder="+977-XXXXXXXXXX">
                 </div>
-
                 <div class="appt-group">
                     <label>Email Address</label>
                     <input type="text" placeholder="your@email.com">
                 </div>
-
                 <div class="appt-group">
                     <label>Service Type</label>
                     <select>
@@ -43,7 +39,6 @@
                         <option>Makeup Services</option>
                     </select>
                 </div>
-
                 <div class="appt-group">
                     <label>Stylist Preference</label>
                     <select>
@@ -51,19 +46,15 @@
                         <option>Any Available</option>
                     </select>
                 </div>
-
                 <div class="appt-group">
                     <label>Additional Notes</label>
                     <textarea placeholder="Any special requests or notes..."></textarea>
                 </div>
-
             </div>
 
             <!-- RIGHT: CALENDAR + TIME -->
             <div class="calendar-section">
-
                 <label>Select Date</label>
-
                 <div class="calendar-box">
                     <div class="cal-header">
                         <button>&lt;</button>
@@ -71,13 +62,8 @@
                         <button>&gt;</button>
                     </div>
                     <div class="cal-days-header">
-                        <span>SU</span>
-                        <span>MO</span>
-                        <span>TU</span>
-                        <span>WE</span>
-                        <span>TH</span>
-                        <span>FR</span>
-                        <span>SA</span>
+                        <span>SU</span><span>MO</span><span>TU</span>
+                        <span>WE</span><span>TH</span><span>FR</span><span>SA</span>
                     </div>
                     <div class="cal-days">
                         <div class="cal-day empty"></div>
@@ -130,7 +116,6 @@
                     <div class="time-slot">5:00 PM</div>
                     <div class="time-slot">6:00 PM</div>
                 </div>
-
             </div>
 
         </div>
@@ -157,4 +142,3 @@
 </div>
 
 <%@ include file="../components/footer.jsp" %>
-<%@ include file="../components/poweredby.jsp" %>

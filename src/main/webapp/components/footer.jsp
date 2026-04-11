@@ -7,8 +7,7 @@
             <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" class="footer-logo"/>
             <h3>SHRINGAR</h3>
             <p class="footer-tagline">BEAUTY &amp; WELLNESS</p>
-            <p class="footer-desc">Your trusted beauty destination in 
-            Kamalpokhari, Kathmandu.</p>
+            <p class="footer-desc">Your trusted beauty destination in Kamalpokhari, Kathmandu. We bring elegance and care to every visit.</p>
         </div>
 
         <!-- QUICK LINKS -->
@@ -25,15 +24,19 @@
             </ul>
         </div>
 
-<!-- CONTACT -->
-<div class="footer-contact">
-    <h4>CONTACT</h4>
-    <p><i class="fas fa-map-marker-alt"></i> Kamalpokhari, Kathmandu, Nepal</p>
-    <p><i class="fas fa-phone"></i> +977-9820221306</p>
-    <p><i class="fas fa-globe"></i> www.shringarnepal.com</p>
-    
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>CONTACT</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Kamalpokhari, Kathmandu, Nepal</p>
+            <p><i class="fas fa-phone"></i> +977-9820221306</p>
+            <p><i class="fas fa-globe"></i> www.shringarnepal.com</p>
+            <div class="opening-hours">
+                <strong>Opening Hours</strong>
+                Sunday - Saturday: 9:30 - 7PM
+            </div>
+        </div>
+
     </div>
-</div>
 
     <div class="footer-bottom">
         &copy; 2026 Shringar Salon. All Rights Reserved.
