@@ -119,6 +119,11 @@ a {
     width: auto;
 }
 
+.nav-logo a {
+    display: inline-flex;
+    align-items: center;
+}
+
 .nav-links {
     display: flex;
     list-style: none;

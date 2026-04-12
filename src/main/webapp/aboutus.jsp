@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Shringar Beauty Salon</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260411-2150">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aboutus.css?v=20260411-2150">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260412-1200">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aboutus.css?v=20260412-1200">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -29,15 +29,17 @@
         </div>
         <div class="nav-main">
             <div class="nav-logo">
-                <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img"/>
+                <a href="${pageContext.request.contextPath}/" aria-label="Shringar home">
+                    <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img"/>
+                </a>
             </div>
             <ul class="nav-links">
                 <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                 <li class="active"><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/#services">Services</a></li>
-                <li><a href="${pageContext.request.contextPath}/#gallery">Gallery</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
                 <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/#appointment">Appointment</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
             </ul>
             <a href="${pageContext.request.contextPath}/pages/user.jsp" class="btn-login">Log in</a>
         </div>
@@ -204,10 +206,10 @@
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                     <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#services">Services</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#gallery">Gallery</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
                     <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#appointment">Appointment</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
                     <li><a href="${pageContext.request.contextPath}/pages/user.jsp">Login</a></li>
                 </ul>
             </div>

@@ -134,6 +134,11 @@ a {
     align-items: center;
 }
 
+.nav-logo a {
+    display: inline-flex;
+    align-items: center;
+}
+
 .logo-img {
     width: auto;
     height: 60px;

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=20260411-2118">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=20260412-1200">
 </head>
 <body>
     <div class="page-shell">
@@ -32,16 +32,18 @@
 
             <div class="nav-main">
                 <div class="nav-logo">
-                    <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img">
+                    <a href="${pageContext.request.contextPath}/" aria-label="Shringar home">
+                        <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img">
+                    </a>
                 </div>
 
                 <ul class="nav-links">
                     <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
                     <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#services">Services</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#gallery">Gallery</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
                     <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#appointment">Appointment</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
                 </ul>
 
                 <a href="${pageContext.request.contextPath}/pages/user.jsp" class="btn-login">Log in</a>
@@ -63,8 +65,8 @@
                         is designed to help you feel polished, confident, and celebrated.
                     </p>
                     <div class="banner-actions">
-                        <a class="primary-button" href="#appointment">Book Now</a>
-                        <a class="secondary-button" href="#services">View Service</a>
+                        <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment.jsp">Book Now</a>
+                        <a class="secondary-button" href="${pageContext.request.contextPath}/pages/services.jsp">View Service</a>
                     </div>
                 </div>
             </section>
@@ -125,15 +127,15 @@
                 </div>
 
                 <div class="services-row">
-                    <a class="service-card" href="#appointment">
+                    <a class="service-card" href="${pageContext.request.contextPath}/pages/makeup.jsp">
                         <img src="${pageContext.request.contextPath}/public/makeup_popular_services.png" alt="Makeup service">
                     </a>
 
-                    <a class="service-card" href="#appointment">
+                    <a class="service-card" href="${pageContext.request.contextPath}/pages/hair.jsp">
                         <img src="${pageContext.request.contextPath}/public/hair_popular_services.png" alt="Hair service">
                     </a>
 
-                    <a class="service-card" href="#appointment">
+                    <a class="service-card" href="${pageContext.request.contextPath}/pages/nail.jsp">
                         <img src="${pageContext.request.contextPath}/public/nail.png" alt="Nail service">
                     </a>
                 </div>
@@ -192,7 +194,7 @@
                         Discover expert makeup, hair, and nail services designed to bring out your
                         best look.
                     </p>
-                    <a class="primary-button" href="#contact">Book Now!</a>
+                    <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment.jsp">Book Now!</a>
                 </div>
             </section>
 
@@ -221,7 +223,7 @@
                         </figure>
                     </div>
 
-                    <a class="gallery-link" href="#contact">See All</a>
+                    <a class="gallery-link" href="${pageContext.request.contextPath}/pages/Gallery.jsp">See All</a>
                 </div>
             </section>
         </main>
@@ -240,12 +242,12 @@
                 <div class="footer-links">
                     <h4>QUICK LINKS</h4>
                     <ul>
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                         <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
                         <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact</a></li>
-                        <li><a href="#appointment">Appointment</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
                         <li><a href="${pageContext.request.contextPath}/pages/user.jsp">Login</a></li>
                     </ul>
                 </div>
