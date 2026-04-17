@@ -46,11 +46,15 @@
     margin-bottom: 20px;
 }
 
-.location-block i {
+.location-block .contact-label {
     color: var(--gold);
     margin-top: 4px;
-    font-size: 1rem;
     flex-shrink: 0;
+    min-width: 62px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .location-block p {

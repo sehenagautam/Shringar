@@ -117,10 +117,12 @@ button {
     transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.admin-nav-link i {
+.admin-nav-mark {
     width: 22px;
     color: var(--dark-gold);
     text-align: center;
+    font-size: 0.78rem;
+    font-weight: 700;
 }
 
 .admin-nav-link:hover,
@@ -226,6 +228,15 @@ button {
     color: var(--dark);
 }
 
+.search-mark,
+.button-mark {
+    color: var(--rose-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .icon-button,
 .admin-profile {
     border: 1px solid var(--border);
@@ -235,9 +246,10 @@ button {
 }
 
 .icon-button {
-    width: 46px;
+    width: auto;
+    min-width: 62px;
     height: 46px;
-    border-radius: 50%;
+    border-radius: 999px;
 }
 
 .admin-profile {
@@ -322,6 +334,9 @@ button {
     border-radius: 16px;
     color: var(--rose-dark);
     background: var(--rose-soft);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
 }
 
 .kpi-icon.customers {

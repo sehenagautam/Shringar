@@ -279,10 +279,19 @@ a {
     align-items: flex-start;
 }
 
-.footer-contact p i {
+.inline-icon,
+.contact-label {
     color: var(--gold);
+}
+
+.footer-contact .contact-label {
     margin-top: 2px;
     flex-shrink: 0;
+    min-width: 54px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .opening-hours {

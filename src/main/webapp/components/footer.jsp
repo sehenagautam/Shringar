@@ -15,21 +15,21 @@
             <h4>QUICK LINKS</h4>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
-                <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/user.jsp">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
+                <li><a href="${pageContext.request.contextPath}/ContactUs">Contact</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/user">Login</a></li>
             </ul>
         </div>
 
         <!-- CONTACT -->
         <div class="footer-contact">
             <h4>CONTACT</h4>
-            <p><i class="fas fa-map-marker-alt"></i> Kamalpokhari, Kathmandu, Nepal</p>
-            <p><i class="fas fa-phone"></i> +977-9820221306</p>
-            <p><i class="fas fa-globe"></i> www.shringarnepal.com</p>
+            <p><span class="contact-label">Location</span> Kamalpokhari, Kathmandu, Nepal</p>
+            <p><span class="contact-label">Phone</span> +977-9820221306</p>
+            <p><span class="contact-label">Web</span> www.shringarnepal.com</p>
             <div class="opening-hours">
                 <strong>Opening Hours</strong>
                 Sunday - Saturday: 9:30 - 7PM

@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css?v=20260411-1430">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css?v=20260413-plain">
 </head>
 <body class="login-body">
 
@@ -21,7 +20,7 @@
 
         <div class="gold-rule">
             <span></span>
-            <i class="fas fa-diamond"></i>
+            <span class="diamond-mark">S</span>
             <span></span>
         </div>
 
@@ -29,11 +28,11 @@
 
         <div class="login-form">
             <div class="login-input-group">
-                <i class="fas fa-phone"></i>
+                <span class="login-input-label">Phone</span>
                 <input type="text" name="mobile" placeholder="Mobile Number">
             </div>
             <div class="login-input-group">
-                <i class="fas fa-lock"></i>
+                <span class="login-input-label">Pass</span>
                 <input type="password" name="password" placeholder="Password*">
             </div>
             <button type="button" class="login-btn">Login</button>

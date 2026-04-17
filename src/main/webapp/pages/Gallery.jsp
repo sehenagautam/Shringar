@@ -10,19 +10,16 @@
 
     <section class="gallery-section">
         <div class="gallery-categories">
-            <a class="gallery-card" href="${pageContext.request.contextPath}/pages/makeup.jsp">
+            <a class="gallery-card" href="${pageContext.request.contextPath}/pages/makeup">
                 <span class="gallery-card-placeholder makeup-bg"></span>
-                <span class="gallery-card-label">Makeup</span>
             </a>
 
-            <a class="gallery-card" href="${pageContext.request.contextPath}/pages/hair.jsp">
+            <a class="gallery-card" href="${pageContext.request.contextPath}/pages/hair">
                 <span class="gallery-card-placeholder hair-bg"></span>
-                <span class="gallery-card-label">Hair</span>
             </a>
 
-            <a class="gallery-card" href="${pageContext.request.contextPath}/pages/nail.jsp">
+            <a class="gallery-card" href="${pageContext.request.contextPath}/pages/nail">
                 <span class="gallery-card-placeholder nail-bg"></span>
-                <span class="gallery-card-label">Nail</span>
             </a>
         </div>
     </section>

@@ -9,7 +9,7 @@
     </section>
 
     <section class="services-landing">
-        <a class="service-tile" href="${pageContext.request.contextPath}/pages/hair.jsp">
+        <a class="service-tile" href="${pageContext.request.contextPath}/pages/hair">
             <img src="${pageContext.request.contextPath}/images/hair1.jpg" alt="Hair services">
             <div>
                 <p>Hair</p>
@@ -18,7 +18,7 @@
             </div>
         </a>
 
-        <a class="service-tile" href="${pageContext.request.contextPath}/pages/makeup.jsp">
+        <a class="service-tile" href="${pageContext.request.contextPath}/pages/makeup">
             <img src="${pageContext.request.contextPath}/images/makeup1.jpg" alt="Makeup services">
             <div>
                 <p>Makeup</p>
@@ -27,7 +27,7 @@
             </div>
         </a>
 
-        <a class="service-tile" href="${pageContext.request.contextPath}/pages/nail.jsp">
+        <a class="service-tile" href="${pageContext.request.contextPath}/pages/nail">
             <img src="${pageContext.request.contextPath}/images/nail1.jpg" alt="Nail services">
             <div>
                 <p>Nail</p>

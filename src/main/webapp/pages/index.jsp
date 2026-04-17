@@ -8,15 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=20260412-1200">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=20260413-plain">
 </head>
 <body>
     <div class="page-shell">
         <nav class="navbar">
             <div class="nav-top">
                 <div class="nav-top-left">
-                    <span><i class="fas fa-phone"></i> +977 9820221306</span>
+                    <span><span class="inline-icon">Phone</span> +977 9820221306</span>
                 </div>
 
                 <div class="nav-brand">
@@ -25,8 +24,8 @@
                 </div>
 
                 <div class="nav-top-right">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#">F</a>
+                    <a href="#">I</a>
                 </div>
             </div>
 
@@ -39,14 +38,14 @@
 
                 <ul class="nav-links">
                     <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
-                    <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
-                    <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
+                    <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
+                    <li><a href="${pageContext.request.contextPath}/ContactUs">Contact Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
                 </ul>
 
-                <a href="${pageContext.request.contextPath}/pages/user.jsp" class="btn-login">Log in</a>
+                <a href="${pageContext.request.contextPath}/pages/user" class="btn-login">Log in</a>
             </div>
         </nav>
 
@@ -65,8 +64,8 @@
                         is designed to help you feel polished, confident, and celebrated.
                     </p>
                     <div class="banner-actions">
-                        <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment.jsp">Book Now</a>
-                        <a class="secondary-button" href="${pageContext.request.contextPath}/pages/services.jsp">View Service</a>
+                        <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment">Book Now</a>
+                        <a class="secondary-button" href="${pageContext.request.contextPath}/pages/services">View Service</a>
                     </div>
                 </div>
             </section>
@@ -89,7 +88,7 @@
                 <img class="feature-background" src="${pageContext.request.contextPath}/public/boxtextbg.png" alt="Salon interior background">
                 <div class="feature-overlay">
                     <article class="feature-card">
-                        <span class="feature-icon"><i class="fas fa-lightbulb"></i></span>
+                        <span class="feature-icon">01</span>
                         <h3>Modern Techniques &amp; Trends</h3>
                         <p>
                             From classic looks to the latest trends in makeup, hair, and nails,
@@ -99,7 +98,7 @@
                     </article>
 
                     <article class="feature-card">
-                        <span class="feature-icon"><i class="fas fa-scissors"></i></span>
+                        <span class="feature-icon">02</span>
                         <h3>Skilled Beauty Experts</h3>
                         <p>
                             At Shringar, services are delivered by experienced professionals who
@@ -109,7 +108,7 @@
                     </article>
 
                     <article class="feature-card">
-                        <span class="feature-icon"><i class="fas fa-user"></i></span>
+                        <span class="feature-icon">03</span>
                         <h3>Personalized Experience</h3>
                         <p>
                             Every client receives a tailored experience designed around personal
@@ -127,15 +126,15 @@
                 </div>
 
                 <div class="services-row">
-                    <a class="service-card" href="${pageContext.request.contextPath}/pages/makeup.jsp">
+                    <a class="service-card" href="${pageContext.request.contextPath}/pages/makeup">
                         <img src="${pageContext.request.contextPath}/public/makeup_popular_services.png" alt="Makeup service">
                     </a>
 
-                    <a class="service-card" href="${pageContext.request.contextPath}/pages/hair.jsp">
+                    <a class="service-card" href="${pageContext.request.contextPath}/pages/hair">
                         <img src="${pageContext.request.contextPath}/public/hair_popular_services.png" alt="Hair service">
                     </a>
 
-                    <a class="service-card" href="${pageContext.request.contextPath}/pages/nail.jsp">
+                    <a class="service-card" href="${pageContext.request.contextPath}/pages/nail">
                         <img src="${pageContext.request.contextPath}/public/nail.png" alt="Nail service">
                     </a>
                 </div>
@@ -194,7 +193,7 @@
                         Discover expert makeup, hair, and nail services designed to bring out your
                         best look.
                     </p>
-                    <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment.jsp">Book Now!</a>
+                    <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment">Book Now!</a>
                 </div>
             </section>
 
@@ -223,7 +222,7 @@
                         </figure>
                     </div>
 
-                    <a class="gallery-link" href="${pageContext.request.contextPath}/pages/Gallery.jsp">See All</a>
+                    <a class="gallery-link" href="${pageContext.request.contextPath}/pages/Gallery">See All</a>
                 </div>
             </section>
         </main>
@@ -243,20 +242,20 @@
                     <h4>QUICK LINKS</h4>
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                        <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                        <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
-                        <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
-                        <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact</a></li>
-                        <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
-                        <li><a href="${pageContext.request.contextPath}/pages/user.jsp">Login</a></li>
+                        <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
+                        <li><a href="${pageContext.request.contextPath}/ContactUs">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/user">Login</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-contact">
                     <h4>CONTACT</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Kamalpokhari, Kathmandu</p>
-                    <p><i class="fas fa-phone"></i> +977-9820221306</p>
-                    <p><i class="fas fa-globe"></i> www.shringarnepal.com</p>
+                    <p><span class="contact-label">Location</span> Kamalpokhari, Kathmandu</p>
+                    <p><span class="contact-label">Phone</span> +977-9820221306</p>
+                    <p><span class="contact-label">Web</span> www.shringarnepal.com</p>
                 </div>
             </div>
 

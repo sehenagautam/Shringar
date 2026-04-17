@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Shringar Beauty Salon</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260412-1200">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260413-plain">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aboutus.css?v=20260412-1200">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -16,15 +15,15 @@
     <nav class="navbar">
         <div class="nav-top">
             <div class="nav-top-left">
-                <span><i class="fas fa-phone"></i> +977 9820221306</span>
+                <span><span class="inline-icon">Phone</span> +977 9820221306</span>
             </div>
             <div class="nav-brand">
                 <span class="brand-name">Beauty Salon</span>
                 <span class="brand-location">Kamalpokhari, Kathmandu, Nepal</span>
             </div>
             <div class="nav-top-right">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#">F</a>
+                <a href="#">I</a>
             </div>
         </div>
         <div class="nav-main">
@@ -35,13 +34,13 @@
             </div>
             <ul class="nav-links">
                 <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                <li class="active"><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
-                <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
+                <li><a href="${pageContext.request.contextPath}/ContactUs">Contact Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
             </ul>
-            <a href="${pageContext.request.contextPath}/pages/user.jsp" class="btn-login">Log in</a>
+            <a href="${pageContext.request.contextPath}/pages/user" class="btn-login">Log in</a>
         </div>
     </nav>
 
@@ -197,27 +196,27 @@
                 <p class="footer-tagline">Beauty &amp; Wellness</p>
                 <p class="footer-desc">Your trusted beauty destination in the heart of Kamalpokhari, Kathmandu. We bring elegance and care to every visit.</p>
                 <div class="footer-socials">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#">F</a>
+                    <a href="#">I</a>
                 </div>
             </div>
             <div class="footer-links">
                 <h4>QUICK LINKS</h4>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                    <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/services.jsp">Services</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/Gallery.jsp">Gallery</a></li>
-                    <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/appointment.jsp">Appointment</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/user.jsp">Login</a></li>
+                    <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
+                    <li><a href="${pageContext.request.contextPath}/ContactUs">Contact Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
+                    <li><a href="${pageContext.request.contextPath}/pages/user">Login</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
                 <h4>CONTACT</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Kamalpokhari, Kathmandu, Nepal</p>
-                <p><i class="fas fa-phone"></i> +977-9820221306</p>
-                <p><i class="fas fa-globe"></i> www.shringarnepal.com</p>
+                <p><span class="contact-label">Location</span> Kamalpokhari, Kathmandu, Nepal</p>
+                <p><span class="contact-label">Phone</span> +977-9820221306</p>
+                <p><span class="contact-label">Web</span> www.shringarnepal.com</p>
                 <p class="opening-hours"><strong>OPENING HOURS</strong><br/>Sunday – Saturday: 9:30 – 7PM</p>
             </div>
         </div>

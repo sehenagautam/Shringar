@@ -70,9 +70,12 @@ body.login-body {
     background: var(--border);
 }
 
-.gold-rule i {
+.diamond-mark {
     color: var(--gold);
-    font-size: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
 }
 
 .login-title {
@@ -108,12 +111,15 @@ body.login-body {
     border-color: var(--gold);
 }
 
-.login-input-group i {
+.login-input-label {
     flex-shrink: 0;
-    width: 16px;
-    margin-right: 14px;
+    width: 44px;
+    margin-right: 12px;
     color: var(--gold);
-    font-size: 0.95rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .login-input-group input {

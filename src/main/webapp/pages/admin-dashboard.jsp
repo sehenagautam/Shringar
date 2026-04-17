@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-dashboard.css?v=20260411-2146">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-dashboard.css?v=20260413-plain">
 </head>
 <body class="admin-body">
     <div class="dashboard-shell">
@@ -21,27 +20,27 @@
 
             <nav class="admin-nav" aria-label="Admin navigation">
                 <a class="admin-nav-link active" href="#">
-                    <i class="fa-solid fa-chart-pie"></i>
+                    <span class="admin-nav-mark">01</span>
                     <span>Dashboard</span>
                 </a>
                 <a class="admin-nav-link" href="#">
-                    <i class="fa-regular fa-calendar-check"></i>
+                    <span class="admin-nav-mark">02</span>
                     <span>Bookings</span>
                 </a>
                 <a class="admin-nav-link" href="#">
-                    <i class="fa-regular fa-user"></i>
+                    <span class="admin-nav-mark">03</span>
                     <span>Customers</span>
                 </a>
                 <a class="admin-nav-link" href="#">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="admin-nav-mark">04</span>
                     <span>Services</span>
                 </a>
                 <a class="admin-nav-link" href="#">
-                    <i class="fa-solid fa-user-tie"></i>
+                    <span class="admin-nav-mark">05</span>
                     <span>Staff</span>
                 </a>
                 <a class="admin-nav-link" href="#">
-                    <i class="fa-solid fa-gear"></i>
+                    <span class="admin-nav-mark">06</span>
                     <span>Settings</span>
                 </a>
             </nav>
@@ -62,11 +61,11 @@
 
                 <div class="topbar-actions">
                     <label class="search-box">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span class="search-mark">Search</span>
                         <input type="search" placeholder="Search bookings">
                     </label>
                     <button class="icon-button" type="button" aria-label="Notifications">
-                        <i class="fa-regular fa-bell"></i>
+                        <span class="button-mark">Alert</span>
                     </button>
                     <button class="admin-profile" type="button">
                         <span>SG</span>
@@ -80,7 +79,7 @@
 
             <section class="kpi-row" aria-label="Dashboard summary">
                 <article class="kpi-card">
-                    <span class="kpi-icon booking"><i class="fa-regular fa-calendar-days"></i></span>
+                    <span class="kpi-icon booking">BK</span>
                     <div>
                         <p>Total bookings</p>
                         <strong>150</strong>
@@ -89,7 +88,7 @@
                 </article>
 
                 <article class="kpi-card">
-                    <span class="kpi-icon customers"><i class="fa-solid fa-user-group"></i></span>
+                    <span class="kpi-icon customers">CU</span>
                     <div>
                         <p>Customers</p>
                         <strong>120</strong>
@@ -98,7 +97,7 @@
                 </article>
 
                 <article class="kpi-card accent">
-                    <span class="kpi-icon revenue"><i class="fa-solid fa-sack-dollar"></i></span>
+                    <span class="kpi-icon revenue">NP</span>
                     <div>
                         <p>Revenue</p>
                         <strong>NPR 500,000</strong>
@@ -107,7 +106,7 @@
                 </article>
 
                 <article class="kpi-card">
-                    <span class="kpi-icon services"><i class="fa-solid fa-star"></i></span>
+                    <span class="kpi-icon services">SV</span>
                     <div>
                         <p>Services done</p>
                         <strong>320</strong>
@@ -124,7 +123,7 @@
                                 <p class="eyebrow">Weekly activity</p>
                                 <h2>Appointments Overview</h2>
                             </div>
-                            <button class="filter-button" type="button">This Week <i class="fa-solid fa-chevron-down"></i></button>
+                            <button class="filter-button" type="button">This Week</button>
                         </div>
 
                         <div class="chart-area" aria-label="Appointments overview chart">
@@ -285,13 +284,7 @@
                             <div>
                                 <h3>Priya Sharma</h3>
                                 <p>"Amazing experience. The staff was professional and friendly."</p>
-                                <span class="stars">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </span>
+                                <span class="stars">*****</span>
                             </div>
                         </div>
                     </article>
