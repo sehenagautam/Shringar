@@ -248,6 +248,7 @@
                         <li><a href="${pageContext.request.contextPath}/ContactUs">Contact</a></li>
                         <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
                         <li><a href="${pageContext.request.contextPath}/pages/user">Login</a></li>
+                        <li><a href="${pageContext.request.contextPath}/pages/register">Register</a></li>
                     </ul>
                 </div>
 

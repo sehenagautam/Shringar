@@ -159,6 +159,25 @@ body.login-body {
     transform: translateY(-1px);
 }
 
+.login-links {
+    margin: 16px 0 0;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.login-links + .login-links {
+    margin-top: 8px;
+}
+
+.login-links a {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.login-links a:hover {
+    color: var(--dark);
+}
+
 @media (max-width: 560px) {
     body.login-body {
         padding: 1rem;

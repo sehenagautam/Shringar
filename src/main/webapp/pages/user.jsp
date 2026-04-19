@@ -20,7 +20,7 @@
 
         <div class="gold-rule">
             <span></span>
-            <span class="diamond-mark">S</span>
+            <span class="diamond-mark"></span>
             <span></span>
         </div>
 
@@ -37,6 +37,10 @@
             </div>
             <button type="button" class="login-btn">Login</button>
         </div>
+
+        <p class="login-links">
+            New here? <a href="${pageContext.request.contextPath}/pages/register">Create an account</a>
+        </p>
 
     </div>
 
