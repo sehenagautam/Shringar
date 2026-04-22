@@ -32,15 +32,15 @@
                 <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img"/>
             </div>
             <ul class="nav-links">
-    <li><a href="home.jsp">HOME</a></li>
-    <li><a href="about.jsp">ABOUT US</a></li>
-    <li><a href="services.jsp">SERVICES</a></li>
-    <li><a href="gallery.jsp">GALLERY</a></li>
-    <li class="active"><a href="contact.jsp">CONTACT US</a></li>
-    <li><a href="appointment.jsp">APPOINTMENT</a></li>
-</ul>
+                <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
+                <li><a href="${pageContext.request.contextPath}/aboutus.jsp">ABOUT US</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/search">SEARCH</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/wishlist">WISHLIST</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/ContactUs.jsp">CONTACT US</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/profile">PROFILE</a></li>
+            </ul>
 
-<a href="login.jsp" class="btn-login">Log in</a>
+            <a href="${pageContext.request.contextPath}/user/login" class="btn-login">Log in</a>
         </div>
     </nav>
 
@@ -205,13 +205,12 @@
             <div class="footer-links">
                 <h4>QUICK LINKS</h4>
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                    <li><a href="${pageContext.request.contextPath}/aboutUs">About Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/services">Services</a></li>
-                    <li><a href="${pageContext.request.contextPath}/gallery">Gallery</a></li>
-                    <li><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/appointment">Appointment</a></li>
-                    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                    <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+                    <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/search">Search</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/wishlist">Wishlist</a></li>
+                    <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact Us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/login">Login</a></li>
                 </ul>
             </div>
             <div class="footer-contact">

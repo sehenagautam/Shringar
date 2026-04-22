@@ -1,12 +1,13 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Shringar Beauty Salon</title>
+    <title>Contact Us - Shringar User Portal</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contactus.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contactus.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -34,20 +35,20 @@
 
     <div class="nav-main">
         <div class="nav-logo">
-            <img src="images/logo.png" alt="Shringar Logo" class="logo-img"/>
+            <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="logo-img"/>
         </div>
 
        
-       <ul class="nav-links">
-    <li><a href="home.jsp">HOME</a></li>
-    <li><a href="about.jsp">ABOUT US</a></li>
-    <li><a href="services.jsp">SERVICES</a></li>
-    <li><a href="gallery.jsp">GALLERY</a></li>
-    <li class="active"><a href="contact.jsp">CONTACT US</a></li>
-    <li><a href="appointment.jsp">APPOINTMENT</a></li>
-</ul>
+        <ul class="nav-links">
+            <li><a href="${pageContext.request.contextPath}/index.jsp">HOME</a></li>
+            <li><a href="${pageContext.request.contextPath}/aboutus.jsp">ABOUT US</a></li>
+            <li><a href="${pageContext.request.contextPath}/search">SEARCH</a></li>
+            <li><a href="${pageContext.request.contextPath}/wishlist">WISHLIST</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/ContactUs.jsp">CONTACT US</a></li>
+            <li><a href="${pageContext.request.contextPath}/profile">PROFILE</a></li>
+        </ul>
 
-<a href="login.jsp" class="btn-login">Log in</a>
+        <a href="${pageContext.request.contextPath}/login" class="btn-login">Log in</a>
     </div>
 </nav>
 
@@ -136,7 +137,7 @@
     <div class="footer-container">
 
         <div class="footer-brand">
-            <img src="images/logo.png" alt="Logo" class="footer-logo"/>
+            <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo" class="footer-logo"/>
             <h3>SHRINGAR</h3>
             <p class="footer-tagline">Beauty & Wellness</p>
             <p class="footer-desc">
@@ -147,13 +148,12 @@
         <div class="footer-links">
             <h4>QUICK LINKS</h4>
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="appointment.html">Appointment</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/aboutus.jsp">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
+                <li><a href="${pageContext.request.contextPath}/wishlist">Wishlist</a></li>
+                <li><a href="${pageContext.request.contextPath}/ContactUs.jsp">Contact</a></li>
+                <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
             </ul>
         </div>
 
@@ -167,7 +167,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p>© 2026 Shringar Salon. All Rights Reserved.</p>
+        <p>&copy; 2026 Shringar Salon. All Rights Reserved.</p>
     </div>
 </footer>
 
