@@ -1,14 +1,30 @@
 package com.shringar.filter;
 
+import java.io.IOException;
+
 import com.shringar.utils.SessionUtil;
-import jakarta.servlet.*;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/pages/admin-dashboard.jsp", "/pages/user.jsp"})
+@WebFilter(urlPatterns = {
+        "/admin/*",
+        "/pages/admin-dashboard.jsp",
+        "/user/dashboard",
+        "/user/profile",
+        "/user/search",
+        "/user/wishlist",
+        "/user/apply",
+        "/user/dashboard.jsp",
+        "/user/profile.jsp",
+        "/user/search.jsp",
+        "/user/wishlist.jsp"
+})
 public class AuthenticationFilter extends HttpFilter {
 
     @Override
@@ -17,14 +33,31 @@ public class AuthenticationFilter extends HttpFilter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-
         boolean isLoggedIn = SessionUtil.getAttribute(httpRequest, "user") != null;
+        boolean isAdminPage = httpRequest.getRequestURI() != null
+                && (httpRequest.getRequestURI().contains(httpRequest.getContextPath() + "/admin/")
+                        || httpRequest.getRequestURI().endsWith("/pages/admin-dashboard.jsp")
+                        || httpRequest.getRequestURI().endsWith("/admin/dashboard"));
 
-        if (isLoggedIn) {
-            chain.doFilter(request, response);
-        } else {
+        if (!isLoggedIn) {
             httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
+            if (SessionUtil.hasExpiredSession(httpRequest)) {
+                SessionUtil.invalidateSession(httpRequest);
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login?expired=1");
+            } else {
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
+            }
+            return;
         }
+
+        if (isAdminPage) {
+            Object userRole = SessionUtil.getAttribute(httpRequest, "userRole");
+            if (!"ADMIN".equalsIgnoreCase(String.valueOf(userRole))) {
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/user/dashboard");
+                return;
+            }
+        }
+
+        chain.doFilter(request, response);
     }
 }

@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap');
+
+:root {
+    --error-bg: #f7f0e8;
+    --error-card: rgba(255, 255, 255, 0.82);
+    --error-border: #dfcfc0;
+    --error-accent: #c9a96e;
+    --error-accent-dark: #9f7f47;
+    --error-text: #2c2c2c;
+    --error-muted: #72685f;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-body);
+    color: var(--error-text);
+    background:
+        radial-gradient(circle at top left, rgba(201, 169, 110, 0.22), transparent 28rem),
+        radial-gradient(circle at bottom right, rgba(160, 127, 94, 0.18), transparent 26rem),
+        var(--error-bg);
+}
+
+.error-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 18px;
+}
+
+.error-card {
+    width: min(100%, 760px);
+    padding: 48px 34px;
+    border: 1px solid var(--error-border);
+    border-radius: 28px;
+    background: var(--error-card);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    box-shadow: 0 18px 55px rgba(83, 61, 41, 0.08);
+}
+
+.error-kicker {
+    margin-bottom: 14px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--error-accent-dark);
+}
+
+.error-code {
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 14vw, 8rem);
+    line-height: 0.95;
+    color: var(--error-accent);
+}
+
+.error-card h1 {
+    margin-top: 18px;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+}
+
+.error-copy {
+    max-width: 34rem;
+    margin: 16px auto 0;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--error-muted);
+}
+
+.error-path {
+    margin-top: 16px;
+    font-size: 0.88rem;
+    color: var(--error-muted);
+}
+
+.error-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 11rem;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--error-accent);
+    color: var(--error-text);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.error-actions a:hover {
+    background: var(--error-accent);
+    border-color: var(--error-accent);
+    color: #fff;
+}
+
+@media (max-width: 640px) {
+    .error-card {
+        padding: 38px 22px;
+        border-radius: 22px;
+    }
+
+    .error-actions a {
+        width: 100%;
+    }
+}

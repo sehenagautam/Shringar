@@ -123,6 +123,37 @@
     display: inline-block;
 }
 
+.contact-feedback {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.contact-feedback p {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.contact-feedback ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.contact-feedback-success {
+    background: #f4f0e8;
+    border-color: #d9c3a5;
+    color: #5e4a2d;
+}
+
+.contact-feedback-error {
+    background: #fff5f3;
+    border-color: #e4b6ab;
+    color: #7d4a42;
+}
+
 .form-row {
     display: flex;
     gap: 20px;

@@ -17,7 +17,7 @@
         </nav>
 
         <div class="gallery-detail-intro">
-            <p>This gallery stays separate from the services menu, so visitors can browse the full hair collection first and then jump into booking only when they are ready.</p>
+            <p>Discover soft layers, rich movement, glossy finish work, and styled looks that bring dimension, shape, and confidence to every hair moment.</p>
         </div>
 
         <div class="gallery-detail-grid gallery-detail-grid--masonry">
@@ -56,7 +56,7 @@
         <div class="gallery-detail-actions">
             <a class="gallery-detail-action" href="${pageContext.request.contextPath}/pages/Gallery">Back to Main Gallery</a>
             <a class="gallery-detail-action" href="${pageContext.request.contextPath}/pages/hair">View Hair Services</a>
-            <a class="gallery-detail-action is-primary" href="${pageContext.request.contextPath}/pages/appointment">Book Appointment</a>
+            <a class="gallery-detail-action is-primary" href="${pageContext.request.contextPath}/pages/services">View Services</a>
         </div>
     </section>
 </main>

@@ -19,9 +19,9 @@
                 <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
                 <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
                 <li><a href="${pageContext.request.contextPath}/ContactUs">Contact</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/user">Login</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/register">Register</a></li>
+                <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
+                <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/register">Register</a></li>
             </ul>
         </div>
 

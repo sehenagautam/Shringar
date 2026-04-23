@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <title>Contact Us - Shringar Beauty Salon</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260413-plain">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contactus.css?v=20260413-plain">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contactus.css?v=20260423-1">
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
@@ -45,10 +47,10 @@
             <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
             <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
             <li class="active"><a href="${pageContext.request.contextPath}/ContactUs">Contact Us</a></li>
-            <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
+            <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
         </ul>
 
-        <a href="${pageContext.request.contextPath}/pages/user" class="btn-login">Log in</a>
+        <a href="${pageContext.request.contextPath}/login" class="btn-login">Log in</a>
     </div>
 </nav>
 
@@ -102,30 +104,52 @@
 
         </div>
 
-        <!-- RIGHT FORM (STATIC) -->
+        <!-- RIGHT FORM -->
         <div class="contact-form-box">
             <p class="form-subtitle">GET IN TOUCH.</p>
             <h2 class="form-title">How can we help you?</h2>
 
-            <form>
+            <c:if test="${not empty successMessage}">
+                <div class="contact-feedback contact-feedback-success">
+                    <c:out value="${successMessage}"/>
+                </div>
+            </c:if>
+
+            <c:if test="${not empty errors}">
+                <div class="contact-feedback contact-feedback-error">
+                    <p>Please check the form and try again:</p>
+                    <ul>
+                        <c:forEach var="errorItem" items="${errors}">
+                            <li><c:out value="${errorItem}"/></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
+
+            <form method="post" action="${pageContext.request.contextPath}/ContactUs">
                 <div class="form-row">
                     <div class="form-group">
-                        <label>YOUR NAME</label>
-                        <input type="text" placeholder="Your name" required>
+                        <label for="contactName">YOUR NAME</label>
+                        <input id="contactName" type="text" name="name" value="${fn:escapeXml(formName)}" placeholder="Your name" required>
                     </div>
 
                     <div class="form-group">
-                        <label>EMAIL</label>
-                        <input type="email" placeholder="Your email" required>
+                        <label for="contactEmail">EMAIL</label>
+                        <input id="contactEmail" type="email" name="email" value="${fn:escapeXml(formEmail)}" placeholder="Your email" required>
                     </div>
                 </div>
 
                 <div class="form-group full-width">
-                    <label>YOUR MESSAGE</label>
-                    <textarea rows="6" placeholder="Write your message here..." required></textarea>
+                    <label for="contactPhone">PHONE</label>
+                    <input id="contactPhone" type="text" name="phone" value="${fn:escapeXml(formPhone)}" placeholder="Optional phone number">
                 </div>
 
-                <button type="button" class="btn-send">Send</button>
+                <div class="form-group full-width">
+                    <label for="contactMessage">YOUR MESSAGE</label>
+                    <textarea id="contactMessage" name="message" rows="6" placeholder="Write your message here..." required><c:out value="${formMessage}"/></textarea>
+                </div>
+
+                <button type="submit" class="btn-send">Send</button>
             </form>
         </div>
 
@@ -153,9 +177,9 @@
                 <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
                 <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
                 <li><a href="${pageContext.request.contextPath}/ContactUs">Contact</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/user">Login</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/register">Register</a></li>
+                <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
+                <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                <li><a href="${pageContext.request.contextPath}/register">Register</a></li>
             </ul>
         </div>
 

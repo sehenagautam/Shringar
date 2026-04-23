@@ -42,10 +42,10 @@
                     <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
                     <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
                     <li><a href="${pageContext.request.contextPath}/ContactUs">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
+                    <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
                 </ul>
 
-                <a href="${pageContext.request.contextPath}/pages/user" class="btn-login">Log in</a>
+                <a href="${pageContext.request.contextPath}/login" class="btn-login">Log in</a>
             </div>
         </nav>
 
@@ -64,7 +64,7 @@
                         is designed to help you feel polished, confident, and celebrated.
                     </p>
                     <div class="banner-actions">
-                        <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment">Book Now</a>
+                        <a class="primary-button" href="${pageContext.request.contextPath}/login">Book Now</a>
                         <a class="secondary-button" href="${pageContext.request.contextPath}/pages/services">View Service</a>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
                         Discover expert makeup, hair, and nail services designed to bring out your
                         best look.
                     </p>
-                    <a class="primary-button" href="${pageContext.request.contextPath}/pages/appointment">Book Now!</a>
+                    <a class="primary-button" href="${pageContext.request.contextPath}/login">Book Now!</a>
                 </div>
             </section>
 
@@ -246,9 +246,9 @@
                         <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
                         <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
                         <li><a href="${pageContext.request.contextPath}/ContactUs">Contact</a></li>
-                        <li><a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a></li>
-                        <li><a href="${pageContext.request.contextPath}/pages/user">Login</a></li>
-                        <li><a href="${pageContext.request.contextPath}/pages/register">Register</a></li>
+                        <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
+                        <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                        <li><a href="${pageContext.request.contextPath}/register">Register</a></li>
                     </ul>
                 </div>
 

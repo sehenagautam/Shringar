@@ -25,8 +25,8 @@
             <li><a href="${pageContext.request.contextPath}/pages/services">SERVICES</a></li>
             <li><a href="${pageContext.request.contextPath}/pages/Gallery">GALLERY</a></li>
             <li><a href="${pageContext.request.contextPath}/ContactUs">CONTACT US</a></li>
-            <li><a href="${pageContext.request.contextPath}/pages/appointment">APPOINTMENT</a></li>
+            <li><a href="${pageContext.request.contextPath}/search">SEARCH</a></li>
         </ul>
-        <a href="${pageContext.request.contextPath}/pages/user" class="btn-login">Log in</a>
+        <a href="${pageContext.request.contextPath}/login" class="btn-login">Log in</a>
     </div>
 </nav>

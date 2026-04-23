@@ -17,7 +17,7 @@
         </nav>
 
         <div class="gallery-detail-intro">
-            <p>This page preserves the dedicated nail gallery experience and gives it a clear path back to services, booking, and the main gallery hub.</p>
+            <p>See clean shapes, glossy nude tones, floral details, and statement sets that turn every manicure into a neat and elegant finishing touch.</p>
         </div>
 
         <div class="gallery-detail-grid gallery-detail-grid--masonry">
@@ -56,7 +56,7 @@
         <div class="gallery-detail-actions">
             <a class="gallery-detail-action" href="${pageContext.request.contextPath}/pages/Gallery">Back to Main Gallery</a>
             <a class="gallery-detail-action" href="${pageContext.request.contextPath}/pages/nail">View Nail Services</a>
-            <a class="gallery-detail-action is-primary" href="${pageContext.request.contextPath}/pages/appointment">Book Appointment</a>
+            <a class="gallery-detail-action is-primary" href="${pageContext.request.contextPath}/pages/services">View Services</a>
         </div>
     </section>
 </main>

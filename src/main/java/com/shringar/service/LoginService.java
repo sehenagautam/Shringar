@@ -2,6 +2,7 @@ package com.shringar.service;
 
 import com.shringar.dao.UserDAO;
 import com.shringar.model.UserModel;
+import com.shringar.utils.ExceptionUtil;
 import com.shringar.utils.PasswordUtil;
 
 public class LoginService {
@@ -20,7 +21,7 @@ public class LoginService {
                 return "Password is incorrect";
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            ExceptionUtil.log("Login service authentication failed.", e);
             return "Error in Database";
         }
     }

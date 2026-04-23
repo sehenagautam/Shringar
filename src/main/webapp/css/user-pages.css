@@ -201,6 +201,14 @@ body {
     border-radius: 8px;
 }
 
+.search-fields select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border, #e0d4c8);
+    border-radius: 8px;
+    background: #fff;
+}
+
 .results-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

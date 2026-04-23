@@ -15,6 +15,7 @@
                 <h3>Gel Polish Nails</h3>
                 <p>Starting at Rs 1200</p>
                 <p>Long-lasting gel polish that gives your nails a glossy finish and chip-free shine for weeks.</p>
+                <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
             </div>
         </div>
 
@@ -24,6 +25,7 @@
                 <h3>Nail Art Design</h3>
                 <p>Starting at Rs 1500</p>
                 <p>Creative and stylish nail art designs to express your personality and enhance your overall look.</p>
+                <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
             </div>
         </div>
 
@@ -33,6 +35,7 @@
                 <h3>Acrylic Nail Extensions</h3>
                 <p>Starting at Rs 2000</p>
                 <p>Strong and durable nail extensions that add length and beauty to your natural nails.</p>
+                <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
             </div>
         </div>
 
@@ -42,6 +45,7 @@
                 <h3>French Tip Nails</h3>
                 <p>Starting at Rs 1300</p>
                 <p>A classic and timeless nail style with clean white tips for a sophisticated appearance.</p>
+                <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
             </div>
         </div>
 
@@ -51,6 +55,7 @@
                 <h3>Soft Gel / Natural Nude Nails</h3>
                 <p>Starting at Rs 1400</p>
                 <p>A soft and natural nail style with a glossy nude finish, perfect for an elegant and everyday look.</p>
+                <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
             </div>
         </div>
 
@@ -60,6 +65,7 @@
                 <h3>Floral Nail Art Design</h3>
                 <p>Starting at Rs 1800</p>
                 <p>Beautiful floral nail designs that add a delicate and charming touch, perfect for special occasions.</p>
+                <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
             </div>
         </div>
 

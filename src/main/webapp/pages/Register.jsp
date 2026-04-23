@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,6 +152,11 @@
             transition: border-color 0.2s !important;
         }
 
+        .form-field input[type="file"] {
+            height: auto !important;
+            padding: 14px 18px !important;
+        }
+
         .form-field input:focus {
             border-color: #c9a96e !important;
             background: #fff !important;
@@ -209,6 +215,27 @@
             color: #a8894d !important;
         }
 
+        .register-alert {
+            border-radius: 10px !important;
+            margin-bottom: 18px !important;
+            padding: 14px 16px !important;
+        }
+
+        .register-alert--error {
+            background: #fff2f0 !important;
+            color: #9a4b43 !important;
+        }
+
+        .register-alert ul {
+            list-style: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .register-alert li + li {
+            margin-top: 6px !important;
+        }
+
         .register-nav-links {
             color: #8a7060 !important;
             display: flex !important;
@@ -264,31 +291,51 @@
         <h2 class="register-title">Create an Account</h2>
         <p class="register-subtitle">Please fill in your details to register.</p>
 
-        <form class="register-form" action="${pageContext.request.contextPath}/pages/user" method="get">
+        <c:if test="${not empty errors or not empty error}">
+            <div class="register-alert register-alert--error">
+                <c:choose>
+                    <c:when test="${not empty errors}">
+                        <ul>
+                            <c:forEach var="e" items="${errors}"><li><c:out value="${e}"/></li></c:forEach>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <c:out value="${error}"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </c:if>
+
+        <form class="register-form" action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
 
             <div class="form-field">
                 <label>Full Name</label>
-                <input type="text" name="fullName" placeholder="Enter your full name">
+                <input type="text" name="fullName" placeholder="Enter your full name" value="${param.fullName}" required maxlength="120">
             </div>
 
             <div class="form-field">
                 <label>Email Address</label>
-                <input type="email" name="email" placeholder="Enter your email">
+                <input type="email" name="email" placeholder="Enter your email" value="${param.email}" required maxlength="150" autocomplete="username">
             </div>
 
             <div class="form-field">
                 <label>Phone Number</label>
-                <input type="text" name="phone" placeholder="Enter your phone number">
+                <input type="text" name="phone" placeholder="Enter your phone number" value="${param.phone}" pattern="[0-9+()\\-\\s]{7,20}" title="Use 7 to 20 digits or symbols like +, -, ( ), and spaces.">
+            </div>
+
+            <div class="form-field">
+                <label>Profile Image</label>
+                <input type="file" name="profileImage" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
             </div>
 
             <div class="form-row">
                 <div class="form-field">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Create password">
+                    <input type="password" name="password" placeholder="Create password" required minlength="8" autocomplete="new-password">
                 </div>
                 <div class="form-field">
                     <label>Confirm Password</label>
-                    <input type="password" name="confirmPassword" placeholder="Confirm password">
+                    <input type="password" name="confirmPassword" placeholder="Confirm password" required minlength="8" autocomplete="new-password">
                 </div>
             </div>
 
@@ -296,7 +343,7 @@
 
         </form>
 
-        <p class="register-signin">Already have an account? <a href="${pageContext.request.contextPath}/pages/user">Sign in</a></p>
+        <p class="register-signin">Already have an account? <a href="${pageContext.request.contextPath}/login">Sign in</a></p>
         <p class="register-nav-links">
             <a href="${pageContext.request.contextPath}/">Home</a>
             <span>|</span>
@@ -308,7 +355,7 @@
             <span>|</span>
             <a href="${pageContext.request.contextPath}/ContactUs">Contact</a>
             <span>|</span>
-            <a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a>
+            <a href="${pageContext.request.contextPath}/search">Search</a>
         </p>
     </div>
 

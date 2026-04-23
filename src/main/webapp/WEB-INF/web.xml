@@ -6,12 +6,12 @@
   <display-name>booking</display-name>
 
   <servlet>
-    <servlet-name>aboutPage</servlet-name>
-    <jsp-file>/aboutus.jsp</jsp-file>
+    <servlet-name>modulePageController</servlet-name>
+    <servlet-class>com.shringar.controller.PublicPageControllerServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>contactPage</servlet-name>
-    <jsp-file>/ContactUs.jsp</jsp-file>
+    <servlet-name>contactController</servlet-name>
+    <servlet-class>com.shringar.controller.ContactServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>userLoginPage</servlet-name>
@@ -21,49 +21,56 @@
     <servlet-name>registerPage</servlet-name>
     <jsp-file>/pages/Register.jsp</jsp-file>
   </servlet>
-  <servlet>
-    <servlet-name>servicesPage</servlet-name>
-    <jsp-file>/pages/services.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>galleryPage</servlet-name>
-    <jsp-file>/pages/Gallery.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>appointmentPage</servlet-name>
-    <jsp-file>/pages/appointment.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>hairPage</servlet-name>
-    <jsp-file>/pages/hair.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>makeupPage</servlet-name>
-    <jsp-file>/pages/makeup.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>nailPage</servlet-name>
-    <jsp-file>/pages/nail.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>galleryHairPage</servlet-name>
-    <jsp-file>/pages/gallery-hair.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>galleryMakeupPage</servlet-name>
-    <jsp-file>/pages/gallery-makeup.jsp</jsp-file>
-  </servlet>
-  <servlet>
-    <servlet-name>galleryNailPage</servlet-name>
-    <jsp-file>/pages/gallery-nail.jsp</jsp-file>
-  </servlet>
-
   <servlet-mapping>
-    <servlet-name>aboutPage</servlet-name>
+    <servlet-name>modulePageController</servlet-name>
     <url-pattern>/aboutus</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>contactPage</servlet-name>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/services</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/Gallery</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/gallery</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/appointment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/appointments</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/hair</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/makeup</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/nail</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/gallery/hair</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/gallery/makeup</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>modulePageController</servlet-name>
+    <url-pattern>/pages/gallery/nail</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>contactController</servlet-name>
     <url-pattern>/ContactUs</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
@@ -74,50 +81,23 @@
     <servlet-name>registerPage</servlet-name>
     <url-pattern>/pages/register</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>servicesPage</servlet-name>
-    <url-pattern>/pages/services</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>galleryPage</servlet-name>
-    <url-pattern>/pages/Gallery</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>galleryPage</servlet-name>
-    <url-pattern>/pages/gallery</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>appointmentPage</servlet-name>
-    <url-pattern>/pages/appointment</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>appointmentPage</servlet-name>
-    <url-pattern>/pages/appointments</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>hairPage</servlet-name>
-    <url-pattern>/pages/hair</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>makeupPage</servlet-name>
-    <url-pattern>/pages/makeup</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>nailPage</servlet-name>
-    <url-pattern>/pages/nail</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>galleryHairPage</servlet-name>
-    <url-pattern>/pages/gallery/hair</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>galleryMakeupPage</servlet-name>
-    <url-pattern>/pages/gallery/makeup</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>galleryNailPage</servlet-name>
-    <url-pattern>/pages/gallery/nail</url-pattern>
-  </servlet-mapping>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/errors/403.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/errors/404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/errors/500.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/errors/500.jsp</location>
+  </error-page>
 
   <welcome-file-list>
     <welcome-file>pages/index.jsp</welcome-file>

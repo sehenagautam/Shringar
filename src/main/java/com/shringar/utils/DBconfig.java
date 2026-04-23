@@ -16,7 +16,7 @@ public class DBconfig {
             System.out.println("✅ Connected to salon_booking_system_db");
         } catch (Exception e) {
             System.out.println("❌ DB Connection Failed");
-            e.printStackTrace();
+            ExceptionUtil.log("Database connection failed.", e);
         }
         return conn;
     }

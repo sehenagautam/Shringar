@@ -17,7 +17,7 @@
         </nav>
 
         <div class="gallery-detail-intro">
-            <p>The makeup gallery now keeps its own layout and images, so it no longer feels like a duplicate of the services section.</p>
+            <p>Explore glowing skin, refined eye looks, bridal elegance, and soft glam finishes designed to feel polished, graceful, and camera ready.</p>
         </div>
 
         <div class="gallery-detail-grid gallery-detail-grid--editorial">
@@ -56,7 +56,7 @@
         <div class="gallery-detail-actions">
             <a class="gallery-detail-action" href="${pageContext.request.contextPath}/pages/Gallery">Back to Main Gallery</a>
             <a class="gallery-detail-action" href="${pageContext.request.contextPath}/pages/makeup">View Makeup Services</a>
-            <a class="gallery-detail-action is-primary" href="${pageContext.request.contextPath}/pages/appointment">Book Appointment</a>
+            <a class="gallery-detail-action is-primary" href="${pageContext.request.contextPath}/pages/services">View Services</a>
         </div>
     </section>
 </main>

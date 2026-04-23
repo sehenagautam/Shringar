@@ -5,7 +5,7 @@
     <section class="page-title gallery-title">
         <p class="page-kicker">Gallery</p>
         <h1>Explore Our Work</h1>
-        <p>Choose a beauty category to browse Shringar's standalone makeup, hair, and nail portfolio pages.</p>
+        <p>Choose a beauty category to explore radiant makeup, polished hair transformations, and detailed nail artistry created at Shringar.</p>
     </section>
 
     <section class="gallery-section">
@@ -13,24 +13,21 @@
             <a class="gallery-card" href="${pageContext.request.contextPath}/pages/gallery/makeup">
                 <span class="gallery-card-placeholder makeup-bg"></span>
                 <span class="gallery-card-content">
-                    <span class="gallery-card-label">Makeup</span>
-                    <span class="gallery-card-subtitle">See the full beauty portfolio</span>
+                    <span class="gallery-card-subtitle">Soft glam, bridal radiance, and beautifully finished makeup looks</span>
                 </span>
             </a>
 
             <a class="gallery-card" href="${pageContext.request.contextPath}/pages/gallery/hair">
                 <span class="gallery-card-placeholder hair-bg"></span>
                 <span class="gallery-card-content">
-                    <span class="gallery-card-label">Hair</span>
-                    <span class="gallery-card-subtitle">Browse cuts, styling, and finish work</span>
+                    <span class="gallery-card-subtitle">Layered cuts, glossy styling, and elegant hair finishes</span>
                 </span>
             </a>
 
             <a class="gallery-card" href="${pageContext.request.contextPath}/pages/gallery/nail">
                 <span class="gallery-card-placeholder nail-bg"></span>
                 <span class="gallery-card-content">
-                    <span class="gallery-card-label">Nails</span>
-                    <span class="gallery-card-subtitle">Open the nail art showcase</span>
+                    <span class="gallery-card-subtitle">Glossy sets, clean manicures, and delicate nail art details</span>
                 </span>
             </a>
         </div>
@@ -38,7 +35,7 @@
 
     <div class="gallery-page-links">
         <a class="gallery-page-link" href="${pageContext.request.contextPath}/pages/services">Explore Services</a>
-        <a class="gallery-page-link is-primary" href="${pageContext.request.contextPath}/pages/appointment">Book Appointment</a>
+        <a class="gallery-page-link is-primary" href="${pageContext.request.contextPath}/pages/services">View Services</a>
     </div>
 </main>
 

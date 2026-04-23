@@ -71,6 +71,10 @@
     object-fit: cover;
 }
 
+.service-tile-image {
+    display: block;
+}
+
 .service-tile div {
     background: var(--cream);
     flex: 1;
@@ -92,13 +96,51 @@
     margin: 10px 0 18px;
 }
 
-.service-tile span {
-    color: var(--dark);
+.service-tile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.service-tile-link,
+.service-tile-book {
     display: inline-flex;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    padding: 9px 20px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.service-tile-link {
+    border: 1px solid var(--border);
+    color: var(--dark);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+}
+
+.service-tile-book {
+    background: var(--dark);
+    border-radius: 4px;
+    color: #fff;
+}
+
+.service-tile-link:hover,
+.service-tile-book:hover {
+    transform: translateY(-2px);
+}
+
+.service-tile-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.service-tile-book:hover {
+    background: var(--gold);
 }
 
 .hair-title,
@@ -130,6 +172,8 @@
     background: #fff;
     border: 1px solid var(--border);
     box-shadow: 0 18px 44px rgba(44, 44, 44, 0.07);
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
@@ -143,7 +187,10 @@
 
 .card-text {
     background: var(--cream);
-    min-height: 164px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 210px;
     padding: 18px 20px 24px;
 }
 
@@ -167,6 +214,28 @@
     color: var(--text-muted);
     font-size: 0.86rem;
     line-height: 1.7;
+}
+
+.card-book-btn {
+    align-self: center;
+    background: var(--dark);
+    border-radius: 4px;
+    color: #fff;
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    justify-content: center;
+    margin-top: auto;
+    min-width: 190px;
+    padding: 9px 22px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.card-book-btn:hover {
+    background: var(--gold);
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 .appointment-main {

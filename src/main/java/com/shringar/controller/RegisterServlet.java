@@ -1,44 +1,152 @@
 package com.shringar.controller;
 
-import com.shringar.service.RegisterService;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
+
+import com.shringar.dao.UserDAO;
+import com.shringar.model.User;
+import com.shringar.utils.CookieUtil;
+import com.shringar.utils.ProfileImageUtil;
+import com.shringar.utils.ValidationUtil;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.Part;
 
-@WebServlet("/register")
+@WebServlet({ "/register", "/user/register" })
+@MultipartConfig
 public class RegisterServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        request.getRequestDispatcher("/pages/register").forward(request, response);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.getRequestDispatcher("/pages/Register.jsp").forward(req, res);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        
-        try {
-            String userName   = request.getParameter("userName");
-            String userEmail  = request.getParameter("userEmail");
-            String userPhone  = request.getParameter("userPhone");
-            String password   = request.getParameter("password");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String name = firstNonBlank(req.getParameter("fullName"), req.getParameter("name"));
+        String email = req.getParameter("email");
+        String phone = req.getParameter("phone");
+        String password = req.getParameter("password");
+        String confirm = req.getParameter("confirmPassword");
+        String dobStr = req.getParameter("dateOfBirth");
+        String membershipLevel = req.getParameter("membershipLevel");
+        String memberYearStr = req.getParameter("memberSinceYear");
+        String preferredServices = req.getParameter("preferredServices");
+        Part profileImagePart = null;
 
-            RegisterService service = new RegisterService();
-            boolean isRegistered = service.addUser(userName, userEmail, userPhone, password);
+        List<String> errors = ValidationUtil.newErrorList();
+        ValidationUtil.require(name, "Full name", errors);
+        ValidationUtil.require(email, "Email", errors);
+        ValidationUtil.require(password, "Password", errors);
 
-            if (isRegistered) {
-                response.sendRedirect(request.getContextPath() + "/login?success=registered");
-            } else {
-                request.setAttribute("error", "Email or Phone number already exists!");
-                request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
+        if (isMultipart(req)) {
+            try {
+                profileImagePart = req.getPart("profileImage");
+            } catch (Exception e) {
+                errors.add("Could not read the uploaded profile image.");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Registration failed! Please try again.");
-            request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
         }
+
+        if (!errors.isEmpty()) {
+            forwardWithErrors(req, res, errors);
+            return;
+        }
+
+        if (!ValidationUtil.isValidEmail(email)) {
+            errors.add("Please enter a valid email address.");
+        }
+        if (!ValidationUtil.isValidPhone(phone)) {
+            errors.add("Please enter a valid phone number (or leave blank).");
+        }
+        if (!ValidationUtil.isValidPassword(password)) {
+            errors.add("Password must be at least 8 characters.");
+        }
+        if (confirm == null || !confirm.equals(password)) {
+            errors.add("Passwords do not match.");
+        }
+
+        LocalDate dob = null;
+        if (!ValidationUtil.isBlank(dobStr)) {
+            try {
+                dob = LocalDate.parse(dobStr);
+            } catch (Exception e) {
+                errors.add("Date of birth is not valid.");
+            }
+        }
+
+        Integer memberYear = null;
+        if (!ValidationUtil.isBlank(memberYearStr)) {
+            try {
+                memberYear = Integer.parseInt(memberYearStr.trim());
+            } catch (NumberFormatException e) {
+                errors.add("Member since year must be a number.");
+            }
+        }
+
+        if (!errors.isEmpty()) {
+            forwardWithErrors(req, res, errors);
+            return;
+        }
+
+        UserDAO dao = new UserDAO();
+        if (dao.isEmailTaken(email)) {
+            errors.add("That email is already registered.");
+            forwardWithErrors(req, res, errors);
+            return;
+        }
+
+        User user = new User();
+        user.setName(name.trim());
+        user.setEmail(email.trim());
+        user.setPhone(ValidationUtil.isBlank(phone) ? null : phone.trim());
+        user.setDateOfBirth(dob);
+        user.setStatus("PENDING");
+        user.setMembershipLevel(ValidationUtil.isBlank(membershipLevel) ? null : membershipLevel.trim());
+        user.setMemberSinceYear(memberYear);
+        user.setPreferredServices(ValidationUtil.isBlank(preferredServices) ? null : preferredServices.trim());
+
+        if (profileImagePart != null && profileImagePart.getSize() > 0) {
+            try {
+                String savedPath = ProfileImageUtil.saveProfileImage(profileImagePart, req.getServletContext().getRealPath(""));
+                user.setImage(savedPath);
+            } catch (Exception e) {
+                errors.add(e.getMessage());
+                forwardWithErrors(req, res, errors);
+                return;
+            }
+        }
+
+        if (!dao.register(user, password)) {
+            errors.add("Could not complete registration. Please try again.");
+            forwardWithErrors(req, res, errors);
+            return;
+        }
+
+        CookieUtil.addCookie(res, "shringar_last_email", email.trim(), 60 * 60 * 24 * 30);
+        res.sendRedirect(req.getContextPath() + "/login?success=pending");
+    }
+
+    private void forwardWithErrors(HttpServletRequest req, HttpServletResponse res, List<String> errors)
+            throws ServletException, IOException {
+        req.setAttribute("errors", errors);
+        req.setAttribute("error", errors.isEmpty() ? null : errors.get(0));
+        req.getRequestDispatcher("/pages/Register.jsp").forward(req, res);
+    }
+
+    private boolean isMultipart(HttpServletRequest req) {
+        String contentType = req.getContentType();
+        return contentType != null && contentType.toLowerCase().contains("multipart/form-data");
+    }
+
+    private String firstNonBlank(String first, String second) {
+        if (!ValidationUtil.isBlank(first)) {
+            return first;
+        }
+        return second;
     }
 }
