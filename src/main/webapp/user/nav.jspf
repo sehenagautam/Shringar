@@ -1,0 +1,39 @@
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
+<c:choose>
+    <c:when test="${not empty sessionScope.user}">
+        <header class="user-topnav">
+            <div class="user-topnav-inner">
+                <span class="user-topnav-title">Shringar — User</span>
+                <div class="user-topnav-links">
+                    <a href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a>
+                    <a href="${pageContext.request.contextPath}/user/profile">Profile</a>
+                    <a href="${pageContext.request.contextPath}/user/services">Services</a>
+                    <a href="${pageContext.request.contextPath}/user/wishlist">
+                        Wishlist
+                        <c:if test="${not empty sessionScope.wishlistServiceIds}">
+                            <span class="nav-badge">${fn:length(sessionScope.wishlistServiceIds)}</span>
+                        </c:if>
+                        <c:if test="${empty sessionScope.wishlistServiceIds}">
+                            <span class="nav-badge">0</span>
+                        </c:if>
+                    </a>
+                    <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+                    <a href="${pageContext.request.contextPath}/user/logout">Log out</a>
+                </div>
+            </div>
+        </header>
+    </c:when>
+    <c:otherwise>
+        <header class="user-topnav">
+            <div class="user-topnav-inner">
+                <span class="user-topnav-title">Shringar</span>
+                <div class="user-topnav-links">
+                    <a href="${pageContext.request.contextPath}/login">Sign in</a>
+                    <a href="${pageContext.request.contextPath}/register">Register</a>
+                    <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+                </div>
+            </div>
+        </header>
+    </c:otherwise>
+</c:choose>
