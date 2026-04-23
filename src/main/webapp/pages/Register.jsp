@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Shringar Beauty Salon</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -75,9 +74,20 @@
             font-size: 0.9rem !important;
         }
 
-        .register-badge i {
-            font-size: 1.1rem !important;
-            color: #c9a96e !important;
+        .register-badge-mark {
+            align-items: center !important;
+            background: #c9a96e !important;
+            border-radius: 999px !important;
+            color: #ffffff !important;
+            display: inline-flex !important;
+            font-size: 0.72rem !important;
+            font-weight: 600 !important;
+            height: 24px !important;
+            justify-content: center !important;
+            letter-spacing: 0.08em !important;
+            min-width: 52px !important;
+            padding: 0 8px !important;
+            text-transform: uppercase !important;
         }
 
         /* Right panel */
@@ -199,6 +209,24 @@
             color: #a8894d !important;
         }
 
+        .register-nav-links {
+            color: #8a7060 !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+            justify-content: center !important;
+            line-height: 1.8 !important;
+            margin-top: 14px !important;
+            text-align: center !important;
+        }
+
+        .register-nav-links a {
+            color: #c9a96e !important;
+            font-size: 0.88rem !important;
+            font-weight: 500 !important;
+            text-decoration: none !important;
+        }
+
         @media (max-width: 768px) {
             body.register-body {
                 flex-direction: column !important;
@@ -226,7 +254,7 @@
         <div class="register-brand">SHRINGAR</div>
         <p class="register-tagline">Experience the beauty and elegance. Join our exclusive salon today.</p>
         <div class="register-badge">
-            <i class="fas fa-smile-beam"></i>
+            <span class="register-badge-mark">Glow</span>
             <span>Elevating your natural beauty</span>
         </div>
     </div>
@@ -269,6 +297,19 @@
         </form>
 
         <p class="register-signin">Already have an account? <a href="${pageContext.request.contextPath}/pages/user">Sign in</a></p>
+        <p class="register-nav-links">
+            <a href="${pageContext.request.contextPath}/">Home</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/aboutus">About Us</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/pages/services">Services</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/ContactUs">Contact</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a>
+        </p>
     </div>
 
 </body>

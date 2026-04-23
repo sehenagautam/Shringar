@@ -41,6 +41,19 @@
         <p class="login-links">
             New here? <a href="${pageContext.request.contextPath}/pages/register">Create an account</a>
         </p>
+        <p class="login-links login-links--nav">
+            <a href="${pageContext.request.contextPath}/">Home</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/aboutus">About Us</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/pages/services">Services</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/ContactUs">Contact</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/pages/appointment">Appointment</a>
+        </p>
 
     </div>
 

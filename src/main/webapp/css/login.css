@@ -169,6 +169,20 @@ body.login-body {
     margin-top: 8px;
 }
 
+.login-links--nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    line-height: 1.8;
+    margin-top: 12px;
+}
+
+.login-links--nav span {
+    color: var(--border);
+}
+
 .login-links a {
     color: var(--gold);
     font-weight: 500;
