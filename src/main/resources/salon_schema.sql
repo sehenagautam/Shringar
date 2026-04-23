@@ -1,14 +1,4 @@
--- Shringar salon booking — MySQL database
---
--- HOW TO IMPORT IN XAMPP (phpMyAdmin):
--- 1) Start Apache + MySQL from XAMPP Control Panel.
--- 2) Open http://localhost/phpmyadmin
--- 3) Click "Import" → Choose this file → Go.
---    (Or copy/paste the SQL into the SQL tab and run.)
---
--- Default XAMPP MySQL user is usually: root with NO password.
--- That matches DBConnection.java in the project (localhost:3306, user root, password "").
--- If you set a MySQL password, change DBConnection.java to match.
+
 
 CREATE DATABASE IF NOT EXISTS salon_booking
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -83,17 +73,24 @@ ON DUPLICATE KEY UPDATE email = email;
 
 INSERT INTO services (service_name, description, category, stylist_name, service_code, price, duration_minutes)
 VALUES
-('Balayage', 'Hand-painted highlights', 'Hair colour', 'Priya Sharma', 'SRV-HC-1001', 85.00, 120),
-('Classic Manicure', 'Shape, cuticle care, polish', 'Nails', 'Alex Kim', 'SRV-NL-2002', 35.00, 45),
-('Deep Conditioning', 'Repair treatment', 'Hair care', 'Priya Sharma', 'SRV-HC-1002', 45.00, 60),
-('Bridal Trial', 'Full hair and makeup trial', 'Bridal', 'Maya Patel', 'SRV-BR-3001', 120.00, 150)
+('Balayage', 'Hand-painted highlights', 'Hair colour', 'Priya Sharma', '100', 85.00, 120),
+('Classic Manicure', 'Shape, cuticle care, polish', 'Nails', 'Alex Kim', '101', 35.00, 45),
+('Deep Conditioning', 'Repair treatment', 'Hair care', 'Priya Sharma', '102', 45.00, 60),
+('Bridal Trial', 'Full hair and makeup trial', 'Bridal', 'Maya Patel', '103', 120.00, 150),
+('Soft Glam Makeup', 'Party-ready soft glam look', 'Makeup', 'Maya Patel', '104', 65.00, 75),
+('HD Makeup', 'High-definition makeup for photos', 'Makeup', 'Nisha Rai', '105', 90.00, 90),
+('Keratin Smooth', 'Frizz control and smoothing treatment', 'Hair care', 'Priya Sharma', '106', 110.00, 140),
+('Layer Cut + Styling', 'Layer haircut with blow dry styling', 'Hair care', 'Rina Joshi', '107', 38.00, 55),
+('Global Hair Color', 'Single-tone full hair coloring', 'Hair colour', 'Rina Joshi', '108', 95.00, 130),
+('Gel Nail Extensions', 'Full set gel extensions', 'Nails', 'Alex Kim', '109', 70.00, 90),
+('Nail Art Premium', 'Creative custom nail art design', 'Nails', 'Sita Karki', '110', 55.00, 75)
 ON DUPLICATE KEY UPDATE service_code = service_code;
 
 -- One sample booking for the demo user (so the dashboard shows data). Safe to run once.
 INSERT INTO bookings (user_id, service_id, appointment_datetime, status, notes)
 SELECT u.user_id, s.service_id, DATE_ADD(NOW(), INTERVAL 7 DAY), 'CONFIRMED', 'Sample booking'
 FROM users u, services s
-WHERE u.email = 'demo@salon.com' AND s.service_code = 'SRV-HC-1001'
+WHERE u.email = 'demo@salon.com' AND s.service_code = '100'
 AND NOT EXISTS (
   SELECT 1 FROM bookings b WHERE b.user_id = u.user_id AND b.service_id = s.service_id
 );

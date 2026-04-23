@@ -9,8 +9,11 @@
     <title>Dashboard — Shringar Beauty Salon</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard-user.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
+<%@ include file="/user/site-header.jspf" %>
 <div class="dash-layout">
     <aside class="dash-side" aria-label="Sidebar">
         <div class="dash-logo-slot" title="Logo placeholder — add your image later"></div>
@@ -29,7 +32,7 @@
         <header class="dash-topbar">
             <nav class="dash-topbar-links" aria-label="Top">
                 <a class="active" href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a>
-                <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+                
                 <a href="${pageContext.request.contextPath}/user/search">Booking</a>
                 <a href="${pageContext.request.contextPath}/user/search">Services</a>
                 <a href="#appointments">My appointments</a>
@@ -232,5 +235,6 @@
         </div>
     </main>
 </div>
+<%@ include file="/user/site-footer.jspf" %>
 </body>
 </html>

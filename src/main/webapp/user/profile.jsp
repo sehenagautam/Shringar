@@ -8,9 +8,11 @@
     <title>Profile — Shringar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-<%@ include file="/user/nav.jspf" %>
+<%@ include file="/user/site-header.jspf" %>
 <div class="user-wrap">
     <h1 class="user-page-title">Your profile</h1>
     <p class="user-page-intro">Update your details, password, or profile image.</p>
@@ -48,53 +50,6 @@
         <button type="submit" class="btn btn-primary btn-block">Save</button>
     </form>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form.form-card');
-    if (!form) return;
-    const password = form.querySelector('input[name="newPassword"]');
-    const confirm = form.querySelector('input[name="confirmPassword"]');
-    const profileImage = form.querySelector('input[name="profileImage"]');
-
-    function syncPasswordValidity() {
-        if (!password || !confirm) return;
-        if (password.value || confirm.value) {
-            confirm.setCustomValidity(password.value === confirm.value ? '' : 'Passwords do not match.');
-        } else {
-            confirm.setCustomValidity('');
-        }
-    }
-
-    if (password && confirm) {
-        password.addEventListener('input', syncPasswordValidity);
-        confirm.addEventListener('input', syncPasswordValidity);
-        form.addEventListener('submit', syncPasswordValidity);
-    }
-
-    if (profileImage) {
-        profileImage.addEventListener('change', function () {
-            const file = profileImage.files && profileImage.files[0];
-            if (!file) {
-                profileImage.setCustomValidity('');
-                return;
-            }
-
-            const validTypes = ['image/jpeg', 'image/png'];
-            const validName = /\.(jpe?g|png)$/i.test(file.name);
-            if (!validTypes.includes(file.type) || !validName) {
-                profileImage.setCustomValidity('Please upload a JPG, JPEG, or PNG image.');
-                profileImage.reportValidity();
-                return;
-            }
-            if (file.size > 2 * 1024 * 1024) {
-                profileImage.setCustomValidity('Profile image must be 2 MB or smaller.');
-                profileImage.reportValidity();
-                return;
-            }
-            profileImage.setCustomValidity('');
-        });
-    }
-});
-</script>
+<%@ include file="/user/site-footer.jspf" %>
 </body>
 </html>

@@ -1,10 +1,7 @@
 package com.java_web_app.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -44,49 +41,28 @@ public class SearchServlet extends HttpServlet {
         String category = req.getParameter("category");
 
         ServiceDAO dao = new ServiceDAO();
-        List<Service> results = new ArrayList<>();
-        List<String> hints = new ArrayList<>();
+        dao.ensureDefaultServices();
+        List<Service> results;
+        List<String> hints = ValidationUtil.newErrorList();
 
         boolean hasStylist = !ValidationUtil.isBlank(stylist);
         boolean hasCode = !ValidationUtil.isBlank(serviceCode);
         boolean hasKeyword = !ValidationUtil.isBlank(keyword);
         boolean hasCategory = !ValidationUtil.isBlank(category);
 
-        if (!hasStylist && !hasCode && !hasKeyword && !hasCategory) {
+        if (hasCode && !ValidationUtil.isValidServiceCode(serviceCode.trim())) {
+            results = dao.listAllActive();
+            hints.add("Service code format is invalid. Use numbers only (3-6 digits), for example 100.");
+            hints.add("Showing all services until you provide a valid code.");
+        } else if (!hasStylist && !hasCode && !hasKeyword && !hasCategory) {
             results = dao.listAllActive();
             hints.add("Showing all available services. Use filters to narrow it down.");
-        } else if (hasCategory && !hasStylist && !hasCode && !hasKeyword) {
-            results = dao.listByCategory(category.trim());
-            hints.add("Showing services in category: " + category.trim());
-        } else if (hasStylist && hasCode) {
-            if (!ValidationUtil.isValidServiceCode(serviceCode.trim())) {
-                hints.add("Service code format is invalid. Use letters, numbers, or hyphens (3–40 characters).");
-            } else {
-                List<Service> byStylist = dao.searchByStylist(stylist.trim());
-                Set<Integer> codeMatch = new LinkedHashSet<>();
-                for (Service c : dao.searchByServiceCode(serviceCode.trim())) {
-                    codeMatch.add(c.getServiceId());
-                }
-                for (Service s : byStylist) {
-                    if (codeMatch.contains(s.getServiceId())) {
-                        results.add(s);
-                    }
-                }
-                hints.add("Showing services where stylist matches your text and service code matches exactly.");
+        } else {
+            results = dao.searchAdvanced(stylist, serviceCode, keyword, category);
+            hints.add("Showing filtered results based on your search.");
+            if (hasCategory) {
+                hints.add("Category filter: " + category.trim());
             }
-        } else if (hasCode) {
-            if (!ValidationUtil.isValidServiceCode(serviceCode.trim())) {
-                hints.add("Service code format is invalid.");
-            } else {
-                results = dao.searchByServiceCode(serviceCode.trim());
-                hints.add("Showing an exact match for the service code.");
-            }
-        } else if (hasStylist) {
-            results = dao.searchByStylist(stylist.trim());
-            hints.add("Showing services by stylist name.");
-        } else if (hasKeyword) {
-            results = dao.searchKeyword(keyword.trim());
-            hints.add("Showing services that match your keyword.");
         }
 
         req.setAttribute("results", results);

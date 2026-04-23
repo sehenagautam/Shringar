@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +9,17 @@
     <title>Search — Shringar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-<%@ include file="/user/nav.jspf" %>
+<%@ include file="/user/site-header.jspf" %>
 <div class="user-wrap-wide">
     <h1 class="user-page-title">Services</h1>
-    <p class="user-page-intro">Use filters to find services. You can save services to your wishlist, or send a request (apply) with a preferred date.</p>
+    <p class="user-page-intro">Find a service fast, then add to wishlist or book appointment.</p>
+    <div class="inline-actions" style="margin:0 0 14px;">
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/services">Book appointment</a>
+    </div>
 
     <c:if test="${not empty message}">
         <div class="msg-ok"><c:out value="${message}"/></div>
@@ -23,12 +29,14 @@
     </c:if>
 
     <div class="toolbar-row">
-        <div class="muted" style="font-size:0.9rem;">Tip: If you don’t search, we show all available services.</div>
-        <a href="${pageContext.request.contextPath}/user/search">Clear filters</a>
+        <div class="muted" style="font-size:0.9rem;">Showing all services when no filter is selected.</div>
+        <div class="inline-actions" style="margin-top:0;">
+            <a href="${pageContext.request.contextPath}/user/search">Clear all filters</a>
+        </div>
     </div>
 
     <c:if test="${not empty categories}">
-        <div class="category-chips" aria-label="Browse by category">
+        <div class="category-chips" aria-label="Quick category filter">
             <c:forEach var="catChip" items="${categories}">
                 <c:url var="catUrl" value="/user/search"><c:param name="category" value="${catChip}"/></c:url>
                 <a href="${pageContext.request.contextPath}${catUrl}"><c:out value="${catChip}"/></a>
@@ -36,26 +44,53 @@
         </div>
     </c:if>
 
-    <form class="search-fields" method="get" action="${pageContext.request.contextPath}/user/search">
-        <div class="field"><label>Stylist name</label><input type="text" name="stylist" value="${stylist}" placeholder="Name contains…"/></div>
-        <div class="field"><label>Service code</label><input type="text" name="serviceCode" value="${serviceCode}" placeholder="Exact code" pattern="[A-Za-z0-9\\-]{3,40}" title="Use 3 to 40 letters, numbers, or hyphens."/></div>
-        <div class="field"><label>Keyword (name/desc)</label><input type="text" name="q" value="${q}" placeholder="e.g. manicure"/></div>
-        <div class="field"><label>Category</label><input type="text" name="category" value="${category}"/></div>
-        <div class="field search-btn"><button type="submit" class="btn btn-primary">Search</button></div>
-    </form>
-
-    <c:if test="${not empty searchHints}">
-        <ul class="hint-list">
-            <c:forEach var="h" items="${searchHints}"><li><c:out value="${h}"/></li></c:forEach>
-        </ul>
+    <div class="search-panel">
+        <h2 class="search-panel-title">Search and filter</h2>
+        <form class="search-fields" method="get" action="${pageContext.request.contextPath}/user/search">
+            <div class="field"><label>Keyword</label><input type="text" name="q" value="${q}" placeholder="e.g. manicure, bridal"/></div>
+            <div class="field"><label>Stylist name</label><input type="text" name="stylist" value="${stylist}" placeholder="e.g. Priya"/></div>
+            <div class="field"><label>Service code</label><input type="text" name="serviceCode" value="${serviceCode}" placeholder="e.g. 100" pattern="[0-9]{3,6}" title="Use numbers only (3 to 6 digits)."/></div>
+            <div class="field">
+                <label>Category</label>
+                <select name="category">
+                    <option value="">All categories</option>
+                    <c:forEach var="catOpt" items="${categories}">
+                        <option value="${catOpt}" <c:if test="${catOpt eq category}">selected</c:if>><c:out value="${catOpt}"/></option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="field search-btn"><button type="submit" class="btn btn-primary">Apply filters</button></div>
+        </form>
+    </div>
+    <c:if test="${not empty category or not empty q or not empty stylist or not empty serviceCode}">
+        <div class="active-filters">
+            <strong>Active filters:</strong>
+            <c:if test="${not empty q}"><span>Keyword: <c:out value="${q}"/></span></c:if>
+            <c:if test="${not empty stylist}"><span>Stylist: <c:out value="${stylist}"/></span></c:if>
+            <c:if test="${not empty serviceCode}"><span>Code: <c:out value="${serviceCode}"/></span></c:if>
+            <c:if test="${not empty category}"><span>Category: <c:out value="${category}"/></span></c:if>
+        </div>
     </c:if>
 
+    <c:if test="${not empty searchHints}">
+        <div class="hint-list">
+            <c:forEach var="h" items="${searchHints}"><p><c:out value="${h}"/></p></c:forEach>
+        </div>
+    </c:if>
+
+    <h2 class="search-panel-title">Available services</h2>
     <div class="results-grid">
         <c:forEach var="s" items="${results}">
             <div class="result-card">
+                <div class="service-img-placeholder" title="Service image placeholder">Image space</div>
                 <h2><c:out value="${s.serviceName}"/></h2>
                 <p class="user-page-intro" style="margin-bottom:6px;"><c:out value="${s.stylistName}"/> · <c:out value="${s.category}"/></p>
-                <p style="font-size:0.9rem;margin-bottom:8px;">Code: <strong><c:out value="${s.serviceCode}"/></strong> · ${s.price} · ${s.durationMinutes} min</p>
+                <c:set var="displayCode" value="${s.serviceCode}"/>
+                <c:if test="${fn:contains(s.serviceCode, '-')}">
+                    <c:set var="codeParts" value="${fn:split(s.serviceCode, '-')}" />
+                    <c:set var="displayCode" value="${codeParts[fn:length(codeParts)-1]}" />
+                </c:if>
+                <p style="font-size:0.9rem;margin-bottom:8px;">Code: <strong><c:out value="${displayCode}"/></strong> · ${s.price} · ${s.durationMinutes} min</p>
                 <p style="font-size:0.9rem;"><c:out value="${s.description}"/></p>
 
                 <c:set var="onWish" value="false"/>
@@ -81,16 +116,15 @@
                             </c:otherwise>
                         </c:choose>
                     </form>
+                    <c:url var="bookUrl" value="/user/book">
+                        <c:param name="serviceId" value="${s.serviceId}"/>
+                    </c:url>
+                    <a class="btn btn-primary btn-small" href="${pageContext.request.contextPath}${bookUrl}">Book appointment</a>
                 </div>
 
-                <form class="apply-mini" action="${pageContext.request.contextPath}/user/apply" method="post" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
-                    <input type="hidden" name="serviceId" value="${s.serviceId}"/>
-                    <div class="apply-row">
-                        <div class="field"><label>Preferred date</label><input type="date" name="preferredDate"/></div>
-                        <div class="field"><label>Message</label><input type="text" name="message" placeholder="Optional" maxlength="600"/></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-small" style="margin-top:8px;">Apply / Request</button>
-                </form>
+                <p class="user-page-intro" style="margin-top:10px;margin-bottom:0;">
+                    To request this service, click <strong>Book appointment</strong>.
+                </p>
             </div>
         </c:forEach>
     </div>
@@ -102,42 +136,6 @@
         </div>
     </c:if>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('.search-fields');
-    if (!form) return;
-
-    const serviceCode = form.querySelector('input[name="serviceCode"]');
-    const stylist = form.querySelector('input[name="stylist"]');
-    const keyword = form.querySelector('input[name="q"]');
-    const category = form.querySelector('input[name="category"]');
-
-    form.addEventListener('submit', function () {
-        if (serviceCode && serviceCode.value.trim()) {
-            const codeOk = /^[A-Za-z0-9-]{3,40}$/.test(serviceCode.value.trim());
-            serviceCode.setCustomValidity(codeOk ? '' : 'Service code must use 3 to 40 letters, numbers, or hyphens.');
-        } else if (serviceCode) {
-            serviceCode.setCustomValidity('');
-        }
-
-        const anyValue = [stylist, serviceCode, keyword, category].some(function (input) {
-            return input && input.value.trim();
-        });
-        if (keyword) {
-            keyword.setCustomValidity(anyValue ? '' : 'Enter at least one search value.');
-        }
-    });
-
-    [stylist, serviceCode, keyword, category].forEach(function (input) {
-        if (!input) return;
-        input.addEventListener('input', function () {
-            input.setCustomValidity('');
-            if (keyword) {
-                keyword.setCustomValidity('');
-            }
-        });
-    });
-});
-</script>
+<%@ include file="/user/site-footer.jspf" %>
 </body>
 </html>

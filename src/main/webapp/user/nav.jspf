@@ -8,7 +8,7 @@
                 <div class="user-topnav-links">
                     <a href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a>
                     <a href="${pageContext.request.contextPath}/user/profile">Profile</a>
-                    <a href="${pageContext.request.contextPath}/user/search">Services</a>
+                    <a href="${pageContext.request.contextPath}/user/services">Services</a>
                     <a href="${pageContext.request.contextPath}/user/wishlist">
                         Wishlist
                         <c:if test="${not empty sessionScope.wishlistServiceIds}">

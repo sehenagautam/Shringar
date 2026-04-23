@@ -82,50 +82,5 @@
             <p class="auth-reg-bottom">Already have an account? <a href="${pageContext.request.contextPath}/user/login">Sign in</a></p>
         </div>
     </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
-    if (!form) return;
-
-    const password = form.querySelector('input[name="password"]');
-    const confirm = form.querySelector('input[name="confirmPassword"]');
-    const profileImage = form.querySelector('input[name="profileImage"]');
-
-    function syncPasswordValidity() {
-        if (!password || !confirm) return;
-        confirm.setCustomValidity(password.value === confirm.value ? '' : 'Passwords do not match.');
-    }
-
-    if (password && confirm) {
-        password.addEventListener('input', syncPasswordValidity);
-        confirm.addEventListener('input', syncPasswordValidity);
-        form.addEventListener('submit', syncPasswordValidity);
-    }
-
-    if (profileImage) {
-        profileImage.addEventListener('change', function () {
-            const file = profileImage.files && profileImage.files[0];
-            if (!file) {
-                profileImage.setCustomValidity('Please upload a profile image.');
-                return;
-            }
-
-            const validTypes = ['image/jpeg', 'image/png'];
-            const validName = /\.(jpe?g|png)$/i.test(file.name);
-            if (!validTypes.includes(file.type) || !validName) {
-                profileImage.setCustomValidity('Please upload a JPG, JPEG, or PNG image.');
-                profileImage.reportValidity();
-                return;
-            }
-            if (file.size > 2 * 1024 * 1024) {
-                profileImage.setCustomValidity('Profile image must be 2 MB or smaller.');
-                profileImage.reportValidity();
-                return;
-            }
-            profileImage.setCustomValidity('');
-        });
-    }
-});
-</script>
 </body>
 </html>

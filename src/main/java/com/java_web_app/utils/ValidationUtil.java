@@ -9,7 +9,7 @@ public final class ValidationUtil {
     private static final Pattern EMAIL = Pattern.compile(
             "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private static final Pattern PHONE = Pattern.compile("^[0-9+()\\-\\s]{7,20}$");
-    private static final Pattern SERVICE_CODE = Pattern.compile("^[A-Za-z0-9\\-]{3,40}$");
+    private static final Pattern SERVICE_CODE = Pattern.compile("^[0-9]{3,6}$");
 
     private ValidationUtil() {
     }

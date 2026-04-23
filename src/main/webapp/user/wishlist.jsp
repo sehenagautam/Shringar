@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,11 @@
     <title>Wishlist — Shringar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-<%@ include file="/user/nav.jspf" %>
+<%@ include file="/user/site-header.jspf" %>
 <div class="user-wrap-wide">
     <h1 class="user-page-title">Wishlist</h1>
     <p class="user-page-intro">Your wishlist is saved in your session (temporary). Use it to keep services for later.</p>
@@ -35,9 +38,15 @@
             <div class="results-grid">
                 <c:forEach var="s" items="${wishlistServices}">
                     <div class="result-card">
+                        <div class="service-img-placeholder" title="Service image placeholder">Image space</div>
                         <h2><c:out value="${s.serviceName}"/></h2>
                         <p class="user-page-intro"><c:out value="${s.stylistName}"/> · <c:out value="${s.category}"/></p>
-                        <p style="font-size:0.9rem;margin-bottom:10px;">Code: <strong><c:out value="${s.serviceCode}"/></strong> · ${s.price} · ${s.durationMinutes} min</p>
+                        <c:set var="displayCode" value="${s.serviceCode}"/>
+                        <c:if test="${fn:contains(s.serviceCode, '-')}">
+                            <c:set var="codeParts" value="${fn:split(s.serviceCode, '-')}" />
+                            <c:set var="displayCode" value="${codeParts[fn:length(codeParts)-1]}" />
+                        </c:if>
+                        <p style="font-size:0.9rem;margin-bottom:10px;">Code: <strong><c:out value="${displayCode}"/></strong> · ${s.price} · ${s.durationMinutes} min</p>
                         <div class="inline-actions">
                             <form action="${pageContext.request.contextPath}/user/wishlist" method="post">
                             <input type="hidden" name="action" value="remove"/>
@@ -55,5 +64,6 @@
         </c:otherwise>
     </c:choose>
 </div>
+<%@ include file="/user/site-footer.jspf" %>
 </body>
 </html>
