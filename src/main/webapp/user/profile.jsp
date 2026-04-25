@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Profile — Shringar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css?v=20260425-2"/>
 </head>
 <body>
+<%@ include file="/user/nav.jspf" %>
 <div class="user-wrap">
     <h1 class="user-page-title">Your profile</h1>
     <p class="user-page-intro">Update your details, password, or profile image.</p>

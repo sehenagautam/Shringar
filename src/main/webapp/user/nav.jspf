@@ -1,15 +1,24 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
+<c:set var="currentPath" value="${pageContext.request.requestURI}" />
+<c:set var="isDashboardPage" value="${fn:contains(currentPath, '/user/dashboard')}" />
+<c:set var="isSearchPage" value="${fn:contains(currentPath, '/user/search')}" />
+<c:set var="isWishlistPage" value="${fn:contains(currentPath, '/user/wishlist')}" />
+<c:set var="isProfilePage" value="${fn:contains(currentPath, '/user/profile')}" />
 <c:choose>
     <c:when test="${not empty sessionScope.user}">
         <header class="user-topnav">
             <div class="user-topnav-inner">
-                <span class="user-topnav-title">Shringar — User</span>
                 <div class="user-topnav-links">
-                    <a href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a>
-                    <a href="${pageContext.request.contextPath}/user/profile">Profile</a>
+                    <a class="${isDashboardPage ? 'active' : ''}" href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a>
+                    <a href="${pageContext.request.contextPath}/">Home</a>
+                    <a class="${isSearchPage ? 'active' : ''}" href="${pageContext.request.contextPath}/user/search">Search</a>
                     <a href="${pageContext.request.contextPath}/user/search">Services</a>
-                    <a href="${pageContext.request.contextPath}/user/wishlist">
+                    <a href="${pageContext.request.contextPath}/user/dashboard#appointments">My appointments</a>
+                </div>
+                <div class="user-topnav-tools">
+                    <a class="tool-link ${isProfilePage ? 'active' : ''}" href="${pageContext.request.contextPath}/user/profile">Profile</a>
+                    <a class="tool-link ${isWishlistPage ? 'active' : ''}" href="${pageContext.request.contextPath}/user/wishlist">
                         Wishlist
                         <c:if test="${not empty sessionScope.wishlistServiceIds}">
                             <span class="nav-badge">${fn:length(sessionScope.wishlistServiceIds)}</span>
@@ -18,8 +27,7 @@
                             <span class="nav-badge">0</span>
                         </c:if>
                     </a>
-                    <a href="${pageContext.request.contextPath}/">Home</a>
-                    <a href="${pageContext.request.contextPath}/user/logout">Log out</a>
+                    <a class="tool-link" href="${pageContext.request.contextPath}/user/logout">Log out</a>
                 </div>
             </div>
         </header>
@@ -27,10 +35,9 @@
     <c:otherwise>
         <header class="user-topnav">
             <div class="user-topnav-inner">
-                <span class="user-topnav-title">Shringar</span>
                 <div class="user-topnav-links">
-                    <a href="${pageContext.request.contextPath}/search">Search</a>
                     <a href="${pageContext.request.contextPath}/">Home</a>
+                    <a href="${pageContext.request.contextPath}/search">Search</a>
                     <a href="${pageContext.request.contextPath}/login">Sign in</a>
                     <a href="${pageContext.request.contextPath}/register">Register</a>
                 </div>

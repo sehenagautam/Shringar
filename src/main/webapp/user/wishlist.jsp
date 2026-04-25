@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Wishlist — Shringar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css?v=20260425-2"/>
 </head>
 <body>
 <%@ include file="/user/nav.jspf" %>
