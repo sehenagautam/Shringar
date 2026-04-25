@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import com.shringar.dao.ServiceDAO;
 import com.shringar.model.Service;
 import com.shringar.utils.PortalAuth;
+import com.shringar.utils.SalonMediaUtil;
 import com.shringar.utils.SessionUtil;
 import com.shringar.utils.ValidationUtil;
 import com.shringar.utils.WishlistHelper;
@@ -102,6 +103,7 @@ public class SearchServlet extends HttpServlet {
         req.setAttribute("category", category);
         req.setAttribute("categories", SALON_CATEGORIES);
         req.setAttribute("serviceOptions", dao.listAllActive());
+        req.setAttribute("serviceImageMap", SalonMediaUtil.buildServiceImageMap(results));
         req.setAttribute("wishlistIds", PortalAuth.currentUser(req) != null ? WishlistHelper.getIds(req) : new LinkedHashSet<Integer>());
         req.setAttribute("searchPath", requiresLogin ? "/user/search" : "/search");
 

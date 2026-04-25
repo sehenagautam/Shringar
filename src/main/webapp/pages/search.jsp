@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=20260413-plain">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public-search.css?v=20260423-1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public-search.css?v=20260425-1">
 </head>
 <body>
     <div class="page-shell">
@@ -188,6 +188,10 @@
                         <div class="search-results-grid">
                             <c:forEach var="service" items="${results}">
                                 <article class="search-result-card">
+                                    <c:set var="serviceImage" value="${serviceImageMap[service.serviceId]}"/>
+                                    <div class="search-result-media">
+                                        <img src="${pageContext.request.contextPath}${serviceImage}" alt="${service.serviceName}" class="search-result-photo">
+                                    </div>
                                     <div class="search-result-top">
                                         <span class="search-result-category"><c:out value="${service.category}"/></span>
                                         <span class="search-result-duration"><c:out value="${service.durationMinutes}"/> min</span>

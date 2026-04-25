@@ -163,7 +163,7 @@
         <!-- Member 5 -->
         <div class="team-item">
             <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/about.png">
+                <img class="nail-tech-photo" src="${pageContext.request.contextPath}/public/nail_technician.jpg" alt="Nail Technician">
             </div>
             <div class="team-info">
                 <h3>5. Nail Technician</h3>

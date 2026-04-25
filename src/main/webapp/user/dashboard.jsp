@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard-user.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard-user.css?v=20260425-1"/>
 </head>
 <body>
 <div class="dash-layout">
@@ -127,8 +127,12 @@
                                             <p class="muted" style="margin-top:6px;font-size:0.88rem;">
                                                 <c:out value="${b.appointmentDatetime}"/>
                                             </p>
-                                            <p style="margin-top:10px;font-size:0.88rem;">
-                                                <span class="dash-avatar-slot" style="width:40px;height:40px;display:inline-block;vertical-align:middle;margin-right:8px;" title="Stylist photo placeholder"></span>
+                                            <p class="dash-inline-photo-row" style="margin-top:10px;font-size:0.88rem;">
+                                                <c:set var="upcomingImage" value="${serviceImageMap[b.serviceId]}"/>
+                                                <c:if test="${empty upcomingImage}">
+                                                    <c:set var="upcomingImage" value="/public/client_hair.png"/>
+                                                </c:if>
+                                                <img src="${pageContext.request.contextPath}${upcomingImage}" alt="${b.serviceName}" class="dash-inline-avatar"/>
                                                 <c:out value="${b.stylistName}"/> · <span class="muted"><c:out value="${b.category}"/></span>
                                             </p>
                                         </div>
@@ -153,9 +157,13 @@
                             <c:forEach var="h" items="${historyBookings}" end="2">
                                 <div class="dash-appt">
                                     <div style="display:flex;gap:10px;align-items:center;">
-                                        <div class="dash-avatar-slot" style="width:44px;height:44px;" title="Placeholder"></div>
+                                        <c:set var="historyImage" value="${serviceImageMap[h.serviceId]}"/>
+                                        <c:if test="${empty historyImage}">
+                                            <c:set var="historyImage" value="/public/client_hair.png"/>
+                                        </c:if>
+                                        <img src="${pageContext.request.contextPath}${historyImage}" alt="${h.serviceName}" class="dash-history-thumb"/>
                                         <div>
-                                            <div style="font-weight:600;font-size:0.9rem;"><c:out value="${h.stylistName}"/></div>
+                                            <div style="font-weight:600;font-size:0.9rem;"><c:out value="${h.serviceName}"/></div>
                                             <p class="muted" style="font-size:0.82rem;"><c:out value="${h.appointmentDatetime}"/></p>
                                         </div>
                                     </div>
@@ -193,15 +201,16 @@
             <div>
                 <div class="dash-card">
                     <h2>Favourite stylists <a class="see-all" href="${pageContext.request.contextPath}/user/search">See all ›</a></h2>
-                    <p class="muted" style="margin-bottom:12px;">From popular services</p>
+                    <p class="muted" style="margin-bottom:12px;">From the Shringar team</p>
                     <div class="dash-stylist-row">
-                        <c:forEach var="p" items="${popularServices}" end="4">
+                        <c:forEach var="stylist" items="${favouriteStylists}">
                             <div class="dash-stylist">
-                                <div class="dash-stylist-slot" title="Photo placeholder">
+                                <div class="dash-stylist-slot dash-stylist-photo">
+                                    <img src="${pageContext.request.contextPath}${stylist.imagePath}" alt="${stylist.name}"/>
                                     <span class="heart" aria-hidden="true">♥</span>
                                 </div>
-                                <div style="font-weight:600;"><c:out value="${p.stylistName}"/></div>
-                                <div class="muted"><c:out value="${p.category}"/></div>
+                                <div style="font-weight:600;"><c:out value="${stylist.name}"/></div>
+                                <div class="muted"><c:out value="${stylist.role}"/></div>
                             </div>
                         </c:forEach>
                     </div>
@@ -213,21 +222,29 @@
                     <div class="chips">
                         <c:forEach var="cat" items="${categories}">
                             <c:url var="catUrl" value="/user/search"><c:param name="category" value="${cat}"/></c:url>
-                            <a href="${pageContext.request.contextPath}${catUrl}"><c:out value="${cat}"/></a>
+                            <a href="${catUrl}"><c:out value="${cat}"/></a>
                         </c:forEach>
                         <a class="add-placeholder" href="${pageContext.request.contextPath}/user/search">+ Add service</a>
                     </div>
                 </div>
 
                 <div class="dash-card">
-                    <h2>Promotions</h2>
-                    <div class="dash-promo">
-                        <div class="dash-promo-text">
-                            <p class="script">Spring special</p>
-                            <p style="font-size:1rem;margin-bottom:12px;">20% off all manicure services</p>
-                            <a class="btn-mauve" href="${pageContext.request.contextPath}/user/search">Book now</a>
-                        </div>
-                        <div class="dash-promo-img-slot" title="Promotion image — add later"></div>
+                    <h2>Special promos and offers</h2>
+                    <div class="dash-promo-grid">
+                        <c:forEach var="promo" items="${promoCards}">
+                            <div class="dash-promo-card">
+                                <img src="${pageContext.request.contextPath}${promo.imagePath}" alt="${promo.title}" class="dash-promo-image"/>
+                                <div class="dash-promo-text">
+                                    <p class="script"><c:out value="${promo.title}"/></p>
+                                    <p class="dash-promo-copy"><c:out value="${promo.description}"/></p>
+                                    <c:url var="promoUrl" value="/user/search">
+                                        <c:param name="category" value="${promo.category}"/>
+                                        <c:param name="q" value="${promo.query}"/>
+                                    </c:url>
+                                    <a class="btn-mauve" href="${promoUrl}"><c:out value="${promo.buttonLabel}"/></a>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

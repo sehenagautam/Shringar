@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Search — Shringar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css?v=20260425-1"/>
 </head>
 <body>
 <%@ include file="/user/nav.jspf" %>
@@ -76,6 +76,10 @@
     <div class="results-grid">
         <c:forEach var="s" items="${results}">
             <div class="result-card">
+                <c:set var="serviceImage" value="${serviceImageMap[s.serviceId]}"/>
+                <div class="result-card-media">
+                    <img src="${pageContext.request.contextPath}${serviceImage}" alt="${s.serviceName}" class="result-card-photo"/>
+                </div>
                 <h2><c:out value="${s.serviceName}"/></h2>
                 <p class="user-page-intro" style="margin-bottom:6px;"><c:out value="${s.stylistName}"/> · <c:out value="${s.category}"/></p>
                 <p style="font-size:0.9rem;margin-bottom:8px;">Code: <strong><c:out value="${s.serviceCode}"/></strong> · ${s.price} · ${s.durationMinutes} min</p>

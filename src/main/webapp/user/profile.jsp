@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user-pages.css"/>
 </head>
 <body>
-<%@ include file="/user/nav.jspf" %>
 <div class="user-wrap">
     <h1 class="user-page-title">Your profile</h1>
     <p class="user-page-intro">Update your details, password, or profile image.</p>

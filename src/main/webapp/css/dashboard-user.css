@@ -374,6 +374,31 @@
     display: inline-block;
 }
 
+.dash-inline-photo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dash-inline-avatar,
+.dash-history-thumb {
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 142, 142, 0.24);
+    background: #f5eded;
+    flex-shrink: 0;
+}
+
+.dash-inline-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.dash-history-thumb {
+    width: 44px;
+    height: 44px;
+}
+
 /* Stylists */
 .dash-stylist-row {
     display: flex;
@@ -396,6 +421,18 @@
     border: 2px dashed rgba(168, 142, 142, 0.3);
     background: #f8f4f2;
     margin-bottom: 8px;
+}
+
+.dash-stylist-photo {
+    overflow: hidden;
+    border-style: solid;
+}
+
+.dash-stylist-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .dash-stylist-slot .heart {
@@ -434,12 +471,28 @@
 }
 
 /* Promotions */
-.dash-promo {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.dash-promo-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.dash-promo-card {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 16px;
     align-items: center;
-    justify-content: space-between;
+    border: 1px solid rgba(168, 142, 142, 0.18);
+    border-radius: var(--dash-radius-md);
+    padding: 14px;
+    background: #fffaf8;
+}
+
+.dash-promo-image {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
 }
 
 .dash-promo-text .script {
@@ -450,13 +503,11 @@
     margin-bottom: 6px;
 }
 
-.dash-promo-img-slot {
-    width: 180px;
-    min-height: 100px;
-    border-radius: var(--dash-radius-md);
-    border: 2px dashed rgba(168, 142, 142, 0.25);
-    background: #faf6f4;
-    flex-shrink: 0;
+.dash-promo-copy {
+    font-size: 0.92rem;
+    color: var(--dash-muted);
+    line-height: 1.7;
+    margin-bottom: 12px;
 }
 
 /* Progress */
@@ -474,4 +525,14 @@
     width: 45%;
     background: #c9a7a0;
     border-radius: 999px;
+}
+
+@media (max-width: 900px) {
+    .dash-promo-card {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-promo-image {
+        height: 180px;
+    }
 }
