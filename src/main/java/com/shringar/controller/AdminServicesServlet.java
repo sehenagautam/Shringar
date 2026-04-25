@@ -57,28 +57,27 @@ public class AdminServicesServlet extends AdminBaseServlet {
 
         boolean ok = update ? dao.updateService(service) : dao.createService(service);
         if (ok) {
-            setSuccess(req, update ? "Service was updated successfully." : "Service was created successfully.");
+            redirectWithSuccess(req, res, "/admin/services",
+                    update ? "Service was updated successfully." : "Service was created successfully.");
         } else {
-            setError(req, update ? "Could not update the service. Check if the service code is already used."
-                    : "Could not create the service. Check if the service code is already used.");
+            redirectWithError(req, res, "/admin/services",
+                    update ? "Could not update the service. Check if the service code is already used."
+                            : "Could not create the service. Check if the service code is already used.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/services");
     }
 
     private void handleDeactivate(HttpServletRequest req, HttpServletResponse res) throws IOException {
         List<String> errors = ValidationUtil.newErrorList();
         int serviceId = parsePositiveInt(req.getParameter("serviceId"), "Service", errors);
         if (!errors.isEmpty()) {
-            setError(req, String.join(" ", errors));
-            res.sendRedirect(req.getContextPath() + "/admin/services");
+            redirectWithError(req, res, "/admin/services", String.join(" ", errors));
             return;
         }
         if (dao.deactivateService(serviceId)) {
-            setSuccess(req, "Service was deactivated successfully.");
+            redirectWithSuccess(req, res, "/admin/services", "Service was deactivated successfully.");
         } else {
-            setError(req, "Could not deactivate the service.");
+            redirectWithError(req, res, "/admin/services", "Could not deactivate the service.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/services");
     }
 
     private void prepareServicesPage(HttpServletRequest req) {

@@ -48,10 +48,9 @@ public class AdminRequestsServlet extends AdminBaseServlet {
         }
 
         if (dao.updateRequestStatus(requestId, status.toUpperCase())) {
-            setSuccess(req, "Request status was updated successfully.");
+            redirectWithSuccess(req, res, "/admin/requests", "Request status was updated successfully.");
         } else {
-            setError(req, "Could not update the request status.");
+            redirectWithError(req, res, "/admin/requests", "Could not update the request status.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/requests");
     }
 }

@@ -41,10 +41,9 @@ public class AdminMessagesServlet extends AdminBaseServlet {
         }
 
         if (dao.deleteMessage(messageId)) {
-            setSuccess(req, "Contact message was removed successfully.");
+            redirectWithSuccess(req, res, "/admin/messages", "Contact message was removed successfully.");
         } else {
-            setError(req, "Could not remove the contact message.");
+            redirectWithError(req, res, "/admin/messages", "Could not remove the contact message.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/messages");
     }
 }

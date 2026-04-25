@@ -1,17 +1,19 @@
 <aside class="admin-sidebar">
     <div class="admin-brand">
         <p class="admin-kicker">Shringar</p>
-        <h1>Admin Dashboard</h1>
-        <span>Manage salon records, approve customers, review bookings, and keep the beauty workflow organized.</span>
+        <h1>Salon Admin</h1>
+        <span>Appointments, customer approvals, service records, and contact flow in one control room.</span>
     </div>
 
     <nav class="admin-nav" aria-label="Admin sections">
+        <p class="admin-nav-group">Main</p>
         <a class="admin-nav-link ${activePage eq 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/admin/dashboard">Overview</a>
         <a class="admin-nav-link ${activePage eq 'users' ? 'active' : ''}" href="${pageContext.request.contextPath}/admin/users">Users</a>
         <a class="admin-nav-link ${activePage eq 'services' ? 'active' : ''}" href="${pageContext.request.contextPath}/admin/services">Services</a>
         <a class="admin-nav-link ${activePage eq 'bookings' ? 'active' : ''}" href="${pageContext.request.contextPath}/admin/bookings">Bookings</a>
         <a class="admin-nav-link ${activePage eq 'requests' ? 'active' : ''}" href="${pageContext.request.contextPath}/admin/requests">Requests</a>
         <a class="admin-nav-link ${activePage eq 'messages' ? 'active' : ''}" href="${pageContext.request.contextPath}/admin/messages">Enquiries</a>
+        <p class="admin-nav-group">Access</p>
         <a class="admin-nav-link" href="${pageContext.request.contextPath}/">Salon Home</a>
         <a class="admin-nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
     </nav>

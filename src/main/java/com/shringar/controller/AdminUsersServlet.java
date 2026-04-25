@@ -57,11 +57,10 @@ public class AdminUsersServlet extends AdminBaseServlet {
         }
 
         if (dao.updateUserStatus(userId, status.toUpperCase())) {
-            setSuccess(req, "User account status was updated successfully.");
+            redirectWithSuccess(req, res, "/admin/users", "User account status was updated successfully.");
         } else {
-            setError(req, "Could not update the user account status.");
+            redirectWithError(req, res, "/admin/users", "Could not update the user account status.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/users");
     }
 
     private void handleCreateCustomer(HttpServletRequest req, HttpServletResponse res)
@@ -106,11 +105,10 @@ public class AdminUsersServlet extends AdminBaseServlet {
         boolean created = dao.createCustomer(fullName.trim(), email.trim(), phone,
                 password, status.toUpperCase(), membershipLevel);
         if (created) {
-            setSuccess(req, "Customer account was added successfully.");
+            redirectWithSuccess(req, res, "/admin/users", "Customer account was added successfully.");
         } else {
-            setError(req, "Could not add the customer account.");
+            redirectWithError(req, res, "/admin/users", "Could not add the customer account.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/users");
     }
 
     private Map<String, String> buildCustomerForm(String fullName, String email, String phone, String status,

@@ -1,12 +1,13 @@
 package com.shringar.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import com.shringar.model.User;
 import com.shringar.utils.AdminAccessUtil;
 import com.shringar.utils.PortalAuth;
-import com.shringar.utils.SessionUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -21,8 +22,7 @@ public abstract class AdminBaseServlet extends HttpServlet {
         }
 
         User currentUser = PortalAuth.currentUser(req);
-        Object role = SessionUtil.getAttribute(req, "userRole");
-        if (!AdminAccessUtil.isAdminUser(currentUser) && !"ADMIN".equalsIgnoreCase(String.valueOf(role))) {
+        if (!AdminAccessUtil.isAdminUser(currentUser)) {
             res.sendRedirect(req.getContextPath() + "/user/dashboard");
             return false;
         }
@@ -32,25 +32,25 @@ public abstract class AdminBaseServlet extends HttpServlet {
     protected void prepareAdminPage(HttpServletRequest req, String activePage) {
         req.setAttribute("activePage", activePage);
 
-        Object success = SessionUtil.getAttribute(req, "adminSuccess");
+        String success = clean(req.getParameter("success"));
         if (success != null) {
             req.setAttribute("successMessage", success);
-            SessionUtil.removeAttribute(req, "adminSuccess");
         }
 
-        Object error = SessionUtil.getAttribute(req, "adminError");
+        String error = clean(req.getParameter("error"));
         if (error != null) {
             req.setAttribute("errorMessage", error);
-            SessionUtil.removeAttribute(req, "adminError");
         }
     }
 
-    protected void setSuccess(HttpServletRequest req, String message) {
-        SessionUtil.setAttribute(req, "adminSuccess", message, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
+    protected void redirectWithSuccess(HttpServletRequest req, HttpServletResponse res, String path, String message)
+            throws IOException {
+        redirectWithMessage(req, res, path, "success", message);
     }
 
-    protected void setError(HttpServletRequest req, String message) {
-        SessionUtil.setAttribute(req, "adminError", message, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
+    protected void redirectWithError(HttpServletRequest req, HttpServletResponse res, String path, String message)
+            throws IOException {
+        redirectWithMessage(req, res, path, "error", message);
     }
 
     protected void forwardWithErrors(HttpServletRequest req, HttpServletResponse res, String view, String activePage,
@@ -84,5 +84,12 @@ public abstract class AdminBaseServlet extends HttpServlet {
         }
         String trimmed = value.trim();
         return trimmed.isEmpty() ? null : trimmed;
+    }
+
+    private void redirectWithMessage(HttpServletRequest req, HttpServletResponse res, String path, String key,
+            String message) throws IOException {
+        String separator = path.contains("?") ? "&" : "?";
+        String encodedMessage = URLEncoder.encode(message, StandardCharsets.UTF_8);
+        res.sendRedirect(req.getContextPath() + path + separator + key + "=" + encodedMessage);
     }
 }

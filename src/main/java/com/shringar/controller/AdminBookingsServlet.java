@@ -85,24 +85,24 @@ public class AdminBookingsServlet extends AdminBaseServlet {
                 ? dao.updateBooking(bookingId, userId, serviceId, appointment, status.toUpperCase(), notes)
                 : dao.createBooking(userId, serviceId, appointment, status.toUpperCase(), notes);
         if (ok) {
-            setSuccess(req, update ? "Booking was updated successfully." : "Booking was created successfully.");
+            redirectWithSuccess(req, res, "/admin/bookings",
+                    update ? "Booking was updated successfully." : "Booking was created successfully.");
         } else {
-            setError(req, update ? "Could not update the booking." : "Could not create the booking.");
+            redirectWithError(req, res, "/admin/bookings",
+                    update ? "Could not update the booking." : "Could not create the booking.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/bookings");
     }
 
     private void handleDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
         List<String> errors = ValidationUtil.newErrorList();
         int bookingId = parsePositiveInt(req.getParameter("bookingId"), "Booking", errors);
         if (!errors.isEmpty()) {
-            setError(req, String.join(" ", errors));
+            redirectWithError(req, res, "/admin/bookings", String.join(" ", errors));
         } else if (dao.deleteBooking(bookingId)) {
-            setSuccess(req, "Booking was deleted successfully.");
+            redirectWithSuccess(req, res, "/admin/bookings", "Booking was deleted successfully.");
         } else {
-            setError(req, "Could not delete the booking.");
+            redirectWithError(req, res, "/admin/bookings", "Could not delete the booking.");
         }
-        res.sendRedirect(req.getContextPath() + "/admin/bookings");
     }
 
     private void prepareBookingsPage(HttpServletRequest req) {
