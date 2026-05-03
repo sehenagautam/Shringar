@@ -22,6 +22,7 @@
         </c:otherwise>
     </c:choose>
 
+    <!-- These messages usually arrive after redirect-based actions like wishlist updates or requests. -->
     <c:if test="${not empty message}">
         <div class="msg-ok"><c:out value="${message}"/></div>
     </c:if>
@@ -34,6 +35,7 @@
         <a href="${pageContext.request.contextPath}${searchPath}">Clear filters</a>
     </div>
 
+    <!-- Category chips give a quicker path than reopening the select each time. -->
     <c:if test="${not empty categories}">
         <div class="category-chips" aria-label="Browse by category">
             <c:forEach var="catChip" items="${categories}">
@@ -43,6 +45,7 @@
         </div>
     </c:if>
 
+    <!-- searchPath lets the same JSP serve either the protected or public-style route. -->
     <form class="search-fields" method="get" action="${pageContext.request.contextPath}${searchPath}">
         <div class="field">
             <label>Category</label>
@@ -73,6 +76,7 @@
         </ul>
     </c:if>
 
+    <!-- Each result card can show wishlist state and an inline request form. -->
     <div class="results-grid">
         <c:forEach var="s" items="${results}">
             <div class="result-card">
@@ -96,6 +100,7 @@
 
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
+                        <!-- Wishlist and apply actions stay separate so either one can fail independently. -->
                         <div class="inline-actions">
                             <form action="${pageContext.request.contextPath}/user/wishlist" method="post">
                                 <input type="hidden" name="serviceId" value="${s.serviceId}"/>
@@ -131,6 +136,7 @@
         </c:forEach>
     </div>
 
+    <!-- Empty state still nudges the person toward the salon's common search vocabulary. -->
     <c:if test="${empty results}">
         <div class="empty-card">
             <p class="user-page-intro" style="margin-bottom:10px;">No salon treatments matched that search.</p>

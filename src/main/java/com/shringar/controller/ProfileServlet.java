@@ -33,6 +33,8 @@ public class ProfileServlet extends HttpServlet {
         UserDAO dao = new UserDAO();
         User fresh = dao.findById(sessionUser.getUserId());
         if (fresh != null) {
+            // Pull the latest copy from the database before showing the form so
+            // the page reflects any updates made in another tab or admin screen.
             SessionUtil.setAttribute(req, "user", fresh, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
         }
         req.getRequestDispatcher("/user/profile.jsp").forward(req, res);
@@ -93,6 +95,7 @@ public class ProfileServlet extends HttpServlet {
         boolean changePassword = !ValidationUtil.isBlank(newPassword)
                 || !ValidationUtil.isBlank(confirmPassword);
         if (changePassword) {
+            // Password checks only run when the user actually tries to change it.
             if (!ValidationUtil.isValidPassword(newPassword)) {
                 errors.add("New password must be at least 8 characters.");
             } else if (newPassword == null || !newPassword.equals(confirmPassword)) {
@@ -142,6 +145,8 @@ public class ProfileServlet extends HttpServlet {
 
         boolean ok = dao.updateProfile(u);
         if (!u.getEmail().equalsIgnoreCase(email.trim())) {
+            // Email lives in its own update path so we can keep the profile
+            // update logic simple and reuse the duplicate-email guard above.
             ok = dao.updateEmail(u.getUserId(), email.trim()) && ok;
             u.setEmail(email.trim());
         }
@@ -152,6 +157,8 @@ public class ProfileServlet extends HttpServlet {
 
         User reloaded = dao.findById(u.getUserId());
         if (reloaded != null) {
+            // Keep the session in sync with the saved record so the navbar,
+            // dashboard, and profile form all show the same data immediately.
             SessionUtil.setAttribute(req, "user", reloaded, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
         }
 

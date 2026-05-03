@@ -15,6 +15,7 @@
 
     <div class="login-card">
 
+        <!-- Brand framing for the standalone auth card. -->
         <div class="login-logo-wrap">
             <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="login-logo">
         </div>
@@ -27,6 +28,7 @@
 
         <h2 class="login-title">User Login</h2>
 
+        <!-- One shared area handles both redirects and validation feedback. -->
         <c:if test="${not empty message}">
             <div style="margin: 0 0 18px; padding: 12px 14px; border-radius: 10px; background: #f4efe7; color: #6b4c3b; text-align: center;">
                 <c:out value="${message}"/>
@@ -47,6 +49,7 @@
             </div>
         </c:if>
 
+        <!-- typedEmail is either the last attempted value or the remembered cookie value. -->
         <form class="login-form" action="${pageContext.request.contextPath}/login" method="post">
             <div class="login-input-group">
                 <span class="login-input-label">Email</span>
@@ -59,6 +62,7 @@
             <button type="submit" class="login-btn">Login</button>
         </form>
 
+        <!-- Keep a lightweight route back into the public site from auth pages. -->
         <p class="login-links">
             New here? <a href="${pageContext.request.contextPath}/register">Create an account</a>
         </p>

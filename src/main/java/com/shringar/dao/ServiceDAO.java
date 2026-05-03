@@ -13,6 +13,7 @@ import com.shringar.utils.ExceptionUtil;
 
 public class ServiceDAO {
 
+    // Used to bootstrap a friendly starter catalog when the services table is empty.
     private static final String[][] STARTER_SERVICES = {
             {"Rapid Refresh Haircut", "A quick haircut to keep your look clean and refreshed.", "Hair", "Shringar Hair Team", "HAIR-REFRESH-01", "1000.00", "45"},
             {"Rose Reinvention Haircut", "A full style transformation to refresh and redefine your look.", "Hair", "Shringar Hair Team", "HAIR-ROSE-02", "1500.00", "75"},
@@ -35,6 +36,7 @@ public class ServiceDAO {
     };
 
     private Service mapRow(ResultSet rs) throws Exception {
+        // Keeps SQL-reading details in one place so search/list methods stay tidy.
         Service s = new Service();
         s.setServiceId(rs.getInt("service_id"));
         s.setServiceName(rs.getString("service_name"));
@@ -69,6 +71,7 @@ public class ServiceDAO {
         List<Service> list = new ArrayList<>();
         String sql = "SELECT * FROM services WHERE is_active = 1 ORDER BY category, service_name";
         try (Connection conn = DBConnection.getConnection()) {
+            // Local/dev databases can start empty, so seed before the first read.
             seedStarterServicesIfEmpty(conn);
             try (PreparedStatement ps = conn.prepareStatement(sql);
                     ResultSet rs = ps.executeQuery()) {
@@ -87,6 +90,7 @@ public class ServiceDAO {
         StringBuilder sql = new StringBuilder("SELECT * FROM services WHERE is_active = 1");
         List<String> params = new ArrayList<>();
 
+        // Build up the query from whichever filters the UI actually supplied.
         if (category != null && !category.trim().isEmpty()) {
             sql.append(" AND (category LIKE ? OR service_name LIKE ? OR description LIKE ?)");
             String cat = "%" + category.trim() + "%";
@@ -139,6 +143,8 @@ public class ServiceDAO {
         if (ids == null || ids.isEmpty()) {
             return list;
         }
+        // Prepared placeholders are built dynamically so the query stays safe
+        // even when the wishlist contains an arbitrary number of service IDs.
         StringBuilder in = new StringBuilder();
         for (int i = 0; i < ids.size(); i++) {
             in.append(i == 0 ? "?" : ",?");
@@ -265,6 +271,8 @@ public class ServiceDAO {
             }
         }
 
+        // Batch insert keeps first-run setup fast and leaves duplicate-safe
+        // updates in place if the starter catalog already exists.
         String insertSql = """
                 INSERT INTO services (service_name, description, category, stylist_name, service_code,
                     price, duration_minutes, is_active)

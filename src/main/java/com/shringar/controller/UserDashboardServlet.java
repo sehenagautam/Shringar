@@ -38,6 +38,8 @@ public class UserDashboardServlet extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         User fresh = userDAO.findById(sessionUser.getUserId());
         if (fresh != null) {
+            // Refresh the session copy so dashboard widgets reflect recent
+            // profile edits without waiting for the next login.
             SessionUtil.setAttribute(req, "user", fresh, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
         }
 
@@ -52,6 +54,9 @@ public class UserDashboardServlet extends HttpServlet {
         LocalDateTime now = LocalDateTime.now();
         List<Booking> upcoming = new ArrayList<>();
         List<Booking> history = new ArrayList<>();
+
+        // The UI treats future bookings and past bookings differently, so we
+        // split them once here instead of repeating that logic in the JSP.
         for (Booking b : all) {
             if (b.getAppointmentDatetime() != null && b.getAppointmentDatetime().isAfter(now)) {
                 upcoming.add(b);
@@ -87,6 +92,11 @@ public class UserDashboardServlet extends HttpServlet {
 
     private List<Map<String, String>> buildPromotions() {
         List<Map<String, String>> promotions = new ArrayList<>();
+        // These cards are intentionally hard-coded for now so content updates
+        // can stay lightweight while the dashboard layout is still evolving.
+        promotions.add(promoCard("Black Friday discount", "Makeup", "HD Makeup",
+                "Limited-time Black Friday savings on premium glam sessions with a polished photo-ready finish.",
+                "/images/makeup5.jpg", "Claim Black Friday deal"));
         promotions.add(promoCard("Bridal glow offer", "Makeup", "Bridal Makeup",
                 "Wedding-ready glam with a softer bridal finish and priority beauty prep.",
                 "/images/makeup3.jpg", "Explore bridal makeup"));
@@ -100,6 +110,7 @@ public class UserDashboardServlet extends HttpServlet {
     }
 
     private Map<String, String> stylistCard(String name, String role, String category, String imagePath) {
+        // LinkedHashMap keeps insertion order stable for the JSP carousel/grid.
         Map<String, String> stylist = new LinkedHashMap<>();
         stylist.put("name", name);
         stylist.put("role", role);
@@ -110,6 +121,8 @@ public class UserDashboardServlet extends HttpServlet {
 
     private Map<String, String> promoCard(String title, String category, String query, String description,
             String imagePath, String buttonLabel) {
+        // Query and category are stored alongside display text so each promo
+        // can deep-link directly into the search experience.
         Map<String, String> promo = new LinkedHashMap<>();
         promo.put("title", title);
         promo.put("category", category);
