@@ -56,6 +56,7 @@ public class ApplyRequestServlet extends HttpServlet {
         }
 
         if (!errors.isEmpty()) {
+            // We redirect back to search, so errors travel through session once.
             SessionUtil.setAttribute(req, "flashError", String.join(" ", errors),
                     SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
             res.sendRedirect(req.getContextPath() + "/search");
@@ -79,6 +80,7 @@ public class ApplyRequestServlet extends HttpServlet {
 
         ApplyRequestDAO dao = new ApplyRequestDAO();
         if (dao.insert(ar)) {
+            // This is not a confirmed booking yet; it is a request waiting for salon review.
             SessionUtil.setAttribute(req, "flashSuccess",
                     "Your service request was submitted successfully. We will confirm it soon.",
                     SessionUtil.USER_SESSION_TIMEOUT_SECONDS);

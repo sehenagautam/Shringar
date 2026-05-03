@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="page-shell">
+        <!-- Public landing page navigation stays shared with the rest of the brochure pages. -->
         <nav class="navbar">
             <div class="nav-top">
                 <div class="nav-top-left">
@@ -50,6 +51,7 @@
         </nav>
 
         <main>
+            <!-- Hero starts with the main booking action instead of a marketing-only banner. -->
             <section class="home-banner" id="home">
                 <img class="banner-image" src="${pageContext.request.contextPath}/public/mainhomepage.png" alt="Woman posing after salon styling">
                 <div class="banner-copy">
@@ -70,6 +72,7 @@
                 </div>
             </section>
 
+            <!-- Intro is the short brand story before we move into services and proof. -->
             <section class="intro" id="about">
                 <p class="section-tag">Welcome To Shringar</p>
                 <h2>Elevating Hair, Makeup &amp; Nail Beauty</h2>
@@ -84,6 +87,7 @@
                 </p>
             </section>
 
+            <!-- Three feature cards explain the salon's value in a quick scan. -->
             <section class="feature-section">
                 <img class="feature-background" src="${pageContext.request.contextPath}/public/boxtextbg.png" alt="Salon interior background">
                 <div class="feature-overlay">
@@ -119,6 +123,7 @@
                 </div>
             </section>
 
+            <!-- Popular services act as visual shortcuts into the category pages. -->
             <section class="services" id="services">
                 <div class="section-heading">
                     <p class="section-tag">Creative Works</p>
@@ -140,6 +145,7 @@
                 </div>
             </section>
 
+            <!-- Social proof sits between services and the next booking prompt. -->
             <section class="reviews">
                 <div class="section-heading">
                     <p class="section-tag">Reviews</p>
@@ -185,6 +191,7 @@
                 </div>
             </section>
 
+            <!-- CTA gives the homepage a second clear booking moment lower in the scroll. -->
             <section class="cta-banner" id="appointment">
                 <img class="cta-background" src="${pageContext.request.contextPath}/public/elevate_your_beauty_experience.png" alt="Salon chairs and mirrors">
                 <div class="cta-content">
@@ -197,6 +204,7 @@
                 </div>
             </section>
 
+            <!-- Gallery preview keeps the full gallery page as a follow-up, not the first stop. -->
             <section class="gallery" id="gallery">
                 <div class="section-heading">
                     <p class="section-tag">Gallery</p>
@@ -227,6 +235,7 @@
             </section>
         </main>
 
+        <!-- Footer repeats the main routes for long-scroll users. -->
         <footer class="footer" id="contact">
             <div class="footer-container">
                 <div class="footer-brand">

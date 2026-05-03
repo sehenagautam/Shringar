@@ -26,6 +26,7 @@ public final class WishlistHelper {
         if (raw instanceof Set) {
             return (Set<Integer>) raw;
         }
+        // LinkedHashSet keeps the "saved" order predictable for the UI.
         LinkedHashSet<Integer> created = new LinkedHashSet<>();
         SessionUtil.setAttribute(request, SESSION_KEY, created, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
         return created;
@@ -40,6 +41,8 @@ public final class WishlistHelper {
     }
 
     public static List<Service> resolve(HttpServletRequest request, ServiceDAO dao) {
+        // Resolve the lightweight session IDs into full service cards only
+        // when the wishlist page actually needs to render them.
         List<Integer> ids = new ArrayList<>(getIds(request));
         return dao.findByIds(ids);
     }

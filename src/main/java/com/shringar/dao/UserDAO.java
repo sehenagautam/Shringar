@@ -15,6 +15,7 @@ import com.shringar.utils.PasswordUtil;
 public class UserDAO {
 
     private static User mapUser(ResultSet rs) throws Exception {
+        // One place to translate raw SQL rows into the richer domain model.
         User user = new User();
         user.setUserId(rs.getInt("user_id"));
         user.setName(rs.getString("full_name"));
@@ -41,6 +42,7 @@ public class UserDAO {
     }
 
     private static String normalizeEmail(String email) {
+        // Lower-casing here avoids duplicate accounts that differ only by case.
         return email == null ? "" : email.trim().toLowerCase();
     }
 
@@ -96,6 +98,8 @@ public class UserDAO {
     }
 
     public void ensureAdminAccount() {
+        // The project expects one default admin account, so we upsert it instead
+        // of assuming the database was pre-seeded correctly.
         String sql = """
                 INSERT INTO users (full_name, email, phone, password_hash, date_of_birth, status,
                     membership_level, member_since_year, preferred_services, profile_image)
@@ -126,6 +130,7 @@ public class UserDAO {
     }
 
     public boolean register(User user, String plainPassword) {
+        // Registration always stores a hashed password; plain text never reaches the table.
         String sql = """
                 INSERT INTO users (full_name, email, phone, profile_image, password_hash, date_of_birth,
                     status, membership_level, member_since_year, preferred_services)
@@ -164,6 +169,8 @@ public class UserDAO {
     }
 
     public User authenticate(String email, String plainPassword) {
+        // Email lookup and password verification stay separate so the rest of
+        // the app never needs to know how password hashing is implemented.
         User user = findByEmail(email);
         if (user == null || user.getPasswordHash() == null) {
             return null;
@@ -260,6 +267,7 @@ public class UserDAO {
             return null;
         }
 
+        // Legacy pages still expect UserModel, so we adapt the newer User here.
         UserModel legacyUser = new UserModel();
         legacyUser.setUserId(user.getUserId());
         legacyUser.setUserName(user.getName());

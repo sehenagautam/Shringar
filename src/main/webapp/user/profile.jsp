@@ -15,6 +15,7 @@
     <h1 class="user-page-title">Your profile</h1>
     <p class="user-page-intro">Update your details, password, or profile image.</p>
 
+    <!-- Feedback from the save attempt comes back here after the servlet validates and persists. -->
     <c:if test="${not empty message}">
         <div class="msg-ok"><c:out value="${message}"/></div>
     </c:if>
@@ -26,6 +27,7 @@
         </div>
     </c:if>
 
+    <!-- One form handles profile details, image upload, and the optional password change. -->
     <form action="${pageContext.request.contextPath}/user/profile" method="post" enctype="multipart/form-data" class="form-card form-stack">
         <c:if test="${not empty sessionScope.user.image}">
             <div class="field">
@@ -42,6 +44,7 @@
         <div class="field"><label>Preferred services</label><textarea name="preferredServices" rows="2">${sessionScope.user.preferredServices}</textarea></div>
         <div class="field"><label>Profile image</label><input type="file" name="profileImage" accept=".jpg,.jpeg,.png,image/jpeg,image/png"/></div>
         <hr style="border:none;border-top:1px solid var(--border);margin:12px 0;"/>
+        <!-- Blank password fields mean "leave my current password alone." -->
         <p class="user-page-intro">Leave blank to keep your current password.</p>
         <div class="field"><label>New password</label><input type="password" name="newPassword" minlength="8" autocomplete="new-password"/></div>
         <div class="field"><label>Confirm new password</label><input type="password" name="confirmPassword" minlength="8" autocomplete="new-password"/></div>

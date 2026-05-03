@@ -44,6 +44,8 @@ public class RegisterServlet extends HttpServlet {
         ValidationUtil.require(email, "Email", errors);
         ValidationUtil.require(password, "Password", errors);
 
+        // The register form can include an optional profile photo, so we only
+        // try to read the part when the request is actually multipart.
         if (isMultipart(req)) {
             try {
                 profileImagePart = req.getPart("profileImage");
@@ -105,6 +107,7 @@ public class RegisterServlet extends HttpServlet {
         user.setEmail(email.trim());
         user.setPhone(ValidationUtil.isBlank(phone) ? null : phone.trim());
         user.setDateOfBirth(dob);
+        // New accounts wait for an admin approval before they can sign in.
         user.setStatus("PENDING");
         user.setMembershipLevel(ValidationUtil.isBlank(membershipLevel) ? null : membershipLevel.trim());
         user.setMemberSinceYear(memberYear);
@@ -127,6 +130,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
+        // Remember the latest email so the login page can greet them halfway.
         CookieUtil.addCookie(res, "shringar_last_email", email.trim(), 60 * 60 * 24 * 30);
         res.sendRedirect(req.getContextPath() + "/login?success=pending");
     }
@@ -144,6 +148,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     private String firstNonBlank(String first, String second) {
+        // Supports both the newer "fullName" field and the older "name" field.
         if (!ValidationUtil.isBlank(first)) {
             return first;
         }

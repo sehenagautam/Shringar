@@ -29,6 +29,8 @@ public class LoginServlet extends HttpServlet {
         if ("registered".equalsIgnoreCase(req.getParameter("success"))) {
             req.setAttribute("message", "Registration submitted successfully. Please wait for admin approval before logging in.");
         }
+        // If the user just failed a login attempt we keep the email they typed.
+        // Otherwise, fall back to the remembered email cookie for convenience.
         if (req.getAttribute("typedEmail") == null) {
             String rememberedEmail = CookieUtil.getCookieValue(req, "shringar_last_email");
             if (rememberedEmail != null && !rememberedEmail.isBlank()) {
@@ -60,6 +62,8 @@ public class LoginServlet extends HttpServlet {
 
         UserDAO dao = new UserDAO();
         if (AdminAccessUtil.isAdminEmail(email)) {
+            // A brand-new database may not have the seeded admin row yet.
+            // This keeps the admin login usable without a manual setup step.
             dao.ensureAdminAccount();
         }
         User user = dao.authenticate(email, password);
@@ -75,6 +79,8 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+        // Session drives access control; the cookie is only there to remember
+        // the last email the person used on this browser.
         SessionUtil.setAttribute(req, "user", user, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
         String userRole = AdminAccessUtil.isAdminUser(user) ? "ADMIN" : "CUSTOMER";
         SessionUtil.setAttribute(req, "userRole", userRole, SessionUtil.USER_SESSION_TIMEOUT_SECONDS);
@@ -84,6 +90,7 @@ public class LoginServlet extends HttpServlet {
 
     private void forwardWithErrors(HttpServletRequest req, HttpServletResponse res, List<String> errors, String email)
             throws ServletException, IOException {
+        // Keep the form populated so the user only has to fix the problem field.
         req.setAttribute("errors", errors);
         req.setAttribute("error", errors.isEmpty() ? null : errors.get(0));
         req.setAttribute("typedEmail", email);

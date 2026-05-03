@@ -273,7 +273,7 @@
 </head>
 <body class="register-body">
 
-    <!-- Left Panel -->
+    <!-- Left panel keeps the brand visible while the right side stays focused on the form. -->
     <div class="register-left">
         <div class="register-logo-wrap">
             <img src="${pageContext.request.contextPath}/images/logo.png" alt="Shringar Logo" class="register-logo"/>
@@ -286,11 +286,12 @@
         </div>
     </div>
 
-    <!-- Right Panel -->
+    <!-- Right panel holds the actual registration flow and any validation feedback. -->
     <div class="register-right">
         <h2 class="register-title">Create an Account</h2>
         <p class="register-subtitle">Please fill in your details to register.</p>
 
+        <!-- The servlet sends either a list of detailed validation errors or one fallback message. -->
         <c:if test="${not empty errors or not empty error}">
             <div class="register-alert register-alert--error">
                 <c:choose>
@@ -306,6 +307,7 @@
             </div>
         </c:if>
 
+        <!-- Field names line up with the user model plus a few optional extras. -->
         <form class="register-form" action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
 
             <div class="form-field">
@@ -343,6 +345,7 @@
 
         </form>
 
+        <!-- Sign-in shortcut is useful after an approved account already exists. -->
         <p class="register-signin">Already have an account? <a href="${pageContext.request.contextPath}/login">Sign in</a></p>
         <p class="register-nav-links">
             <a href="${pageContext.request.contextPath}/">Home</a>

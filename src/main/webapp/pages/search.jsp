@@ -14,6 +14,7 @@
 </head>
 <body>
     <div class="page-shell">
+        <!-- Public search keeps the same brochure-site nav so guests can browse first. -->
         <nav class="navbar">
             <div class="nav-top">
                 <div class="nav-top-left">
@@ -59,6 +60,7 @@
         </nav>
 
         <main class="search-page-main">
+            <!-- Hero explains the search flow before people start filtering. -->
             <section class="search-hero">
                 <div class="search-hero-copy">
                     <p class="section-tag">Salon Services</p>
@@ -87,6 +89,7 @@
                 </div>
             </section>
 
+            <!-- Filter panel is intentionally simple: category first, then service selection. -->
             <section class="search-panel-section">
                 <div class="search-panel">
                     <div class="search-panel-head">
@@ -132,6 +135,7 @@
                         </div>
                     </form>
 
+                    <!-- Quick chips mirror the select input for faster browsing. -->
                     <c:if test="${not empty categories}">
                         <div class="search-chip-row" aria-label="Browse categories">
                             <c:forEach var="catChip" items="${categories}">
@@ -159,6 +163,7 @@
                 </div>
             </section>
 
+            <!-- Result cards stay bookable, but guests are nudged through login first. -->
             <section class="search-results-section">
                 <div class="search-results-head">
                     <div>
@@ -227,6 +232,7 @@
             </section>
         </main>
 
+        <!-- Footer repeats the public routes because search often acts as an entry page. -->
         <footer class="footer" id="contact">
             <div class="footer-container">
                 <div class="footer-brand">

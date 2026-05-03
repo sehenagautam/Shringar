@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="dash-layout">
+    <!-- Sidebar anchors jump to sections inside the dashboard for quick scanning. -->
     <aside class="dash-side" aria-label="Sidebar">
         <nav>
             <ul>
@@ -23,11 +24,13 @@
                 <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico">◷</span> Search</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico">✦</span> Services</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/dashboard#appointments"><span class="nav-ico">☷</span> My appointments</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/dashboard#promos"><span class="nav-ico">✺</span> Promos &amp; offers</a></li>
             </ul>
         </nav>
     </aside>
 
     <main class="dash-main">
+        <!-- Top nav mirrors the sidebar for wider screens. -->
         <header class="dash-topbar">
             <nav class="dash-topbar-links" aria-label="Top">
                 <a class="active" href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a>
@@ -35,6 +38,7 @@
                 <a href="${pageContext.request.contextPath}/user/search">Search</a>
                 <a href="${pageContext.request.contextPath}/user/search">Services</a>
                 <a href="#appointments">My appointments</a>
+                <a href="#promos">Promos</a>
             </nav>
             <div class="dash-topbar-tools">
                 <span class="ico" title="Notifications">🔔</span>
@@ -43,6 +47,7 @@
             </div>
         </header>
 
+        <!-- Hero keeps the next useful action visible right away. -->
         <section class="dash-hero">
             <h1>Welcome, <c:out value="${sessionScope.user.name}"/>!</h1>
             <p>How can we help you look your best today?</p>
@@ -52,6 +57,34 @@
             </div>
         </section>
 
+        <!-- Promotions are driven by servlet-built cards so the copy lives in one place. -->
+        <section class="dash-card dash-promos-panel" id="promos">
+            <div class="dash-section-header">
+                <div>
+                    <p class="dash-section-tag">Seasonal deals</p>
+                    <h2>Special promos and offers</h2>
+                </div>
+                <a class="see-all" href="${pageContext.request.contextPath}/user/search">Browse services ›</a>
+            </div>
+            <div class="dash-promo-grid">
+                <c:forEach var="promo" items="${promoCards}">
+                    <div class="dash-promo-card">
+                        <img src="${pageContext.request.contextPath}${promo.imagePath}" alt="${promo.title}" class="dash-promo-image"/>
+                        <div class="dash-promo-text">
+                            <p class="script"><c:out value="${promo.title}"/></p>
+                            <p class="dash-promo-copy"><c:out value="${promo.description}"/></p>
+                            <c:url var="promoUrl" value="/user/search">
+                                <c:param name="category" value="${promo.category}"/>
+                                <c:param name="q" value="${promo.query}"/>
+                            </c:url>
+                            <a class="btn-mauve" href="${promoUrl}"><c:out value="${promo.buttonLabel}"/></a>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </section>
+
+        <!-- This block uses the refreshed session user so recent profile edits show up immediately. -->
         <div class="dash-profile-row dash-card">
             <c:choose>
                 <c:when test="${not empty sessionScope.user.image}">
@@ -71,6 +104,7 @@
             </div>
         </div>
 
+        <!-- Quick metrics first, then the more detailed lists below. -->
         <div class="dash-grid">
             <div class="dash-card">
                 <h2>Total bookings</h2>
@@ -109,6 +143,7 @@
             <p class="muted" style="font-size:0.8rem;text-align:center;">150 points away from Platinum</p>
         </div>
 
+        <!-- Appointments are split in the servlet so the JSP can stay mostly presentational. -->
         <div class="dash-grid" id="appointments">
             <div>
                 <div class="dash-card">
@@ -199,6 +234,7 @@
             </div>
 
             <div>
+                <!-- Team cards are simple maps from the servlet, which keeps this loop tidy. -->
                 <div class="dash-card">
                     <h2>Favourite stylists <a class="see-all" href="${pageContext.request.contextPath}/user/search">See all ›</a></h2>
                     <p class="muted" style="margin-bottom:12px;">From the Shringar team</p>
@@ -217,6 +253,7 @@
                     <a class="btn-soft" href="${pageContext.request.contextPath}/user/search" style="display:inline-block;margin-top:14px;width:100%;text-align:center;box-sizing:border-box;">View all stylists ›</a>
                 </div>
 
+                <!-- Favorite services reuse the same category data prepared for search. -->
                 <div class="dash-card">
                     <h2>Favorite services</h2>
                     <div class="chips">
@@ -228,25 +265,6 @@
                     </div>
                 </div>
 
-                <div class="dash-card">
-                    <h2>Special promos and offers</h2>
-                    <div class="dash-promo-grid">
-                        <c:forEach var="promo" items="${promoCards}">
-                            <div class="dash-promo-card">
-                                <img src="${pageContext.request.contextPath}${promo.imagePath}" alt="${promo.title}" class="dash-promo-image"/>
-                                <div class="dash-promo-text">
-                                    <p class="script"><c:out value="${promo.title}"/></p>
-                                    <p class="dash-promo-copy"><c:out value="${promo.description}"/></p>
-                                    <c:url var="promoUrl" value="/user/search">
-                                        <c:param name="category" value="${promo.category}"/>
-                                        <c:param name="q" value="${promo.query}"/>
-                                    </c:url>
-                                    <a class="btn-mauve" href="${promoUrl}"><c:out value="${promo.buttonLabel}"/></a>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>
-                </div>
             </div>
         </div>
     </main>

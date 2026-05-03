@@ -30,6 +30,7 @@ public class GuestFilter extends HttpFilter {
 
         if (isLoggedIn) {
             Object userRole = SessionUtil.getAttribute(request, "userRole");
+            // Once someone is signed in, login/register pages stop being useful.
             response.sendRedirect(request.getContextPath()
                     + ("ADMIN".equalsIgnoreCase(String.valueOf(userRole)) ? "/admin/dashboard" : "/user/dashboard"));
             return;

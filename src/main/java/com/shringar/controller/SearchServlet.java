@@ -25,6 +25,7 @@ public class SearchServlet extends HttpServlet {
     private static final List<String> SALON_CATEGORIES = List.of("Nail", "Hair", "Makeup");
 
     private String clean(String value) {
+        // Normalizes request params so later checks can just test for null.
         if (value == null) {
             return null;
         }
@@ -39,6 +40,8 @@ public class SearchServlet extends HttpServlet {
             return;
         }
 
+        // Flash messages are stored in session because the action that creates
+        // them usually redirects back to search.
         Object flashOk = SessionUtil.getAttribute(req, "flashSuccess");
         if (flashOk != null) {
             req.setAttribute("message", flashOk);
@@ -76,6 +79,8 @@ public class SearchServlet extends HttpServlet {
                     ? "Showing the full salon menu. Choose a category or treatment to narrow it down."
                     : "Showing the full salon menu. Choose Nail, Hair, or Makeup, then select a treatment.");
         } else {
+            // Search is intentionally additive: any combination of keyword,
+            // category, stylist, and service code can be layered together.
             results = dao.searchServices(keyword, category, stylist, serviceCode);
 
             if (hasKeyword) {
@@ -104,6 +109,7 @@ public class SearchServlet extends HttpServlet {
         req.setAttribute("categories", SALON_CATEGORIES);
         req.setAttribute("serviceOptions", dao.listAllActive());
         req.setAttribute("serviceImageMap", SalonMediaUtil.buildServiceImageMap(results));
+        // Guests can browse without a wishlist, so expose an empty set for them.
         req.setAttribute("wishlistIds", PortalAuth.currentUser(req) != null ? WishlistHelper.getIds(req) : new LinkedHashSet<Integer>());
         req.setAttribute("searchPath", requiresLogin ? "/user/search" : "/search");
 
