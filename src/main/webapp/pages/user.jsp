@@ -5,15 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login - Shringar Beauty Salon</title>
+    <title>${loginView == 'ADMIN' ? 'Admin Login' : 'User Login'} - Shringar Beauty Salon</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css?v=20260413-plain">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css?v=20260514-fix3">
 </head>
-<body class="login-body">
+<body class="login-body ${loginView == 'ADMIN' ? 'login-body--admin' : ''}">
 
-    <div class="login-card">
+    <div class="login-card ${loginView == 'ADMIN' ? 'login-card--admin' : ''}">
 
         <!-- Brand framing for the standalone auth card. -->
         <div class="login-logo-wrap">
@@ -26,7 +26,8 @@
             <span></span>
         </div>
 
-        <h2 class="login-title">User Login</h2>
+        <p class="login-kicker">${loginView == 'ADMIN' ? 'Dashboard Access' : 'Welcome Back'}</p>
+        <h2 class="login-title">${loginView == 'ADMIN' ? 'Admin Login' : 'User Login'}</h2>
 
         <!-- One shared area handles both redirects and validation feedback. -->
         <c:if test="${not empty message}">
@@ -50,35 +51,34 @@
         </c:if>
 
         <!-- typedEmail is either the last attempted value or the remembered cookie value. -->
-        <form class="login-form" action="${pageContext.request.contextPath}/login" method="post">
+        <form class="login-form" action="${pageContext.request.contextPath}${loginView == 'ADMIN' ? '/admin/login' : '/login'}" method="post">
             <div class="login-input-group">
-                <span class="login-input-label">Email</span>
-                <input type="email" name="email" placeholder="Email Address" value="${typedEmail}" required autocomplete="username">
+                <label class="login-input-label" for="login-email">Email</label>
+                <input id="login-email" type="email" name="email" value="${typedEmail}" required autocomplete="username">
             </div>
             <div class="login-input-group">
-                <span class="login-input-label">Password</span>
-                <input type="password" name="password" placeholder="Password" required autocomplete="current-password">
+                <label class="login-input-label" for="login-password">Password</label>
+                <input id="login-password" type="password" name="password" required autocomplete="current-password">
             </div>
             <button type="submit" class="login-btn">Login</button>
         </form>
 
         <!-- Keep a lightweight route back into the public site from auth pages. -->
-        <p class="login-links">
-            New here? <a href="${pageContext.request.contextPath}/register">Create an account</a>
-        </p>
-        <p class="login-links login-links--nav">
-            <a href="${pageContext.request.contextPath}/">Home</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/aboutus">About Us</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/pages/services">Services</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/ContactUs">Contact</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/search">Search</a>
-        </p>
+        <c:if test="${loginView != 'ADMIN'}">
+            <p class="login-links">
+                New here? <a href="${pageContext.request.contextPath}/register">Create an account</a>
+            </p>
+        </c:if>
+        <c:if test="${loginView == 'ADMIN'}">
+            <p class="login-links">
+                Use the admin email account to access the management dashboard.
+            </p>
+        </c:if>
+        <c:if test="${loginView != 'ADMIN'}">
+            <p class="login-links login-links--secondary">
+                Admin? <a href="${pageContext.request.contextPath}/admin-login">Open admin login</a>
+            </p>
+        </c:if>
 
     </div>
 

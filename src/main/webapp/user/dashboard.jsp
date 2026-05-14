@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard-user.css?v=20260425-1"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard-user.css?v=20260514-refresh2"/>
 </head>
 <body>
 <div class="dash-layout">
@@ -19,12 +19,12 @@
     <aside class="dash-side" aria-label="Sidebar">
         <nav>
             <ul>
-                <li><a class="active" href="${pageContext.request.contextPath}/user/dashboard"><span class="nav-ico">◆</span> Dashboard</a></li>
-                <li><a href="${pageContext.request.contextPath}/"><span class="nav-ico">⌂</span> Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico">◷</span> Search</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico">✦</span> Services</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/dashboard#appointments"><span class="nav-ico">☷</span> My appointments</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/dashboard#promos"><span class="nav-ico">✺</span> Promos &amp; offers</a></li>
+                <li><a class="active" href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/search">Search</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/search">Services</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/dashboard#appointments">My appointments</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/dashboard#promos">Promos &amp; offers</a></li>
             </ul>
         </nav>
     </aside>
@@ -41,14 +41,14 @@
                 <a href="#promos">Promos</a>
             </nav>
             <div class="dash-topbar-tools">
-                <span class="ico" title="Notifications">🔔</span>
-                <span class="ico" title="Profile">👤</span>
+                <a class="profile-link" href="${pageContext.request.contextPath}/user/profile">Profile</a>
                 <a class="signout" href="${pageContext.request.contextPath}/user/logout">Sign out</a>
             </div>
         </header>
 
         <!-- Hero keeps the next useful action visible right away. -->
         <section class="dash-hero">
+            <p class="dash-hero-kicker">Your Shringar space</p>
             <h1>Welcome, <c:out value="${sessionScope.user.name}"/>!</h1>
             <p>How can we help you look your best today?</p>
             <div class="dash-actions">
@@ -96,7 +96,7 @@
             </c:choose>
             <div>
                 <h2 style="font-family:Georgia,serif;font-size:1.35rem;margin-bottom:6px;border:none;"><c:out value="${sessionScope.user.name}"/></h2>
-                <p class="muted">👑 Member<c:if test="${not empty sessionScope.user.memberSinceYear}"> since <c:out value="${sessionScope.user.memberSinceYear}"/></c:if></p>
+                <p class="muted">Member<c:if test="${not empty sessionScope.user.memberSinceYear}"> since <c:out value="${sessionScope.user.memberSinceYear}"/></c:if></p>
                 <div class="dash-actions" style="margin-top:14px;">
                     <a class="btn-dark" href="${pageContext.request.contextPath}/user/search">Book appointment</a>
                     <a class="btn-soft" href="${pageContext.request.contextPath}/user/profile">Edit profile</a>
@@ -156,7 +156,7 @@
                             <c:forEach var="b" items="${upcomingBookings}" end="0">
                                 <div class="dash-appt">
                                     <div style="display:flex;gap:14px;flex:1;min-width:200px;">
-                                        <div class="date-box">Appt<br/><strong style="font-size:1rem;color:var(--dash-text);">●</strong></div>
+                                        <div class="date-box"><span>Upcoming</span></div>
                                         <div>
                                             <div class="appt-title"><c:out value="${b.serviceName}"/></div>
                                             <p class="muted" style="margin-top:6px;font-size:0.88rem;">
@@ -243,7 +243,7 @@
                             <div class="dash-stylist">
                                 <div class="dash-stylist-slot dash-stylist-photo">
                                     <img src="${pageContext.request.contextPath}${stylist.imagePath}" alt="${stylist.name}"/>
-                                    <span class="heart" aria-hidden="true">♥</span>
+                                    <span class="stylist-badge">Top pick</span>
                                 </div>
                                 <div style="font-weight:600;"><c:out value="${stylist.name}"/></div>
                                 <div class="muted"><c:out value="${stylist.role}"/></div>
