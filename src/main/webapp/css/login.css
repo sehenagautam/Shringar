@@ -1,0 +1,204 @@
+:root {
+    --cream: #f5ede3;
+    --warm-white: #fdf8f3;
+    --gold: #c9a96e;
+    --dark: #2c2c2c;
+    --text-muted: #7a7a7a;
+    --border: #e0d4c8;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body.login-body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--cream);
+    color: var(--dark);
+    font-family: var(--font-body);
+}
+
+.login-card {
+    width: min(90vw, 460px);
+    padding: 52px 56px 48px;
+    text-align: center;
+    background: var(--warm-white);
+    border: 1.5px solid var(--border);
+    border-radius: 28px;
+}
+
+.login-logo-wrap {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    padding: 14px 28px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.login-logo {
+    display: block;
+    width: auto;
+    height: 70px;
+}
+
+.gold-rule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 22px;
+}
+
+.gold-rule span {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.diamond-mark {
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+
+.login-title {
+    margin: 0 0 28px;
+    color: var(--dark);
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+}
+
+.login-input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s ease;
+}
+
+.login-input-group:focus-within {
+    border-color: var(--gold);
+}
+
+.login-input-label {
+    flex-shrink: 0;
+    width: 44px;
+    margin-right: 12px;
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.login-input-group input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+}
+
+.login-input-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.login-btn {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 15px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--dark);
+    color: #ffffff;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.login-btn:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+}
+
+.login-links {
+    margin: 16px 0 0;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.login-links + .login-links {
+    margin-top: 8px;
+}
+
+.login-links--nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    line-height: 1.8;
+    margin-top: 12px;
+}
+
+.login-links--nav span {
+    color: var(--border);
+}
+
+.login-links a {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.login-links a:hover {
+    color: var(--dark);
+}
+
+@media (max-width: 560px) {
+    body.login-body {
+        padding: 1rem;
+    }
+
+    .login-card {
+        padding: 40px 28px 36px;
+        border-radius: 20px;
+    }
+}

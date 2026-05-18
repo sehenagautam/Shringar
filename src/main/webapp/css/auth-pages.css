@@ -1,0 +1,300 @@
+/* Login & Register — Shringar UI (plain HTML/CSS only) */
+
+:root {
+    --ui-mauve: #A88E8E;
+    --ui-mauve-dark: #8f7676;
+    --ui-bg-page: #e8e0dc;
+    --ui-bg-soft: #f5efeb;
+    --ui-card-white: #ffffff;
+    --ui-text: #3a3330;
+    --ui-text-soft: #888888;
+    --ui-input-bg: #f9f5f2;
+    --ui-black: #1a1a1a;
+}
+
+/* ----- User Login (centered gradient card) ----- */
+.auth-login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    background: linear-gradient(145deg, #dcd4d0 0%, #c9bdb8 50%, #b8a8a4 100%);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.auth-login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 48px;
+    padding: 40px 36px 48px;
+    background: linear-gradient(180deg, #faf8f6 0%, #d8c4c4 55%, #b89a9a 100%);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.auth-logo-slot {
+    min-height: 100px;
+    margin: 0 auto 24px;
+    max-width: 220px;
+    border-radius: 20px;
+    border: 2px dashed rgba(90, 70, 70, 0.15);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.auth-login-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.75rem;
+    color: #4a3f3c;
+    margin-bottom: 28px;
+    font-weight: 400;
+}
+
+.auth-login-form {
+    text-align: left;
+}
+
+.auth-pill-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 4px 8px 4px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.auth-pill-wrap .auth-icon {
+    font-size: 1rem;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.auth-pill-wrap input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 14px 8px 14px 0;
+    font-size: 0.95rem;
+    color: #3a3330;
+    outline: none;
+}
+
+.auth-pill-wrap input::placeholder {
+    color: rgba(70, 60, 58, 0.55);
+}
+
+.auth-pill-wrap:focus-within {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.auth-login-submit {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 999px;
+    background: var(--ui-black);
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.auth-login-submit:hover {
+    background: #333;
+}
+
+.auth-login-footer {
+    margin-top: 24px;
+    font-size: 0.88rem;
+    color: rgba(60, 50, 50, 0.75);
+}
+
+.auth-login-footer a {
+    color: #3a3330;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.auth-msg-ok, .auth-msg-err {
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+    text-align: left;
+}
+
+.auth-msg-ok {
+    background: rgba(220, 255, 220, 0.5);
+    border: 1px solid rgba(0, 120, 0, 0.2);
+    color: #1b5e20;
+}
+
+.auth-msg-err {
+    background: rgba(255, 220, 220, 0.5);
+    border: 1px solid rgba(180, 0, 0, 0.2);
+    color: #b71c1c;
+}
+
+.auth-msg-err ul,
+.auth-msg-ok ul {
+    margin: 0;
+    padding-left: 1.2em;
+}
+
+/* ----- Register (split layout) ----- */
+.auth-reg-page {
+    min-height: 100vh;
+    display: flex;
+    background: var(--ui-bg-soft);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ui-text);
+}
+
+.auth-reg-aside {
+    flex: 0 0 38%;
+    max-width: 480px;
+    min-width: 260px;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.auth-reg-logo-slot {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    border: 2px dashed rgba(0, 0, 0, 0.08);
+    background: #fff;
+    margin-bottom: 28px;
+}
+
+.auth-reg-brand {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.auth-reg-tagline {
+    font-size: 0.95rem;
+    color: var(--ui-text-soft);
+    line-height: 1.5;
+    max-width: 320px;
+}
+
+.auth-reg-footer-note {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: auto;
+    padding-top: 40px;
+}
+
+.auth-reg-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+}
+
+.auth-reg-card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--ui-card-white);
+    border-radius: 28px;
+    padding: 40px 44px 48px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+}
+
+.auth-reg-card h1 {
+    font-size: 1.65rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+.auth-reg-card .sub {
+    font-size: 0.92rem;
+    color: var(--ui-text-soft);
+    margin-bottom: 28px;
+}
+
+.auth-reg-field {
+    margin-bottom: 18px;
+}
+
+.auth-reg-field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.auth-reg-field input,
+.auth-reg-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 8px;
+    background: var(--ui-input-bg);
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.auth-reg-row2 {
+    display: flex;
+    gap: 16px;
+}
+
+.auth-reg-row2 .auth-reg-field {
+    flex: 1;
+}
+
+.auth-reg-submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: var(--ui-black);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-reg-submit:hover {
+    background: #333;
+}
+
+.auth-reg-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.92rem;
+    color: var(--ui-text-soft);
+}
+
+.auth-reg-bottom a {
+    color: #111;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .auth-reg-page {
+        flex-direction: column;
+    }
+    .auth-reg-aside {
+        max-width: none;
+        padding-bottom: 0;
+    }
+    .auth-reg-footer-note {
+        display: none;
+    }
+}

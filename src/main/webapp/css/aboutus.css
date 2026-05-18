@@ -1,0 +1,448 @@
+
+.about-hero {
+    background-color: var(--cream);
+    padding: 50px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.about-hero h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--dark);
+    letter-spacing: 1px;
+}
+
+/* ── Main Section ── */
+.about-section {
+    padding: 60px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+/* ── Banner Image ── */
+.about-banner {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    min-height: 300px;
+}
+
+.about-banner img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Introduction Block ── */
+.about-intro-block {
+    text-align: center;
+}
+
+.intro-label {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.intro-title {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 28px;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 12px;
+    display: inline-block;
+}
+
+.intro-cols {
+    display: flex;
+    gap: 40px;
+    text-align: left;
+    margin-bottom: 28px;
+}
+
+.intro-cols p {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin: 0;
+}
+
+.intro-quote {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 16px 24px;
+    text-align: left;
+    border-radius: 0 4px 4px 0;
+}
+
+.intro-quote p {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--dark);
+    margin: 0;
+}
+
+/* ── Shared Divider Row ── */
+.section-divider-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.section-label-center {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 0;
+}
+
+/* ── How It All Began ── */
+.about-began {}
+
+.began-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.began-img {
+    flex: 1;
+    min-width: 240px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    min-height: 200px;
+}
+
+.began-img img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.began-text {
+    flex: 1;
+    min-width: 240px;
+}
+
+.began-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+}
+
+/* ── Our Mission ── */
+.about-mission {}
+
+.mission-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.mission-text {
+    flex: 1;
+    min-width: 240px;
+}
+
+.mission-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+}
+
+.mission-img {
+    flex: 1;
+    min-width: 240px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    min-height: 200px;
+}
+
+.mission-img img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Team Members ── */
+.about-team {}
+
+.team-heading {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.team-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+}
+
+.team-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.team-avatar {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--cream);
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.team-avatar img.nail-tech-photo {
+    object-fit: contain;
+    object-position: center top;
+    background: var(--cream);
+}
+
+.team-info h3 {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.team-info p {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 8px;
+}
+
+.read-more {
+    font-size: 0.82rem;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+}
+
+.read-more:hover {
+    color: var(--dark-gold);
+}
+
+/* ── CTA Banner ── */
+.about-cta {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
+}
+
+.cta-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.45;
+}
+
+.cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 44, 44, 0.55);
+}
+
+.cta-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 40px;
+}
+
+.cta-text h2 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.4;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 36px 16px 30px;
+    }
+
+    .about-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .about-section {
+        padding: 40px 16px;
+    }
+
+    .intro-cols {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .began-content,
+    .mission-content {
+        flex-direction: column;
+    }
+
+    .cta-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .intro-title {
+        font-size: 1.5rem;
+    }
+    /* ── Team Members ── */
+.about-team {}
+
+.team-heading {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+/* GRID layout instead of vertical list */
+.team-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+/* Each card */
+.team-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Avatar (circle image) */
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gold);
+    margin-bottom: 15px;
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-avatar img.nail-tech-photo {
+    object-fit: contain;
+    object-position: center top;
+    background: var(--cream);
+}
+
+/* Text */
+.team-info h3 {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+}
+
+.team-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 6px;
+}
+
+.read-more {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 500;
+}
+}
