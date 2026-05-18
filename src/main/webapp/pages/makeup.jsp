@@ -15,7 +15,10 @@
                 <h3>Bridal Makeup</h3>
                 <p>Starting at Rs 8000</p>
                 <p>Flawless and long-lasting bridal makeup that enhances your natural beauty, perfect for your special day.</p>
+<<<<<<< HEAD
                 <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
+=======
+>>>>>>> 81341f24903c2fbc7ab471e2df027b1816445a92
             </div>
         </div>
 
@@ -25,7 +28,10 @@
                 <h3>Party Glam Makeup</h3>
                 <p>Starting at Rs 3000</p>
                 <p>A glamorous makeup look with bold eyes and glowing skin, perfect for parties and night outings.</p>
+<<<<<<< HEAD
                 <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
+=======
+>>>>>>> 81341f24903c2fbc7ab471e2df027b1816445a92
             </div>
         </div>
 
@@ -35,7 +41,10 @@
                 <h3>Engagement Makeup</h3>
                 <p>Starting at Rs 5000</p>
                 <p>Elegant and sophisticated makeup designed to give you a glowing look for your engagement day.</p>
+<<<<<<< HEAD
                 <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
+=======
+>>>>>>> 81341f24903c2fbc7ab471e2df027b1816445a92
             </div>
         </div>
 
@@ -45,7 +54,10 @@
                 <h3>Natural Everyday Makeup</h3>
                 <p>Starting at Rs 2000</p>
                 <p>Light and breathable makeup for a clean and simple look, ideal for daily wear.</p>
+<<<<<<< HEAD
                 <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
+=======
+>>>>>>> 81341f24903c2fbc7ab471e2df027b1816445a92
             </div>
         </div>
 
@@ -55,7 +67,10 @@
                 <h3>HD Makeup</h3>
                 <p>Starting at Rs 4500</p>
                 <p>High-definition makeup that provides a smooth, flawless finish perfect for photoshoots.</p>
+<<<<<<< HEAD
                 <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
+=======
+>>>>>>> 81341f24903c2fbc7ab471e2df027b1816445a92
             </div>
         </div>
 
@@ -65,7 +80,10 @@
                 <h3>Soft Glam Makeup</h3>
                 <p>Starting at Rs 2500</p>
                 <p>A subtle and natural glam look with soft tones, giving you a fresh and effortlessly beautiful appearance.</p>
+<<<<<<< HEAD
                 <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
+=======
+>>>>>>> 81341f24903c2fbc7ab471e2df027b1816445a92
             </div>
         </div>
 
@@ -73,4 +91,8 @@
 
 </div>
 
+<<<<<<< HEAD
 <%@ include file="../components/footer.jsp" %>
+=======
+<%@ include file="../components/footer.jsp" %>
+>>>>>>> 81341f24903c2fbc7ab471e2df027b1816445a92
