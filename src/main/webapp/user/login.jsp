@@ -39,6 +39,8 @@
         <p class="auth-login-footer">
             <a href="${pageContext.request.contextPath}/register">Create an account</a>
             · <a href="${pageContext.request.contextPath}/">Home</a>
+            <br/><br/>
+            Admin? <a href="${pageContext.request.contextPath}/admin-login">Admin Login</a>
         </p>
     </div>
 </body>

@@ -106,11 +106,13 @@ public class AdminManagementDAO {
     public List<Service> listServicesForAdmin() {
         List<Service> services = new ArrayList<>();
         String sql = "SELECT * FROM services ORDER BY is_active DESC, category, service_name";
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                services.add(mapService(rs));
+        try (Connection conn = DBConnection.getConnection()) {
+            ensureServicesImageColumn(conn);
+            try (PreparedStatement ps = conn.prepareStatement(sql);
+                    ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    services.add(mapService(rs));
+                }
             }
         } catch (Exception e) {
             ExceptionUtil.log("Failed to list admin services.", e);
@@ -132,12 +134,14 @@ public class AdminManagementDAO {
 
     public Service findServiceById(int serviceId) {
         String sql = "SELECT * FROM services WHERE service_id = ?";
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, serviceId);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return mapService(rs);
+        try (Connection conn = DBConnection.getConnection()) {
+            ensureServicesImageColumn(conn);
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, serviceId);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        return mapService(rs);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -149,13 +153,15 @@ public class AdminManagementDAO {
     public boolean createService(Service service) {
         String sql = """
                 INSERT INTO services (service_name, description, category, stylist_name, service_code,
-                    price, duration_minutes, is_active)
-                VALUES (?,?,?,?,?,?,?,?)
+                    price, duration_minutes, is_active, image_path)
+                VALUES (?,?,?,?,?,?,?,?,?)
                 """;
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            fillServiceStatement(ps, service);
-            return ps.executeUpdate() > 0;
+        try (Connection conn = DBConnection.getConnection()) {
+            ensureServicesImageColumn(conn);
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                fillServiceStatement(ps, service);
+                return ps.executeUpdate() > 0;
+            }
         } catch (Exception e) {
             ExceptionUtil.log("Failed to create admin service.", e);
         }
@@ -166,28 +172,32 @@ public class AdminManagementDAO {
         String sql = """
                 UPDATE services
                 SET service_name = ?, description = ?, category = ?, stylist_name = ?, service_code = ?,
-                    price = ?, duration_minutes = ?, is_active = ?
+                    price = ?, duration_minutes = ?, is_active = ?, image_path = ?
                 WHERE service_id = ?
                 """;
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            fillServiceStatement(ps, service);
-            ps.setInt(9, service.getServiceId());
-            return ps.executeUpdate() > 0;
+        try (Connection conn = DBConnection.getConnection()) {
+            ensureServicesImageColumn(conn);
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                fillServiceStatement(ps, service);
+                ps.setInt(10, service.getServiceId());
+                return ps.executeUpdate() > 0;
+            }
         } catch (Exception e) {
             ExceptionUtil.log("Failed to update admin service.", e);
         }
         return false;
     }
 
-    public boolean deactivateService(int serviceId) {
-        String sql = "UPDATE services SET is_active = 0 WHERE service_id = ?";
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, serviceId);
-            return ps.executeUpdate() > 0;
+    public boolean deleteService(int serviceId) {
+        String sql = "DELETE FROM services WHERE service_id = ?";
+        try (Connection conn = DBConnection.getConnection()) {
+            ensureServicesImageColumn(conn);
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, serviceId);
+                return ps.executeUpdate() > 0;
+            }
         } catch (Exception e) {
-            ExceptionUtil.log("Failed to deactivate admin service.", e);
+            ExceptionUtil.log("Failed to delete admin service.", e);
         }
         return false;
     }
@@ -416,6 +426,7 @@ public class AdminManagementDAO {
         service.setPrice(price != null ? price : BigDecimal.ZERO);
         service.setDurationMinutes(rs.getInt("duration_minutes"));
         service.setActive(rs.getInt("is_active") == 1);
+        service.setImagePath(rs.getString("image_path"));
         return service;
     }
 
@@ -428,6 +439,15 @@ public class AdminManagementDAO {
         ps.setBigDecimal(6, service.getPrice());
         ps.setInt(7, service.getDurationMinutes());
         ps.setInt(8, service.isActive() ? 1 : 0);
+        ps.setString(9, service.getImagePath());
+    }
+
+    private void ensureServicesImageColumn(Connection conn) {
+        try (Statement st = conn.createStatement()) {
+            st.executeUpdate("ALTER TABLE services ADD COLUMN IF NOT EXISTS image_path VARCHAR(255) NULL");
+        } catch (Exception e) {
+            // Ignore if already exists or other non-critical error
+        }
     }
 
     private Map<String, Object> mapBooking(ResultSet rs) throws Exception {

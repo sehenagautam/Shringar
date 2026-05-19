@@ -54,10 +54,12 @@ public class UserDashboardServlet extends HttpServlet {
         LocalDateTime now = LocalDateTime.now();
         List<Booking> upcoming = new ArrayList<>();
         List<Booking> history = new ArrayList<>();
+        List<Integer> bookedServiceIds = new ArrayList<>();
 
         // The UI treats future bookings and past bookings differently, so we
         // split them once here instead of repeating that logic in the JSP.
         for (Booking b : all) {
+            bookedServiceIds.add(b.getServiceId());
             if (b.getAppointmentDatetime() != null && b.getAppointmentDatetime().isAfter(now)) {
                 upcoming.add(b);
             } else {
@@ -66,6 +68,23 @@ public class UserDashboardServlet extends HttpServlet {
         }
         upcoming.sort(Comparator.comparing(Booking::getAppointmentDatetime));
 
+        List<Service> servicesForMap = new ArrayList<>(activeServices);
+        if (!bookedServiceIds.isEmpty()) {
+            List<Service> bookedServices = serviceDAO.findByIds(bookedServiceIds);
+            for (Service s : bookedServices) {
+                boolean alreadyIn = false;
+                for (Service active : activeServices) {
+                    if (active.getServiceId() == s.getServiceId()) {
+                        alreadyIn = true;
+                        break;
+                    }
+                }
+                if (!alreadyIn) {
+                    servicesForMap.add(s);
+                }
+            }
+        }
+
         req.setAttribute("bookings", all);
         req.setAttribute("upcomingBookings", upcoming);
         req.setAttribute("historyBookings", history);
@@ -73,7 +92,7 @@ public class UserDashboardServlet extends HttpServlet {
         req.setAttribute("pendingRequestCount", pendingRequestCount);
         req.setAttribute("applyRequests", requestDAO.findByUserId(userId));
         req.setAttribute("popularServices", serviceDAO.findMostBooked(5));
-        req.setAttribute("serviceImageMap", SalonMediaUtil.buildServiceImageMap(activeServices));
+        req.setAttribute("serviceImageMap", SalonMediaUtil.buildServiceImageMap(servicesForMap));
         req.setAttribute("categories", serviceDAO.listDistinctCategories());
         req.setAttribute("favouriteStylists", buildFavouriteStylists());
         req.setAttribute("promoCards", buildPromotions());
@@ -83,9 +102,9 @@ public class UserDashboardServlet extends HttpServlet {
 
     private List<Map<String, String>> buildFavouriteStylists() {
         List<Map<String, String>> stylists = new ArrayList<>();
-        stylists.add(stylistCard("Shringar Hair Team", "Hair Stylist", "Hair", "/images/ojeswi.png"));
-        stylists.add(stylistCard("Shringar Makeup Team", "Makeup Artist", "Makeup", "/images/pratyusha.png"));
-        stylists.add(stylistCard("Shringar Beautician", "Beautician", "Beauty", "/images/sabya.png"));
+        stylists.add(stylistCard("Shringar Hair Team", "Hair Stylist", "Hair", "/images/ojeswi.png?v=2"));
+        stylists.add(stylistCard("Shringar Makeup Team", "Makeup Artist", "Makeup", "/images/pratyusha.png?v=2"));
+        stylists.add(stylistCard("Shringar Beautician", "Beautician", "Beauty", "/images/sabya.png?v=2"));
         stylists.add(stylistCard("Shringar Nail Team", "Nail Technician", "Nail", "/public/nail_technician.jpg"));
         return stylists;
     }

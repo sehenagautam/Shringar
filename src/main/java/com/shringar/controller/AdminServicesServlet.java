@@ -6,14 +6,18 @@ import java.util.List;
 
 import com.shringar.dao.AdminManagementDAO;
 import com.shringar.model.Service;
+import com.shringar.utils.FileUploadUtil;
 import com.shringar.utils.ValidationUtil;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 @WebServlet("/admin/services")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class AdminServicesServlet extends AdminBaseServlet {
 
     private final AdminManagementDAO dao = new AdminManagementDAO();
@@ -34,8 +38,8 @@ public class AdminServicesServlet extends AdminBaseServlet {
         }
 
         String action = clean(req.getParameter("action"));
-        if ("deactivate".equalsIgnoreCase(action)) {
-            handleDeactivate(req, res);
+        if ("delete".equalsIgnoreCase(action)) {
+            handleDelete(req, res);
             return;
         }
 
@@ -45,6 +49,30 @@ public class AdminServicesServlet extends AdminBaseServlet {
 
         if (update) {
             service.setServiceId(parsePositiveInt(req.getParameter("serviceId"), "Service", errors));
+        }
+
+        // Handle Image Upload
+        Part imagePart = req.getPart("serviceImage");
+        if (imagePart != null && imagePart.getSize() > 0) {
+            if (!FileUploadUtil.isImage(imagePart)) {
+                errors.add("Please upload a valid image file (JPG, PNG, etc.).");
+            } else {
+                String fileName = FileUploadUtil.buildFileName("service_" + System.currentTimeMillis(),
+                        FileUploadUtil.getFileExtension(imagePart.getSubmittedFileName()));
+                String uploadPath = req.getServletContext().getRealPath("/images");
+                try {
+                    FileUploadUtil.saveFile(imagePart, uploadPath, fileName);
+                    service.setImagePath("/images/" + fileName);
+                } catch (IOException e) {
+                    errors.add("Failed to save the uploaded image.");
+                }
+            }
+        } else if (update) {
+            // Keep existing image if not uploading a new one
+            Service existing = dao.findServiceById(service.getServiceId());
+            if (existing != null) {
+                service.setImagePath(existing.getImagePath());
+            }
         }
 
         if (!errors.isEmpty()) {
@@ -66,17 +94,17 @@ public class AdminServicesServlet extends AdminBaseServlet {
         }
     }
 
-    private void handleDeactivate(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    private void handleDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
         List<String> errors = ValidationUtil.newErrorList();
         int serviceId = parsePositiveInt(req.getParameter("serviceId"), "Service", errors);
         if (!errors.isEmpty()) {
             redirectWithError(req, res, "/admin/services", String.join(" ", errors));
             return;
         }
-        if (dao.deactivateService(serviceId)) {
-            redirectWithSuccess(req, res, "/admin/services", "Service was deactivated successfully.");
+        if (dao.deleteService(serviceId)) {
+            redirectWithSuccess(req, res, "/admin/services", "Service was deleted successfully.");
         } else {
-            redirectWithError(req, res, "/admin/services", "Could not deactivate the service.");
+            redirectWithError(req, res, "/admin/services", "Could not delete the service. It might be linked to existing bookings.");
         }
     }
 

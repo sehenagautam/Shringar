@@ -15,11 +15,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet({ "/login", "/user/login" })
+@WebServlet({ "/login", "/user/login", "/admin/login", "/admin-login" })
 public class LoginServlet extends HttpServlet {
+
+    private static final String ADMIN_LOGIN_VIEW = "ADMIN";
+    private static final String USER_LOGIN_VIEW = "USER";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        prepareLoginView(req);
         if ("1".equals(req.getParameter("expired"))) {
             req.setAttribute("message", "Your session expired after 30 minutes of inactivity. Please log in again.");
         }
@@ -37,11 +41,12 @@ public class LoginServlet extends HttpServlet {
                 req.setAttribute("typedEmail", rememberedEmail);
             }
         }
-        req.getRequestDispatcher("/pages/user.jsp").forward(req, res);
+        req.getRequestDispatcher(resolveLoginPage(req)).forward(req, res);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        prepareLoginView(req);
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
@@ -94,6 +99,20 @@ public class LoginServlet extends HttpServlet {
         req.setAttribute("errors", errors);
         req.setAttribute("error", errors.isEmpty() ? null : errors.get(0));
         req.setAttribute("typedEmail", email);
-        req.getRequestDispatcher("/pages/user.jsp").forward(req, res);
+        if (AdminAccessUtil.isAdminEmail(email)) {
+            req.setAttribute("loginView", ADMIN_LOGIN_VIEW);
+        }
+        req.getRequestDispatcher(resolveLoginPage(req)).forward(req, res);
+    }
+
+    private void prepareLoginView(HttpServletRequest req) {
+        String servletPath = req.getServletPath();
+        boolean isAdminRoute = servletPath != null
+                && (servletPath.startsWith("/admin/") || "/admin-login".equals(servletPath));
+        req.setAttribute("loginView", isAdminRoute ? ADMIN_LOGIN_VIEW : USER_LOGIN_VIEW);
+    }
+
+    private String resolveLoginPage(HttpServletRequest req) {
+        return ADMIN_LOGIN_VIEW.equals(req.getAttribute("loginView")) ? "/pages/admin-login.jsp" : "/pages/user.jsp";
     }
 }

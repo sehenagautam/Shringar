@@ -153,8 +153,37 @@
         }
 
         .form-field input[type="file"] {
-            height: auto !important;
-            padding: 14px 18px !important;
+            display: none !important;
+        }
+
+        .file-upload-label {
+            display: inline-block !important;
+            padding: 12px 20px !important;
+            background: #f5f2f0 !important;
+            border: 1.5px dashed #c9a96e !important;
+            border-radius: 10px !important;
+            color: #6b4c3b !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            text-align: center !important;
+            transition: all 0.2s !important;
+        }
+
+        .file-upload-label:hover {
+            background: #fff !important;
+            border-style: solid !important;
+        }
+
+        .file-upload-label i {
+            margin-right: 8px !important;
+        }
+
+        .file-name-display {
+            font-size: 0.82rem !important;
+            color: #8a7060 !important;
+            margin-top: 5px !important;
+            display: block !important;
         }
 
         .form-field input:focus {
@@ -254,22 +283,36 @@
             text-decoration: none !important;
         }
 
-        @media (max-width: 768px) {
+        .error-msg {
+            color: #9a4b43 !important;
+            font-size: 0.75rem !important;
+            margin-top: 4px !important;
+            display: block !important;
+        }
+
+        @media (max-width: 992px) {
             body.register-body {
                 flex-direction: column !important;
-            }
-            .register-left, .register-right {
-                width: 100% !important;
-                padding: 40px 28px !important;
+                height: auto !important;
+                min-height: 100vh !important;
             }
             .register-left {
+                width: 100% !important;
                 min-height: auto !important;
+                padding: 40px 24px !important;
+            }
+            .register-right {
+                width: 100% !important;
+                min-height: auto !important;
+                padding: 40px 24px !important;
             }
             .form-row {
                 flex-direction: column !important;
+                gap: 20px !important;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="register-body">
 
@@ -322,22 +365,30 @@
 
             <div class="form-field">
                 <label>Phone Number</label>
-                <input type="text" name="phone" placeholder="Enter your phone number" value="${param.phone}" pattern="[0-9+()\\-\\s]{7,20}" title="Use 7 to 20 digits or symbols like +, -, ( ), and spaces.">
+                <input type="text" name="phone" id="phone" placeholder="Enter your phone number" value="${param.phone}" required pattern="[0-9+()\\-\\s]{7,20}" title="Use 7 to 20 digits or symbols like +, -, ( ), and spaces.">
+                <span class="error-msg" id="phone-error"></span>
             </div>
 
             <div class="form-field">
                 <label>Profile Image</label>
-                <input type="file" name="profileImage" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+                <label for="profileImage" class="file-upload-label">
+                    <i class="fa fa-cloud-upload"></i> Choose Profile Photo
+                </label>
+                <input type="file" name="profileImage" id="profileImage" accept=".jpg,.jpeg,.png,image/jpeg,image/png" required onchange="updateFileName(this)">
+                <span id="fileNameDisplay" class="file-name-display">No file chosen</span>
+                <span class="error-msg" id="image-error"></span>
             </div>
 
             <div class="form-row">
                 <div class="form-field">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Create password" required minlength="8" autocomplete="new-password">
+                    <input type="password" name="password" id="password" placeholder="Create password" required minlength="8" autocomplete="new-password">
+                    <span class="error-msg" id="password-error"></span>
                 </div>
                 <div class="form-field">
                     <label>Confirm Password</label>
-                    <input type="password" name="confirmPassword" placeholder="Confirm password" required minlength="8" autocomplete="new-password">
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" required minlength="8" autocomplete="new-password">
+                    <span class="error-msg" id="confirm-error"></span>
                 </div>
             </div>
 
@@ -362,5 +413,63 @@
         </p>
     </div>
 
+    <script>
+        function updateFileName(input) {
+            const display = document.getElementById('fileNameDisplay');
+            if (input.files && input.files.length > 0) {
+                display.textContent = input.files[0].name;
+            } else {
+                display.textContent = 'No file chosen';
+            }
+        }
+
+        document.querySelector('.register-form').addEventListener('submit', function(e) {
+            let hasError = false;
+            
+            // Phone validation
+            const phone = document.getElementById('phone');
+            const phoneError = document.getElementById('phone-error');
+            const phoneRegex = /^[0-9+()\\-\\s]{7,20}$/;
+            if (!phoneRegex.test(phone.value)) {
+                phoneError.textContent = 'Invalid phone number format.';
+                hasError = true;
+            } else {
+                phoneError.textContent = '';
+            }
+
+            // Image validation
+            const image = document.getElementById('profileImage');
+            const imageError = document.getElementById('image-error');
+            if (image.files.length > 0) {
+                const file = image.files[0];
+                const fileSize = file.size / 1024 / 1024; // MB
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                if (fileSize > 2) {
+                    imageError.textContent = 'Image must be 2MB or smaller.';
+                    hasError = true;
+                } else if (!allowedTypes.includes(file.type)) {
+                    imageError.textContent = 'Only JPG, JPEG, and PNG are allowed.';
+                    hasError = true;
+                } else {
+                    imageError.textContent = '';
+                }
+            }
+
+            // Password match
+            const password = document.getElementById('password');
+            const confirm = document.getElementById('confirmPassword');
+            const confirmError = document.getElementById('confirm-error');
+            if (password.value !== confirm.value) {
+                confirmError.textContent = 'Passwords do not match.';
+                hasError = true;
+            } else {
+                confirmError.textContent = '';
+            }
+
+            if (hasError) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

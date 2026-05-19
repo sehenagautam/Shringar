@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Shringar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-dashboard.css?v=20260425-1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="admin-body">
     <div class="admin-shell">
@@ -22,35 +23,39 @@
 
                 <div class="dashboard-header-actions">
                     <div class="dashboard-stamp">
-                        <span>Last refresh</span>
+                        <span><i class="fa fa-refresh"></i> Last refresh</span>
                         <strong><c:out value="${dashboard.generatedAtDisplay}"/></strong>
                     </div>
-                    <a class="secondary-link-button" href="${pageContext.request.contextPath}/">Salon home</a>
-                    <a class="primary-link-button" href="${pageContext.request.contextPath}/logout">Sign out</a>
+                    <div class="report-actions" style="display: flex; gap: 10px;">
+                        <a class="secondary-link-button" href="${pageContext.request.contextPath}/admin/download-report?type=bookings"><i class="fa fa-download"></i> Bookings</a>
+                        <a class="secondary-link-button" href="${pageContext.request.contextPath}/admin/download-report?type=services"><i class="fa fa-download"></i> Services</a>
+                    </div>
+                    <a class="secondary-link-button" href="${pageContext.request.contextPath}/"><i class="fa fa-home"></i> Home</a>
+                    <a class="primary-link-button" href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out"></i> Sign out</a>
                 </div>
             </header>
 
             <section class="stats-grid overview-stats" aria-label="Important admin statistics">
                 <article class="stat-card stat-card-accent">
-                    <p>Estimated Revenue</p>
+                    <p><i class="fa fa-money"></i> Estimated Revenue</p>
                     <strong><c:out value="${dashboard.totalRevenueDisplay}"/></strong>
                     <span class="trend ${dashboard.revenueTrendDirection}"><c:out value="${dashboard.revenueTrendLabel}"/></span>
                 </article>
 
                 <article class="stat-card">
-                    <p>Total Bookings</p>
+                    <p><i class="fa fa-book"></i> Total Bookings</p>
                     <strong><c:out value="${dashboard.totalBookings}"/></strong>
                     <span class="trend ${dashboard.bookingTrendDirection}"><c:out value="${dashboard.bookingTrendLabel}"/></span>
                 </article>
 
                 <article class="stat-card">
-                    <p>Registered Users</p>
+                    <p><i class="fa fa-user"></i> Registered Users</p>
                     <strong><c:out value="${dashboard.totalUsers}"/></strong>
                     <span><c:out value="${dashboard.userTrendLabel}"/></span>
                 </article>
 
                 <article class="stat-card">
-                    <p>Active Services</p>
+                    <p><i class="fa fa-scissors"></i> Active Services</p>
                     <strong><c:out value="${dashboard.totalServices}"/></strong>
                     <span><c:out value="${dashboard.distinctCategories}"/> beauty categories live</span>
                 </article>
@@ -120,19 +125,19 @@
 
                     <div class="queue-list">
                         <a class="queue-item" href="${pageContext.request.contextPath}/admin/users">
-                            <span>User approvals</span>
+                            <span><i class="fa fa-user-circle"></i> User approvals</span>
                             <strong><c:out value="${dashboard.pendingUsers}"/></strong>
                         </a>
                         <a class="queue-item" href="${pageContext.request.contextPath}/admin/requests">
-                            <span>Service requests</span>
+                            <span><i class="fa fa-bell"></i> Service requests</span>
                             <strong><c:out value="${dashboard.pendingRequests}"/></strong>
                         </a>
                         <a class="queue-item" href="${pageContext.request.contextPath}/admin/messages">
-                            <span>Contact enquiries</span>
+                            <span><i class="fa fa-envelope"></i> Contact enquiries</span>
                             <strong><c:out value="${dashboard.totalMessages}"/></strong>
                         </a>
                         <a class="queue-item" href="${pageContext.request.contextPath}/admin/services">
-                            <span>Service catalogue</span>
+                            <span><i class="fa fa-list"></i> Service catalogue</span>
                             <strong><c:out value="${dashboard.totalServices}"/></strong>
                         </a>
                     </div>

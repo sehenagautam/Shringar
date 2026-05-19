@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard-user.css?v=20260425-1"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="dash-layout">
@@ -19,12 +20,12 @@
     <aside class="dash-side" aria-label="Sidebar">
         <nav>
             <ul>
-                <li><a class="active" href="${pageContext.request.contextPath}/user/dashboard"><span class="nav-ico">◆</span> Dashboard</a></li>
-                <li><a href="${pageContext.request.contextPath}/"><span class="nav-ico">⌂</span> Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico">◷</span> Search</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico">✦</span> Services</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/dashboard#appointments"><span class="nav-ico">☷</span> My appointments</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/dashboard#promos"><span class="nav-ico">✺</span> Promos &amp; offers</a></li>
+                <li><a class="active" href="${pageContext.request.contextPath}/user/dashboard"><span class="nav-ico"><i class="fa fa-th-large"></i></span> Dashboard</a></li>
+                <li><a href="${pageContext.request.contextPath}/"><span class="nav-ico"><i class="fa fa-home"></i></span> Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico"><i class="fa fa-search"></i></span> Search</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/search"><span class="nav-ico"><i class="fa fa-diamond"></i></span> Services</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/dashboard#appointments"><span class="nav-ico"><i class="fa fa-calendar"></i></span> My appointments</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/dashboard#promos"><span class="nav-ico"><i class="fa fa-gift"></i></span> Promos &amp; offers</a></li>
             </ul>
         </nav>
     </aside>
@@ -41,8 +42,6 @@
                 <a href="#promos">Promos</a>
             </nav>
             <div class="dash-topbar-tools">
-                <span class="ico" title="Notifications">🔔</span>
-                <span class="ico" title="Profile">👤</span>
                 <a class="signout" href="${pageContext.request.contextPath}/user/logout">Sign out</a>
             </div>
         </header>
@@ -88,7 +87,7 @@
         <div class="dash-profile-row dash-card">
             <c:choose>
                 <c:when test="${not empty sessionScope.user.image}">
-                    <img src="${pageContext.request.contextPath}/${sessionScope.user.image}" alt="Profile image" class="dash-avatar-slot" style="object-fit:cover;"/>
+                    <img src="${pageContext.request.contextPath}${sessionScope.user.image}" alt="Profile image" class="dash-avatar-slot" style="object-fit:cover;"/>
                 </c:when>
                 <c:otherwise>
                     <div class="dash-avatar-slot" title="Profile photo — add your image later"></div>
@@ -96,7 +95,7 @@
             </c:choose>
             <div>
                 <h2 style="font-family:Georgia,serif;font-size:1.35rem;margin-bottom:6px;border:none;"><c:out value="${sessionScope.user.name}"/></h2>
-                <p class="muted">👑 Member<c:if test="${not empty sessionScope.user.memberSinceYear}"> since <c:out value="${sessionScope.user.memberSinceYear}"/></c:if></p>
+                <p class="muted"><i class="fa fa-star" style="color:#c9a96e;"></i> Member<c:if test="${not empty sessionScope.user.memberSinceYear}"> since <c:out value="${sessionScope.user.memberSinceYear}"/></c:if></p>
                 <div class="dash-actions" style="margin-top:14px;">
                     <a class="btn-dark" href="${pageContext.request.contextPath}/user/search">Book appointment</a>
                     <a class="btn-soft" href="${pageContext.request.contextPath}/user/profile">Edit profile</a>
@@ -125,8 +124,8 @@
 
         <div class="dash-card">
             <h2>Personal info</h2>
-            <div class="dash-info-line"><span class="muted">✉ Email</span> <c:out value="${sessionScope.user.email}"/></div>
-            <div class="dash-info-line"><span class="muted">☎ Phone</span> <c:out value="${empty sessionScope.user.phone ? '—' : sessionScope.user.phone}"/></div>
+            <div class="dash-info-line"><span class="muted"><i class="fa fa-envelope-o"></i> Email</span> <c:out value="${sessionScope.user.email}"/></div>
+            <div class="dash-info-line"><span class="muted"><i class="fa fa-phone"></i> Phone</span> <c:out value="${empty sessionScope.user.phone ? '—' : sessionScope.user.phone}"/></div>
             <p class="muted" style="margin-top:8px;"><a href="${pageContext.request.contextPath}/user/profile">Edit</a></p>
         </div>
 

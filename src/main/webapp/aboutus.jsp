@@ -119,7 +119,7 @@
         <!-- Member 1 -->
         <div class="team-item">
             <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/anjelina.png">
+                <img src="${pageContext.request.contextPath}/images/anjelina.png?v=2">
             </div>
             <div class="team-info">
                 <h3>1. Salon Manager</h3>
@@ -130,7 +130,7 @@
         <!-- Member 2 -->
         <div class="team-item">
             <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/ojeswi.png">
+                <img src="${pageContext.request.contextPath}/images/ojeswi.png?v=2">
             </div>
             <div class="team-info">
                 <h3>2. Hair Stylist</h3>
@@ -141,7 +141,7 @@
         <!-- Member 3 -->
         <div class="team-item">
             <div class="team-avatar">
-                <img src="${pageContext.request.contextPath}/images/pratyusha.png">
+                <img src="${pageContext.request.contextPath}/images/pratyusha.png?v=2">
             </div>
             <div class="team-info">
                 <h3>3. Makeup Artist</h3>

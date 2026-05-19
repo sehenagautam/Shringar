@@ -258,8 +258,9 @@ body {
 
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+    align-items: start;
 }
 
 .toolbar-row {
@@ -319,12 +320,13 @@ body {
     background: #fff;
     border: 1px solid var(--border, #e0d4c8);
     border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    max-width: 500px;
 }
 
 .result-card-media {
-    margin: -16px -16px 14px;
+    margin: -24px -24px 16px;
     overflow: hidden;
     border-radius: 12px 12px 0 0;
     background: #f6efea;
@@ -333,7 +335,7 @@ body {
 .result-card-photo {
     display: block;
     width: 100%;
-    height: 220px;
+    height: 130px;
     object-fit: cover;
 }
 

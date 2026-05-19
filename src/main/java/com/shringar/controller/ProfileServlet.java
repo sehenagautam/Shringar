@@ -66,12 +66,13 @@ public class ProfileServlet extends HttpServlet {
         }
         ValidationUtil.require(name, "Full name", errors);
         ValidationUtil.require(email, "Email", errors);
+        ValidationUtil.require(phone, "Phone number", errors);
 
         if (!ValidationUtil.isValidEmail(email)) {
             errors.add("Please enter a valid email address.");
         }
         if (!ValidationUtil.isValidPhone(phone)) {
-            errors.add("Please enter a valid phone number (or leave blank).");
+            errors.add("Please enter a valid phone number.");
         }
 
         LocalDate dob = null;

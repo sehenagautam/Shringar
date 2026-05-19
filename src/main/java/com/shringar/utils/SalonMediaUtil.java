@@ -34,11 +34,11 @@ public final class SalonMediaUtil {
             "Nail", "/public/client_nails.png");
 
     private static final Map<String, String> STYLIST_IMAGES = Map.ofEntries(
-            Map.entry("Shringar Hair Team", "/images/ojeswi.png"),
-            Map.entry("Shringar Makeup Team", "/images/pratyusha.png"),
+            Map.entry("Shringar Hair Team", "/images/ojeswi.png?v=2"),
+            Map.entry("Shringar Makeup Team", "/images/pratyusha.png?v=2"),
             Map.entry("Shringar Nail Team", "/public/nail_technician.jpg"),
-            Map.entry("Shringar Beautician", "/images/sabya.png"),
-            Map.entry("Shringar Beauty Team", "/images/sabya.png"));
+            Map.entry("Shringar Beautician", "/images/sabya.png?v=2"),
+            Map.entry("Shringar Beauty Team", "/images/sabya.png?v=2"));
 
     private SalonMediaUtil() {
     }
@@ -46,6 +46,14 @@ public final class SalonMediaUtil {
     public static String findServiceImage(Service service) {
         if (service == null) {
             return CATEGORY_IMAGES.get("Hair");
+        }
+        if (service.getImagePath() != null && !service.getImagePath().isBlank()) {
+            String path = service.getImagePath();
+            // Ensure path starts with / for context path prefixing
+            if (!path.startsWith("/")) {
+                path = "/" + path;
+            }
+            return path;
         }
         return findServiceImage(service.getServiceName(), service.getCategory());
     }
@@ -75,13 +83,13 @@ public final class SalonMediaUtil {
         }
         if (category != null) {
             if ("Makeup".equalsIgnoreCase(category.trim())) {
-                return "/images/pratyusha.png";
+                return "/images/pratyusha.png?v=2";
             }
             if ("Nail".equalsIgnoreCase(category.trim())) {
                 return "/public/nail_technician.jpg";
             }
         }
-        return "/images/ojeswi.png";
+        return "/images/ojeswi.png?v=2";
     }
 
     public static Map<Integer, String> buildServiceImageMap(List<Service> services) {

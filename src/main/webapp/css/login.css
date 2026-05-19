@@ -94,13 +94,12 @@ body.login-body {
     gap: 16px;
     width: 100%;
 }
-
 .login-input-group {
     display: flex;
     align-items: center;
     width: 100%;
     height: 52px;
-    padding: 0 18px;
+    padding: 0 16px;
     background: #ffffff;
     border: 1.5px solid var(--border);
     border-radius: 10px;
@@ -112,18 +111,19 @@ body.login-body {
 }
 
 .login-input-label {
-    flex-shrink: 0;
-    width: 44px;
-    margin-right: 12px;
+    flex: 0 0 78px;
+    margin-right: 8px;
     color: var(--gold);
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .login-input-group input {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     margin: 0;
     padding: 0;
     border: 0;

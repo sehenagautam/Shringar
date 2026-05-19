@@ -38,9 +38,9 @@ public final class ProfileImageUtil {
             throw new ServletException("Profile image must be 2 MB or smaller.");
         }
 
-        String uploadDir = Path.of(rootPath, "uploads", "profiles").toString();
-        String fileName = FileUploadUtil.buildFileName(UUID.randomUUID().toString(), extension);
+        String uploadDir = Path.of(rootPath, "images").toString();
+        String fileName = FileUploadUtil.buildFileName("profile_" + UUID.randomUUID().toString(), extension);
         FileUploadUtil.saveFile(part, uploadDir, fileName);
-        return "uploads/profiles/" + fileName;
+        return "/images/" + fileName;
     }
 }

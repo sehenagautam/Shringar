@@ -75,7 +75,7 @@
     flex: 1;
     border: none;
     background: transparent;
-    padding: 14px 8px 14px 0;
+    padding: 12px 8px 12px 0; /* Slightly reduced padding to prevent overlap */
     font-size: 0.95rem;
     color: #3a3330;
     outline: none;

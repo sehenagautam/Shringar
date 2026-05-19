@@ -42,6 +42,7 @@ public class RegisterServlet extends HttpServlet {
         List<String> errors = ValidationUtil.newErrorList();
         ValidationUtil.require(name, "Full name", errors);
         ValidationUtil.require(email, "Email", errors);
+        ValidationUtil.require(phone, "Phone number", errors);
         ValidationUtil.require(password, "Password", errors);
 
         // The register form can include an optional profile photo, so we only
@@ -49,9 +50,14 @@ public class RegisterServlet extends HttpServlet {
         if (isMultipart(req)) {
             try {
                 profileImagePart = req.getPart("profileImage");
+                if (profileImagePart == null || profileImagePart.getSize() <= 0) {
+                    errors.add("Profile image is required.");
+                }
             } catch (Exception e) {
                 errors.add("Could not read the uploaded profile image.");
             }
+        } else {
+            errors.add("Profile image is required.");
         }
 
         if (!errors.isEmpty()) {

@@ -1,3 +1,4 @@
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ include file="../components/header.jsp" %>
 <%@ include file="../components/navbar.jsp" %>
 
@@ -68,6 +69,26 @@
                 <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
             </div>
         </div>
+
+        <!-- Dynamically added services from the Admin Dashboard -->
+        <c:forEach var="s" items="${services}">
+            <c:set var="isStarter" value="false" />
+            <c:if test="${s.serviceCode eq 'MAKEUP-BRIDAL-01' || s.serviceCode eq 'MAKEUP-PARTY-02' || s.serviceCode eq 'MAKEUP-ENGAGE-03' || s.serviceCode eq 'MAKEUP-NATURAL-04' || s.serviceCode eq 'MAKEUP-HD-05' || s.serviceCode eq 'MAKEUP-SOFT-06'}">
+                <c:set var="isStarter" value="true" />
+            </c:if>
+            <c:if test="${not isStarter}">
+                <div class="card">
+                    <c:set var="img" value="${serviceImageMap[s.serviceId]}"/>
+                    <img src="${pageContext.request.contextPath}${img}" alt="${s.serviceName}">
+                    <div class="card-text">
+                        <h3><c:out value="${s.serviceName}"/></h3>
+                        <p>Starting at Rs <c:out value="${s.price}"/></p>
+                        <p><c:out value="${s.description}"/></p>
+                        <a class="card-book-btn" href="${pageContext.request.contextPath}/login">Book Appointment</a>
+                    </div>
+                </div>
+            </c:if>
+        </c:forEach>
 
     </div>
 

@@ -2,7 +2,12 @@ package com.shringar.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import com.shringar.dao.ServiceDAO;
+import com.shringar.model.Service;
+import com.shringar.utils.SalonMediaUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -39,6 +44,20 @@ public class PublicPageControllerServlet extends HttpServlet {
         if (view == null) {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
+        }
+
+        if ("/pages/hair".equals(servletPath) || "/pages/makeup".equals(servletPath) || "/pages/nail".equals(servletPath)) {
+            String category = servletPath.substring(servletPath.lastIndexOf("/") + 1);
+            category = category.substring(0, 1).toUpperCase() + category.substring(1);
+            ServiceDAO dao = new ServiceDAO();
+            List<Service> services = dao.listByCategory(category);
+            req.setAttribute("services", services);
+            req.setAttribute("serviceImageMap", SalonMediaUtil.buildServiceImageMap(services));
+        } else if ("/pages/services".equals(servletPath)) {
+            ServiceDAO dao = new ServiceDAO();
+            List<Service> allServices = dao.listAllActive();
+            req.setAttribute("allServices", allServices);
+            req.setAttribute("serviceImageMap", SalonMediaUtil.buildServiceImageMap(allServices));
         }
 
         req.getRequestDispatcher(view).forward(req, res);

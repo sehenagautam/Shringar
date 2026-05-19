@@ -64,20 +64,8 @@
 
         <!-- Keep a lightweight route back into the public site from auth pages. -->
         <p class="login-links">
-            New here? <a href="${pageContext.request.contextPath}/register">Create an account</a>
-        </p>
-        <p class="login-links login-links--nav">
-            <a href="${pageContext.request.contextPath}/">Home</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/aboutus">About Us</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/pages/services">Services</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/ContactUs">Contact</a>
-            <span>|</span>
-            <a href="${pageContext.request.contextPath}/search">Search</a>
+            New here? <a href="${pageContext.request.contextPath}/register">Create an account</a><br/>
+            Admin? <a href="${pageContext.request.contextPath}/admin-login">Admin Login</a>
         </p>
 
     </div>

@@ -12,8 +12,6 @@
                 <div class="user-topnav-links">
                     <a class="${isDashboardPage ? 'active' : ''}" href="${pageContext.request.contextPath}/user/dashboard">Dashboard</a>
                     <a href="${pageContext.request.contextPath}/">Home</a>
-                    <a class="${isSearchPage ? 'active' : ''}" href="${pageContext.request.contextPath}/user/search">Search</a>
-                    <a href="${pageContext.request.contextPath}/user/search">Services</a>
                     <a href="${pageContext.request.contextPath}/user/dashboard#appointments">My appointments</a>
                 </div>
                 <div class="user-topnav-tools">
@@ -22,9 +20,6 @@
                         Wishlist
                         <c:if test="${not empty sessionScope.wishlistServiceIds}">
                             <span class="nav-badge">${fn:length(sessionScope.wishlistServiceIds)}</span>
-                        </c:if>
-                        <c:if test="${empty sessionScope.wishlistServiceIds}">
-                            <span class="nav-badge">0</span>
                         </c:if>
                     </a>
                     <a class="tool-link" href="${pageContext.request.contextPath}/user/logout">Log out</a>
@@ -37,7 +32,7 @@
             <div class="user-topnav-inner">
                 <div class="user-topnav-links">
                     <a href="${pageContext.request.contextPath}/">Home</a>
-                    <a href="${pageContext.request.contextPath}/search">Search</a>
+                    
                     <a href="${pageContext.request.contextPath}/login">Sign in</a>
                     <a href="${pageContext.request.contextPath}/register">Register</a>
                 </div>

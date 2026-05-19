@@ -25,8 +25,6 @@
                 </div>
 
                 <div class="nav-top-right">
-                    <a href="#">F</a>
-                    <a href="#">I</a>
                 </div>
             </div>
 
@@ -43,7 +41,7 @@
                     <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
                     <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
                     <li><a href="${pageContext.request.contextPath}/ContactUs">Contact Us</a></li>
-                    <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
+                    <li></li>
                 </ul>
 
                 <a href="${pageContext.request.contextPath}/login" class="btn-login">Log in</a>
@@ -255,7 +253,7 @@
                         <li><a href="${pageContext.request.contextPath}/pages/services">Services</a></li>
                         <li><a href="${pageContext.request.contextPath}/pages/Gallery">Gallery</a></li>
                         <li><a href="${pageContext.request.contextPath}/ContactUs">Contact</a></li>
-                        <li><a href="${pageContext.request.contextPath}/search">Search</a></li>
+                        <li></li>
                         <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
                         <li><a href="${pageContext.request.contextPath}/register">Register</a></li>
                     </ul>

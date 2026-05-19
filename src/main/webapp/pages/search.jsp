@@ -110,24 +110,12 @@
                     <form class="search-filter-form" method="get" action="${pageContext.request.contextPath}/search">
                         <div class="search-field">
                             <label for="searchCategory">Category</label>
-                            <select id="searchCategory" name="category">
-                                <option value="">All categories</option>
-                                <c:forEach var="cat" items="${categories}">
-                                    <option value="${cat}" <c:if test="${cat eq category}">selected</c:if>><c:out value="${cat}"/></option>
-                                </c:forEach>
-                            </select>
+                            <input type="text" id="searchCategory" name="category" value="${category}" placeholder="e.g., Hair, Makeup, Nail">
                         </div>
 
                         <div class="search-field search-field-wide">
                             <label for="searchKeyword">What are you looking for?</label>
-                            <select id="searchKeyword" name="q">
-                                <option value="">All salon treatments</option>
-                                <c:forEach var="serviceOption" items="${serviceOptions}">
-                                    <option value="${serviceOption.serviceName}" <c:if test="${serviceOption.serviceName eq q}">selected</c:if>>
-                                        <c:out value="${serviceOption.serviceName}"/> - <c:out value="${serviceOption.category}"/>
-                                    </option>
-                                </c:forEach>
-                            </select>
+                            <input type="text" id="searchKeyword" name="q" value="${q}" placeholder="Search for treatments (e.g., Haircut, Bridal)">
                         </div>
 
                         <div class="search-field search-field-action">

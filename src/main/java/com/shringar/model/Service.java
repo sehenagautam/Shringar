@@ -13,6 +13,7 @@ public class Service {
     private BigDecimal price;
     private int durationMinutes;
     private boolean active;
+    private String imagePath;
 
     public int getServiceId() {
         return serviceId;
@@ -84,5 +85,13 @@ public class Service {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }

@@ -21,6 +21,7 @@
     <servlet-name>registerPage</servlet-name>
     <jsp-file>/pages/Register.jsp</jsp-file>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>modulePageController</servlet-name>
     <url-pattern>/aboutus</url-pattern>
@@ -100,7 +101,6 @@
   </error-page>
 
   <welcome-file-list>
-    <welcome-file>pages/index.jsp</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

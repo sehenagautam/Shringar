@@ -49,23 +49,11 @@
     <form class="search-fields" method="get" action="${pageContext.request.contextPath}${searchPath}">
         <div class="field">
             <label>Category</label>
-            <select name="category">
-                <option value="">All categories</option>
-                <c:forEach var="cat" items="${categories}">
-                    <option value="${cat}" <c:if test="${cat eq category}">selected</c:if>><c:out value="${cat}"/></option>
-                </c:forEach>
-            </select>
+            <input type="text" name="category" value="${category}" placeholder="e.g., Hair, Makeup, Nail"/>
         </div>
         <div class="field">
             <label>What are you looking for?</label>
-            <select name="q">
-                <option value="">All salon treatments</option>
-                <c:forEach var="serviceOption" items="${serviceOptions}">
-                    <option value="${serviceOption.serviceName}" <c:if test="${serviceOption.serviceName eq q}">selected</c:if>>
-                        <c:out value="${serviceOption.serviceName}"/> - <c:out value="${serviceOption.category}"/>
-                    </option>
-                </c:forEach>
-            </select>
+            <input type="text" name="q" value="${q}" placeholder="Search for treatments (e.g., Haircut, Bridal)"/>
         </div>
         <div class="field search-btn"><button type="submit" class="btn btn-primary">Search</button></div>
     </form>
@@ -120,7 +108,7 @@
                         <form class="apply-mini" action="${pageContext.request.contextPath}/user/apply" method="post" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
                             <input type="hidden" name="serviceId" value="${s.serviceId}"/>
                             <div class="apply-row">
-                                <div class="field"><label>Preferred date</label><input type="date" name="preferredDate"/></div>
+                                <div class="field"><label>Preferred date</label><input type="date" name="preferredDate" required/></div>
                                 <div class="field"><label>Message</label><input type="text" name="message" placeholder="Optional" maxlength="600"/></div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-small" style="margin-top:8px;">Request appointment</button>
@@ -144,5 +132,22 @@
         </div>
     </c:if>
 </div>
+
+<script>
+    document.querySelectorAll('.apply-mini').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const dateInput = this.querySelector('input[type="date"]');
+            if (dateInput.value) {
+                const selectedDate = new Date(dateInput.value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (selectedDate < today) {
+                    alert('Preferred date cannot be in the past.');
+                    e.preventDefault();
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>

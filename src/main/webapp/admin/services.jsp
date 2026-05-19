@@ -47,7 +47,7 @@
                     <span class="panel-note">Service code must be unique, for example HAIR-CUT-01.</span>
                 </div>
 
-                <form class="admin-form" method="post" action="${pageContext.request.contextPath}/admin/services">
+                <form class="admin-form" method="post" action="${pageContext.request.contextPath}/admin/services" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="${editingService ? 'update' : 'create'}">
                     <c:if test="${editingService}">
                         <input type="hidden" name="serviceId" value="${formService.serviceId}">
@@ -77,6 +77,15 @@
                         <label class="field">
                             <span>Duration in minutes</span>
                             <input type="number" name="durationMinutes" value="${formService.durationMinutes}" min="1" required>
+                        </label>
+                        <label class="field field-full">
+                            <span>Service Image</span>
+                            <c:if test="${not empty formService.imagePath}">
+                                <div style="margin-bottom: 10px;">
+                                    <img src="${pageContext.request.contextPath}${formService.imagePath}" alt="Service Image" style="max-height: 100px; border-radius: 8px;">
+                                </div>
+                            </c:if>
+                            <input type="file" name="serviceImage" accept="image/*">
                         </label>
                         <label class="field field-full">
                             <span>Description</span>
@@ -124,8 +133,15 @@
                                     <c:forEach var="service" items="${services}">
                                         <tr>
                                             <td>
-                                                <strong><c:out value="${service.serviceName}"/></strong>
-                                                <span class="muted-line"><c:out value="${service.description}"/></span>
+                                                <div style="display: flex; align-items: center; gap: 12px;">
+                                                    <c:if test="${not empty service.imagePath}">
+                                                        <img src="${pageContext.request.contextPath}${service.imagePath}" alt="Img" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
+                                                    </c:if>
+                                                    <div>
+                                                        <strong><c:out value="${service.serviceName}"/></strong>
+                                                        <span class="muted-line"><c:out value="${service.description}"/></span>
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td><c:out value="${service.category}"/></td>
                                             <td><c:out value="${service.stylistName}"/></td>
@@ -140,13 +156,11 @@
                                             <td>
                                                 <div class="table-actions">
                                                     <a class="admin-button compact secondary" href="${pageContext.request.contextPath}/admin/services?editId=${service.serviceId}">Edit</a>
-                                                    <c:if test="${service.active}">
-                                                        <form class="inline-form" method="post" action="${pageContext.request.contextPath}/admin/services">
-                                                            <input type="hidden" name="action" value="deactivate">
-                                                            <input type="hidden" name="serviceId" value="${service.serviceId}">
-                                                            <button class="admin-button compact danger" type="submit">Deactivate</button>
-                                                        </form>
-                                                    </c:if>
+                                                    <form class="inline-form" method="post" action="${pageContext.request.contextPath}/admin/services" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                                        <input type="hidden" name="action" value="delete">
+                                                        <input type="hidden" name="serviceId" value="${service.serviceId}">
+                                                        <button class="admin-button compact danger" type="submit">Delete</button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -164,5 +178,26 @@
             </section>
         </main>
     </div>
+
+    <script>
+        document.querySelector('.admin-form').addEventListener('submit', function(e) {
+            let hasError = false;
+            const price = document.getElementsByName('price')[0];
+            const duration = document.getElementsByName('durationMinutes')[0];
+
+            if (parseFloat(price.value) < 0) {
+                alert('Price cannot be negative.');
+                hasError = true;
+            }
+            if (parseInt(duration.value) <= 0) {
+                alert('Duration must be greater than zero.');
+                hasError = true;
+            }
+
+            if (hasError) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

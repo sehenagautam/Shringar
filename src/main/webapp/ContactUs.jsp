@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contactus.css?v=20260423-1">
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -67,39 +68,31 @@
         <div class="contact-info">
 
             <div class="location-block">
-                <span class="contact-label">Location</span>
+                <span class="contact-label"><i class="fa fa-map-marker"></i> Location</span>
                 <div>
                     <p>Kamalpokhari, Kathmandu, Nepal</p>
-                    <p>+977 98000000000</p>
+                    <p><i class="fa fa-phone"></i> +977 9820221306</p>
                 </div>
             </div>
 
             <div class="location-block">
-                <span class="contact-label">Location</span>
+                <span class="contact-label"><i class="fa fa-map-marker"></i> Location</span>
                 <div>
                     <p>Jawalakhel, Lalitpur, Nepal</p>
-                    <p>+977 9812121212</p>
+                    <p><i class="fa fa-phone"></i> +977 9812121212</p>
                 </div>
             </div>
 
             <div class="location-block">
-                <span class="contact-label">Web</span>
+                <span class="contact-label"><i class="fa fa-globe"></i> Web</span>
                 <div>
                     <p>www.shringarnepal.com</p>
                 </div>
             </div>
 
             <div class="social-icons">
-                <a href="#">F</a>
-                <a href="#">I</a>
-            </div>
-
-            <!-- MAP -->
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.3!2d85.3193!3d27.7103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb190a74c0fbb3%3A0x9fd5c4d9b5c0e5a4!2sKamalpokhari%2C%20Kathmandu!5e0!3m2!1sen!2snp!4v1"
-                    width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy">
-                </iframe>
+                <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
             </div>
 
         </div>
@@ -141,12 +134,13 @@
 
                 <div class="form-group full-width">
                     <label for="contactPhone">PHONE</label>
-                    <input id="contactPhone" type="text" name="phone" value="${fn:escapeXml(formPhone)}" placeholder="Optional phone number">
+                    <input id="contactPhone" type="text" name="phone" value="${fn:escapeXml(formPhone)}" placeholder="Optional phone number" pattern="[0-9+()\\-\\s]{7,20}" title="Use 7 to 20 digits or symbols like +, -, ( ), and spaces.">
+                    <span class="error-msg" id="phone-error"></span>
                 </div>
 
                 <div class="form-group full-width">
                     <label for="contactMessage">YOUR MESSAGE</label>
-                    <textarea id="contactMessage" name="message" rows="6" placeholder="Write your message here..." required><c:out value="${formMessage}"/></textarea>
+                    <textarea id="contactMessage" name="message" rows="6" placeholder="Write your message here..." required maxlength="1500"><c:out value="${formMessage}"/></textarea>
                 </div>
 
                 <button type="submit" class="btn-send">Send</button>
@@ -196,6 +190,36 @@
         <p>© 2026 Shringar Salon. All Rights Reserved.</p>
     </div>
 </footer>
+
+<style>
+    .error-msg {
+        color: #9a4b43;
+        font-size: 0.75rem;
+        margin-top: 4px;
+        display: block;
+    }
+</style>
+
+<script>
+    document.querySelector('.contact-form-box form').addEventListener('submit', function(e) {
+        let hasError = false;
+        
+        // Phone validation (optional but if provided must be valid)
+        const phone = document.getElementById('contactPhone');
+        const phoneError = document.getElementById('phone-error');
+        const phoneRegex = /^[0-9+()\\-\\s]{7,20}$/;
+        if (phone.value.trim() !== '' && !phoneRegex.test(phone.value)) {
+            phoneError.textContent = 'Invalid phone number format.';
+            hasError = true;
+        } else {
+            phoneError.textContent = '';
+        }
+
+        if (hasError) {
+            e.preventDefault();
+        }
+    });
+</script>
 
 </body>
 </html>

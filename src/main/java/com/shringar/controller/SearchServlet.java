@@ -84,7 +84,7 @@ public class SearchServlet extends HttpServlet {
             results = dao.searchServices(keyword, category, stylist, serviceCode);
 
             if (hasKeyword) {
-                hints.add("Treatment selected: " + keyword + ".");
+                hints.add("Search keyword applied: " + keyword + ".");
             }
             if (hasCategory) {
                 hints.add("Salon category selected: " + category + ".");
