@@ -200,26 +200,7 @@
     }
 </style>
 
-<script>
-    document.querySelector('.contact-form-box form').addEventListener('submit', function(e) {
-        let hasError = false;
-        
-        // Phone validation (optional but if provided must be valid)
-        const phone = document.getElementById('contactPhone');
-        const phoneError = document.getElementById('phone-error');
-        const phoneRegex = /^[0-9+()\\-\\s]{7,20}$/;
-        if (phone.value.trim() !== '' && !phoneRegex.test(phone.value)) {
-            phoneError.textContent = 'Invalid phone number format.';
-            hasError = true;
-        } else {
-            phoneError.textContent = '';
-        }
 
-        if (hasError) {
-            e.preventDefault();
-        }
-    });
-</script>
 
 </body>
 </html>

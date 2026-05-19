@@ -371,12 +371,7 @@
 
             <div class="form-field">
                 <label>Profile Image</label>
-                <label for="profileImage" class="file-upload-label">
-                    <i class="fa fa-cloud-upload"></i> Choose Profile Photo
-                </label>
-                <input type="file" name="profileImage" id="profileImage" accept=".jpg,.jpeg,.png,image/jpeg,image/png" required onchange="updateFileName(this)">
-                <span id="fileNameDisplay" class="file-name-display">No file chosen</span>
-                <span class="error-msg" id="image-error"></span>
+                <input type="file" name="profileImage" id="profileImage" accept=".jpg,.jpeg,.png,image/jpeg,image/png" required>
             </div>
 
             <div class="form-row">
@@ -413,63 +408,6 @@
         </p>
     </div>
 
-    <script>
-        function updateFileName(input) {
-            const display = document.getElementById('fileNameDisplay');
-            if (input.files && input.files.length > 0) {
-                display.textContent = input.files[0].name;
-            } else {
-                display.textContent = 'No file chosen';
-            }
-        }
 
-        document.querySelector('.register-form').addEventListener('submit', function(e) {
-            let hasError = false;
-            
-            // Phone validation
-            const phone = document.getElementById('phone');
-            const phoneError = document.getElementById('phone-error');
-            const phoneRegex = /^[0-9+()\\-\\s]{7,20}$/;
-            if (!phoneRegex.test(phone.value)) {
-                phoneError.textContent = 'Invalid phone number format.';
-                hasError = true;
-            } else {
-                phoneError.textContent = '';
-            }
-
-            // Image validation
-            const image = document.getElementById('profileImage');
-            const imageError = document.getElementById('image-error');
-            if (image.files.length > 0) {
-                const file = image.files[0];
-                const fileSize = file.size / 1024 / 1024; // MB
-                const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-                if (fileSize > 2) {
-                    imageError.textContent = 'Image must be 2MB or smaller.';
-                    hasError = true;
-                } else if (!allowedTypes.includes(file.type)) {
-                    imageError.textContent = 'Only JPG, JPEG, and PNG are allowed.';
-                    hasError = true;
-                } else {
-                    imageError.textContent = '';
-                }
-            }
-
-            // Password match
-            const password = document.getElementById('password');
-            const confirm = document.getElementById('confirmPassword');
-            const confirmError = document.getElementById('confirm-error');
-            if (password.value !== confirm.value) {
-                confirmError.textContent = 'Passwords do not match.';
-                hasError = true;
-            } else {
-                confirmError.textContent = '';
-            }
-
-            if (hasError) {
-                e.preventDefault();
-            }
-        });
-    </script>
 </body>
 </html>

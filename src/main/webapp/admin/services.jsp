@@ -156,7 +156,7 @@
                                             <td>
                                                 <div class="table-actions">
                                                     <a class="admin-button compact secondary" href="${pageContext.request.contextPath}/admin/services?editId=${service.serviceId}">Edit</a>
-                                                    <form class="inline-form" method="post" action="${pageContext.request.contextPath}/admin/services" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                                    <form class="inline-form" method="post" action="${pageContext.request.contextPath}/admin/services">
                                                         <input type="hidden" name="action" value="delete">
                                                         <input type="hidden" name="serviceId" value="${service.serviceId}">
                                                         <button class="admin-button compact danger" type="submit">Delete</button>
@@ -179,25 +179,6 @@
         </main>
     </div>
 
-    <script>
-        document.querySelector('.admin-form').addEventListener('submit', function(e) {
-            let hasError = false;
-            const price = document.getElementsByName('price')[0];
-            const duration = document.getElementsByName('durationMinutes')[0];
 
-            if (parseFloat(price.value) < 0) {
-                alert('Price cannot be negative.');
-                hasError = true;
-            }
-            if (parseInt(duration.value) <= 0) {
-                alert('Duration must be greater than zero.');
-                hasError = true;
-            }
-
-            if (hasError) {
-                e.preventDefault();
-            }
-        });
-    </script>
 </body>
 </html>

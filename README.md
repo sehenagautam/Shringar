@@ -123,7 +123,7 @@ User-only areas are protected through filters and session checks. If a session e
 
 - The project uses Jakarta packages, not `javax.*`
 - The active Java package used in this project is `com.shringar`
-- The frontend is written without Bootstrap or Tailwind
+- The frontend is crafted using custom vanilla CSS for a lightweight and unique design
 - The user session timeout is set to 30 minutes
 
 ## Final thought

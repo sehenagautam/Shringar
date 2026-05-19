@@ -13,7 +13,7 @@ import com.shringar.utils.ExceptionUtil;
 
 public class ServiceDAO {
 
-    // Used to bootstrap a friendly starter catalog when the services table is empty.
+    // Initializes the service catalog with a default set of offerings if the database is empty.
     private static final String[][] STARTER_SERVICES = {
             {"Rapid Refresh Haircut", "A quick haircut to keep your look clean and refreshed.", "Hair", "Shringar Hair Team", "HAIR-REFRESH-01", "1000.00", "45", "/images/hair1.jpg"},
             {"Rose Reinvention Haircut", "A full style transformation to refresh and redefine your look.", "Hair", "Shringar Hair Team", "HAIR-ROSE-02", "1500.00", "75", "/images/hair2.jpg"},

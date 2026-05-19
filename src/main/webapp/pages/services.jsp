@@ -86,9 +86,6 @@
                         </div>
                     </c:forEach>
                 </c:when>
-                <c:otherwise>
-                    <p style="text-align:center; grid-column: 1/-1; padding: 40px; color: #7a7a7a;">No services available at the moment.</p>
-                </c:otherwise>
             </c:choose>
         </div>
     </section>

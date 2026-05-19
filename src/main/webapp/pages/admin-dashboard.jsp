@@ -1,3 +1,7 @@
+<%-- 
+  The main command center for salon admins.
+  This page pulls together revenue, bookings, and customer data.
+--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
@@ -6,14 +10,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Shringar</title>
+    <%-- Stylesheets for layout and icons --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin-dashboard.css?v=20260425-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="admin-body">
     <div class="admin-shell">
+        <%-- The sidebar stays consistent across all admin pages --%>
         <%@ include file="/WEB-INF/fragments/admin-sidebar.jspf" %>
 
         <main class="admin-main">
+            <%-- Hero section with quick actions and data timestamp --%>
             <header class="panel dashboard-header">
                 <div class="dashboard-header-copy">
                     <p class="section-label">Control Room</p>
@@ -22,21 +29,23 @@
                 </div>
 
                 <div class="dashboard-header-actions">
+                    <%-- Helpful for knowing when the data was last pulled from the DB --%>
                     <div class="dashboard-stamp">
                         <span><i class="fa fa-refresh"></i> Last refresh</span>
                         <strong><c:out value="${dashboard.generatedAtDisplay}"/></strong>
                     </div>
-                    <div class="report-actions" style="display: flex; gap: 10px;">
-                        <a class="secondary-link-button" href="${pageContext.request.contextPath}/admin/download-report?type=bookings"><i class="fa fa-download"></i> Bookings</a>
-                        <a class="secondary-link-button" href="${pageContext.request.contextPath}/admin/download-report?type=services"><i class="fa fa-download"></i> Services</a>
+                    <%-- Quick export links for offline analysis --%>
+                    <div class="report-actions">
+                        <a class="secondary-link-button" href="${pageContext.request.contextPath}/admin/download-report?type=bookings" title="Download Bookings Report"><i class="fa fa-download"></i> Export Bookings</a>
+                        <a class="secondary-link-button" href="${pageContext.request.contextPath}/admin/download-report?type=services" title="Download Services Report"><i class="fa fa-download"></i> Export Services</a>
                     </div>
-                    <a class="secondary-link-button" href="${pageContext.request.contextPath}/"><i class="fa fa-home"></i> Home</a>
-                    <a class="primary-link-button" href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out"></i> Sign out</a>
                 </div>
             </header>
 
+            <%-- Top level stats showing the health of the salon --%>
             <section class="stats-grid overview-stats" aria-label="Important admin statistics">
                 <article class="stat-card stat-card-accent">
+                    <%-- Money matters first --%>
                     <p><i class="fa fa-money"></i> Estimated Revenue</p>
                     <strong><c:out value="${dashboard.totalRevenueDisplay}"/></strong>
                     <span class="trend ${dashboard.revenueTrendDirection}"><c:out value="${dashboard.revenueTrendLabel}"/></span>
@@ -61,6 +70,7 @@
                 </article>
             </section>
 
+            <%-- Display feedback messages if an action was just performed --%>
             <c:if test="${not empty successMessage}">
                 <div class="admin-feedback admin-feedback-success"><c:out value="${successMessage}"/></div>
             </c:if>
@@ -69,6 +79,7 @@
             </c:if>
 
             <section class="dashboard-grid">
+                <%-- Monthly and Yearly breakdown --%>
                 <article class="panel dashboard-panel-wide">
                     <div class="panel-head">
                         <div>
@@ -79,6 +90,7 @@
                     </div>
 
                     <div class="report-summary-list">
+                        <%-- Comparing current month/year to the previous ones --%>
                         <div class="report-summary-card ${dashboard.monthlyReport.direction}">
                             <span><c:out value="${dashboard.monthlyReport.comparisonLabel}"/></span>
                             <strong><c:out value="${dashboard.monthlyReport.title}"/></strong>
@@ -91,6 +103,7 @@
                         </div>
                     </div>
 
+                    <%-- More specific breakdowns of users and requests --%>
                     <div class="mini-metrics-grid">
                         <div class="mini-metric">
                             <span>Approved customers</span>
@@ -115,6 +128,7 @@
                     </div>
                 </article>
 
+                <%-- Items that need immediate attention from the admin --%>
                 <article class="panel queue-panel">
                     <div class="panel-head">
                         <div>
@@ -142,6 +156,7 @@
                         </a>
                     </div>
 
+                    <%-- A quick sum of things waiting for a human to click 'Approve' or 'Reject' --%>
                     <div class="attention-strip">
                         <span>Needs review</span>
                         <strong><c:out value="${dashboard.pendingUsers + dashboard.pendingRequests}"/></strong>
@@ -151,6 +166,7 @@
             </section>
 
             <section class="dashboard-grid">
+                <%-- Showing what's popular --%>
                 <article class="panel">
                     <div class="panel-head">
                         <div>
@@ -162,6 +178,7 @@
 
                     <div class="service-list">
                         <c:choose>
+                            <%-- Only loop if we actually have data, otherwise show an empty state --%>
                             <c:when test="${not empty dashboard.topServices}">
                                 <c:forEach var="service" items="${dashboard.topServices}" end="3">
                                     <article class="service-list-item">
@@ -183,6 +200,7 @@
                     </div>
                 </article>
 
+                <%-- Static counts for a quick sanity check --%>
                 <article class="panel">
                     <div class="panel-head">
                         <div>

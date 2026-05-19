@@ -133,21 +133,6 @@
     </c:if>
 </div>
 
-<script>
-    document.querySelectorAll('.apply-mini').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            const dateInput = this.querySelector('input[type="date"]');
-            if (dateInput.value) {
-                const selectedDate = new Date(dateInput.value);
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                if (selectedDate < today) {
-                    alert('Preferred date cannot be in the past.');
-                    e.preventDefault();
-                }
-            }
-        });
-    });
-</script>
+
 </body>
 </html>

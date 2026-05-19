@@ -77,59 +77,6 @@
     }
 </style>
 
-<script>
-    document.querySelector('form').addEventListener('submit', function(e) {
-        let hasError = false;
-        
-        // Phone validation
-        const phone = document.getElementById('phone');
-        const phoneError = document.getElementById('phone-error');
-        const phoneRegex = /^[0-9+()\\-\\s]{7,20}$/;
-        if (!phoneRegex.test(phone.value)) {
-            phoneError.textContent = 'Invalid phone number format.';
-            hasError = true;
-        } else {
-            phoneError.textContent = '';
-        }
 
-        // Image validation
-        const image = document.getElementById('profileImage');
-        const imageError = document.getElementById('image-error');
-        if (image.files.length > 0) {
-            const file = image.files[0];
-            const fileSize = file.size / 1024 / 1024; // MB
-            const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-            if (fileSize > 2) {
-                imageError.textContent = 'Image must be 2MB or smaller.';
-                hasError = true;
-            } else if (!allowedTypes.includes(file.type)) {
-                imageError.textContent = 'Only JPG, JPEG, and PNG are allowed.';
-                hasError = true;
-            } else {
-                imageError.textContent = '';
-            }
-        }
-
-        // Password match
-        const password = document.getElementById('password');
-        const confirm = document.getElementById('confirmPassword');
-        const confirmError = document.getElementById('confirm-error');
-        if (password.value !== '' || confirm.value !== '') {
-            if (password.value !== confirm.value) {
-                confirmError.textContent = 'Passwords do not match.';
-                hasError = true;
-            } else if (password.value.length < 8) {
-                confirmError.textContent = 'New password must be at least 8 characters.';
-                hasError = true;
-            } else {
-                confirmError.textContent = '';
-            }
-        }
-
-        if (hasError) {
-            e.preventDefault();
-        }
-    });
-</script>
 </body>
 </html>

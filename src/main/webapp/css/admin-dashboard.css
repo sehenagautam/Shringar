@@ -1,3 +1,7 @@
+/* 
+   Color palette and general styling variables. 
+   I used a clean, modern blue-ish theme to keep it professional.
+*/
 :root {
     --admin-bg: #f3f6fb;
     --admin-sidebar: #0f172a;
@@ -24,6 +28,7 @@
     --admin-font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/* Resetting some default browser styles */
 * {
     box-sizing: border-box;
 }
@@ -33,6 +38,7 @@ body {
     min-height: 100%;
 }
 
+/* The background has a subtle gradient to make it look less 'flat' */
 body.admin-body {
     margin: 0;
     background:
@@ -188,6 +194,21 @@ table {
     padding: 26px 28px;
 }
 
+.dashboard-header-actions,
+.hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.report-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .dashboard-header-copy,
 .hero-panel > div:first-child {
     min-width: 0;
@@ -211,15 +232,6 @@ table {
     color: var(--admin-muted);
     font-size: 0.98rem;
     line-height: 1.75;
-}
-
-.dashboard-header-actions,
-.hero-actions {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
-    flex-wrap: wrap;
 }
 
 .dashboard-stamp,
